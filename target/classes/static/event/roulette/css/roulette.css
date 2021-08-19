@@ -1,0 +1,66 @@
+@font-face {
+  font-family: "BBTreeGB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff")
+  format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+#image {
+  width: 60%;
+  /*z-index: 10;*/
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+
+#n_id {
+  width: 9%;
+  top: auto;
+  position: relative;
+  /*z-index: 20;*/
+  left: 0;
+  right: 0;
+  margin-top: -85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.roulette-background {
+  background-image: url("/static/event/roulette/img/bagyeong.png");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+  padding-top: 6rem;
+  padding-bottom: 7rem;
+  margin: 0 auto;
+  text-align: center;
+  width: 70%;
+}
+
+.roulette-btn {
+  font-family: "BBTreeGB";
+  color: #fff;
+  background-color: #ff9935;
+  border-color: #ff9935;
+  border-radius: 50px;
+  padding: 20px 30px;
+  font-family: BBTreeGB;
+  font-size: 25px;
+  box-shadow: 0 0 0 0.25rem rgba(255, 153, 53, 0.5);
+}
+
+.roulette-btn:hover {
+  color: #fff;
+  background-color: #EBC24B;
+  box-shadow: 0 0 0 0.25rem rgba(255, 208, 38, 0.5);
+}
+
+.roulette-btn:focus {
+  color: #fff;
+  background-color: #d9aa00;
+  box-shadow: 0 0 0 0.25rem rgba(255, 208, 38, 0.5);
+}

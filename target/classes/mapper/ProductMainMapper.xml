@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.bit.ex.mapper.ProductMainMapper">
+    <select id="getList" resultType="edu.bit.ex.vo.ProductMainVO">
+        <![CDATA[
+      select i.image_route, p.product_id, p.product_name, p.price
+      from product p, image i
+      where category_num = 1 and i.product_id = p.product_id
+      order by product_id
+        ]]>
+    </select>
+
+    <select id="getList1" resultType="edu.bit.ex.vo.ProductMainVO">
+        <![CDATA[       
+        select i.image_route, p.product_id, p.product_name, p.price
+      from product p, image i
+      where category_num = 2 and i.product_id = p.product_id
+      order by product_id
+        ]]>
+    </select>
+
+    <select id="getList2" resultType="edu.bit.ex.vo.ProductMainVO">
+        <![CDATA[
+      select i.image_route, p.product_id, p.product_name, p.price
+      from product p, image i
+      where category_num = 3 and i.product_id = p.product_id
+      order by product_id
+        ]]>
+    </select>
+
+    <select id="read" resultType="edu.bit.ex.vo.ProductMainVO">
+        <![CDATA[
+      select i.image_route, p.product_id, p.product_name, p.price
+      from product p, image i
+      where i.product_id = p.product_id and p.product_id = #{product_id}
+        ]]>
+    </select>
+
+    <!-- 페이징 처리 / 검색처리 -->
+    <select id="getTotalCount1" resultType="int">
+        <![CDATA[
+              select count(*) 
+         from product 
+         where 
+           ]]>
+        <if test="keyword != null">
+            <include refid="criteria"></include>
+        </if>
+        <![CDATA[  
+           category_num = 2
+        ]]>
+    </select>
+
+    <select id="getListWithPaging1" resultType="edu.bit.ex.vo.ProductMainVO">
+        <!-- ROWNUM: sql이 실행된 결과에 넘버링을 해줌 -->
+        <![CDATA[
+            SELECT * FROM ( 
+                   SELECT ROWNUM AS RNUM, A.* FROM (
+                  select i.image_route, p.product_id, p.product_name, p.price
+                  from product p, image i
+                where
+                ]]>
+        <if test="keyword != null">
+            <include refid="criteria"></include>
+        </if>
+        <![CDATA[  
+              category_num = 2 and i.product_id = p.product_id
+            order by product_id                   
+                ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+              ) WHERE RNUM > (#{pageNum}-1) * #{amount}
+              ]]>
+
+    </select>
+
+    <select id="getTotalCount2" resultType="int">
+        <![CDATA[
+              select count(*) 
+         from product 
+         where 
+           ]]>
+        <if test="keyword != null">
+            <include refid="criteria"></include>
+        </if>
+        <![CDATA[  
+           category_num = 3
+        ]]>
+    </select>
+
+    <select id="getListWithPaging2" resultType="edu.bit.ex.vo.ProductMainVO">
+        <!-- ROWNUM: sql이 실행된 결과에 넘버링을 해줌 -->
+        <![CDATA[
+            SELECT * FROM ( 
+                   SELECT ROWNUM AS RNUM, A.* FROM (
+                  select i.image_route, p.product_id, p.product_name, p.price
+                  from product p, image i
+                where
+                ]]>
+        <if test="keyword != null">
+            <include refid="criteria"></include>
+        </if>
+        <![CDATA[ 
+                category_num = 3 and i.product_id = p.product_id
+            order by product_id                  
+                ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+              ) WHERE RNUM > (#{pageNum}-1) * #{amount}
+              ]]>
+
+    </select>
+
+    <!-- 검색 조건문 -->
+    <sql id="criteria">
+        <trim prefix="(" suffix=") AND" prefixOverrides="OR">
+            <foreach collection="typeArr" item="type">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'C'.toString()">
+                        product_name like '%'||#{keyword}||'%' 
+                    </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+
+    </sql>
+
+
+    <!--베스트 후기 리스트-->
+    <select id="getListReview" resultType="edu.bit.ex.vo.ProductMainVO">
+        <![CDATA[
+        select * from (SELECT DISTINCT b.board_id, b.b_date, b.b_title, b.b_content, b.b_hit, l.like_count, m.nickname
+                              FROM
+                              barny_board b, product p, b_like l, member m
+                where b.product_id= #{product_id} and l.board_id = b.board_id and m.member_idx = b.member_idx order by l.like_count desc                  
+                ) where rownum <=3
+        ]]>
+    </select>
+    <!--후기 파일 리스트-->
+    <select id="getFileList" resultType="edu.bit.ex.vo.FileVO">
+        <![CDATA[
+        select * from image where board_id = #{board_id}
+        ]]>
+    </select>
+
+    <!--후기 히트 업뎃-->
+    <update id="updateHit">
+        <![CDATA[
+        update barny_board
+        set b_hit = b_hit + 1
+        where board_id = #{board_id}
+        ]]>
+    </update>
+    <!--후기 쓰기-->
+    <insert id="writeReview">
+        <![CDATA[
+        INSERT
+        ALL
+        INTO barny_board (board_id, b_date, b_title, b_content, board_type_id, member_idx, b_group, product_id) 
+        VALUES(board_id_seq.NEXTVAL, sysdate,
+        #{b_title},
+        #{b_content},
+        2,
+        #{member_idx},
+        board_id_seq
+        .
+        currval,
+        #{product_id}
+        )
+
+        INTO
+        b_like
+        (
+        board_id,
+        like_count
+        )
+        VALUES
+        (
+        board_id_seq
+        .
+        currval,
+        0
+        )
+
+        select*
+        from dual
+        ]]>
+
+    </insert>
+
+    <insert id="insertList">
+
+        <![CDATA[
+        insert into image (image_id, board_id, image_name, image_extension, image_route, image_uuid)
+        values (image_id_seq.NEXTVAL, board_id_seq.currval, #{image_name}, #{image_extension},
+                #{image_route}, #{image_uuid})
+        ]]>
+
+    </insert>
+
+    <!--후기 페이징처리된 리스트-->
+
+    <select id="getTotalCount" resultType="int" parameterType="map">
+        <![CDATA[
+        select count(DISTINCT b.board_id)
+        from barny_board b,
+             product p,
+             b_like l,
+             member m
+        where b.product_id = #{product_id}
+          and l.board_id = b.board_id
+          and m.member_idx = b.member_idx
+        ]]>
+    </select>
+
+    <select id="getListWithPaging" resultType="edu.bit.ex.vo.ProductMainVO" parameterType="map">
+        <!-- ROWNUM: sql이 실행된 결과에 넘버링을 해줌 -->
+        <![CDATA[
+            SELECT * FROM ( 
+                   SELECT ROWNUM AS RNUM, A.* FROM (
+                            SELECT
+                            DISTINCT b.board_id, b.b_date, b.b_title, b.b_content, b.b_hit, l.like_count, m.nickname
+                              FROM
+                              barny_board b, product p, b_like l, member m
+                where b.product_id= #{product_id} and l.board_id = b.board_id and m.member_idx = b.member_idx order by b.b_date desc                  
+                ) A WHERE ROWNUM <= #{cri.pageNum} * #{cri.amount}
+              ) WHERE RNUM > (#{cri.pageNum}-1) * #{cri.amount}
+              ]]>
+
+    </select>
+
+
+</mapper>

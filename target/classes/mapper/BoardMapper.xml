@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.bit.ex.mapper.BoardMapper">
+	
+	<select id="getAdminList" resultType="edu.bit.ex.vo.BoardVO">
+	<![CDATA[
+		select board_id, b_date, b_title, b_content, board_type_id, member_idx, b_hit, b_group, b_indent, b_step from barny_board where board_type_id in(3,4,5,6) order by b_Group desc, b_Step asc
+	]]>
+	</select>
+	
+	
+	
+	<select id="read" resultType="edu.bit.ex.vo.BoardVO">
+	<![CDATA[
+		select * from barny_board where board_id = #{board_id}
+	]]>
+	</select>
+	
+	<update id="update">
+	<![CDATA[
+		update barny_board set b_title = #{b_title}, b_content = #{b_content} where board_id = #{board_id}
+	]]>
+	</update>
+	
+	<delete id="delete">
+	<![CDATA[
+		delete from barny_board where board_id = #{board_id}
+	]]>
+	</delete>
+	
+	
+	<insert id="insertBoard">
+	<![CDATA[
+		Insert into BARNY_BOARD (BOARD_ID,B_DATE,B_TITLE,B_CONTENT,BOARD_TYPE_ID,MEMBER_IDX,B_HIT,B_GROUP,B_INDENT,B_STEP,PRODUCT_ID) 
+        values (BOARD_ID_SEQ.nextval,sysdate,#{b_title},#{b_content},0,#{member_idx},0,BOARD_ID_SEQ.currval,0,0,null)
+	]]>
+   </insert>
+	
+	
+	
+	
+	<select id="getMemberList" resultType="edu.bit.ex.vo.BoardVO">
+	<![CDATA[
+		select board_id, b_date, b_title, b_content, board_type_id, member_idx, b_hit, b_group, b_indent, b_step 
+		from barny_board where member_idx = #{member_idx} and board_type_id in ('3','4','5','6','7')
+		order by b_Group desc, b_Step asc
+
+	]]>
+	</select>
+	
+	<insert id="insertBoard1">
+	<![CDATA[
+	
+		Insert into BARNY_BOARD (BOARD_ID,B_DATE,B_TITLE,B_CONTENT,BOARD_TYPE_ID,MEMBER_IDX,B_HIT,B_GROUP,B_INDENT,B_STEP,PRODUCT_ID) 
+        values (BOARD_ID_SEQ.nextval,sysdate,#{b_title},#{b_content},#{board_type_id},#{member_idx},0,BOARD_ID_SEQ.currval,0,0,null)
+	]]>
+	</insert>
+	
+	<select id="read1" resultType="edu.bit.ex.vo.BoardVO">
+	<![CDATA[
+		select * from barny_board where board_id = #{board_id}
+	]]>
+	</select>
+	
+	<update id="my_update">
+	<![CDATA[
+		update barny_board set b_title = #{b_title}, b_content = #{b_content} where board_id = #{board_id}
+	]]>
+	</update>
+	
+	<delete id="my_delete">
+	<![CDATA[
+		delete from barny_board where board_id = #{board_id}
+	]]>
+	</delete>
+	
+	
+	
+	<!--		select*from barny_board where member_idx = #{member_idx} and board_type_id ='2'-->
+	<select id="getReviewList" resultType="edu.bit.ex.vo.BoardVO">
+	<![CDATA[		
+		   select * from b_like b, barny_board d ,product p 
+      where board_type_id ='2' and b.board_id = d.board_id 
+      and d.product_id =p.product_id
+      and p.product_name = p.product_name
+      and d.member_idx  = #{member_idx}
+	]]>
+	</select>
+	
+	<insert id="insertBoard2">
+	<![CDATA[
+        insert all into 
+		barny_board(board_id, b_date, b_title, b_content, board_type_id, member_idx, b_group, product_id)  
+		values(board_id_seq.NEXTVAL, sysdate, #{b_title}, #{b_content}, 2, #{member_idx}, board_id_seq.CURRVAL,#{product_id}) 
+		into b_like(board_id, like_count) values(board_id_seq.CURRVAL, 0) select * from dual
+	]]>
+	</insert>
+	
+	
+	<select id="read2" resultType="edu.bit.ex.vo.BoardVO">
+	<![CDATA[
+		select * from barny_board where board_id = #{board_id}
+	]]>
+	</select>
+	
+	<update id="review_update">
+	<![CDATA[
+		update barny_board set b_title = #{b_title}, b_content = #{b_content} where board_id = #{board_id}
+	]]>
+	</update>
+	
+	<delete id="review_delete">
+	<![CDATA[
+	  delete from barny_board where board_id = #{board_id}
+	]]>
+	</delete>
+	
+	<delete id="like_delete">
+	<![CDATA[
+	  delete from B_LIKE where BOARD_ID = #{board_id}
+	]]>
+	</delete>
+	
+	
+	
+	<select id="getOrderList" resultType="edu.bit.ex.vo.OrderVO">
+	<![CDATA[
+	 select o.order_id,o.total_price,o.order_date,ship_id, p.ship_status_id,ship_status_name
+        from shipment s ,orders o,shipment_status p
+        where s.order_id=o.order_id
+        and p.ship_status_id=s.ship_status_id
+        and o.member_idx=#{member_idx}
+		
+	]]>
+	</select>
+	
+	<select id="orderRead" resultType="edu.bit.ex.vo.OrderDetailVO">
+	<![CDATA[
+		select o.order_detail_id, p.product_name, p.product_id , o.product_qty, o.order_id 
+		from order_detail o, product p where o.order_id = p.product_id and o.order_id= #{o.order_id}
+	]]>
+	</select>
+
+	
+	
+	<delete id="ship_remove">
+	<![CDATA[
+	   delete from shipment where ship_id=#{ship_id} and ship_status_id in(0,1)
+	]]>
+	</delete>
+	
+	
+	<select id="getPressList" resultType="edu.bit.ex.vo.ProductMainVO">
+	<![CDATA[
+		 select p.product_id ,product_name,member_idx,subscribe
+      	 from member m , product p 
+      	 where product_id = subscribe
+     	 and m.member_idx= #{member_idx}
+	]]>
+	</select>
+	
+	
+	<select id="getReply" resultType="edu.bit.ex.vo.BoardVO">
+	<![CDATA[		
+		select*from barny_board where board_type_id=#{board_type_id} and b_group=#{b_group}
+	]]>
+	</select>
+	
+	<update id="update_modify">
+	<![CDATA[
+		update member set subscribe =0 where member_idx = ${member_idx}
+	]]>
+	</update>
+	
+	<select id="getPointList" resultType="edu.bit.ex.vo.BoardVO">
+	<![CDATA[
+		select point from member where member_idx=${member_idx}
+
+	]]>
+	</select>
+	
+</mapper>

@@ -1,0 +1,171 @@
+@font-face {
+    font-family: "BBTreeGB";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+ol {
+    list-style-type: none;
+}
+
+
+#nav-my_page {
+    background: #FFF0F5;
+    width: 20%;
+    border-right: 20px;
+}
+
+#nav-my_page li ul {
+    display: none;
+}
+
+#nav-my_page li ul li {
+    background: 10px 10px no-repeat;
+    padding: 4px 0 3px 17px
+}
+
+#nav-my_page li ul li a {
+    color: #666668;
+    text-indent: 0;
+}
+
+#nav-my_page li a {
+    display: block;
+    width: 195px;
+    padding: 5px 0 5px 8px;
+    text-decoration: none;
+    background: no-repeat 0 0;
+}
+
+#nav-my_page li a:hover {
+    font-weight: bold;
+}
+
+#nav-my_page li a.stay {
+    background: no-repeat 0 0 !important;
+}
+
+#nav-my_page li ul li a {
+    width: 188px;
+    padding: 1px 0 0 15px;
+    margin-left: -17px;
+    background: none;
+}
+
+#nav-my_page li .active {
+    background: no-repeat 0 0 !important;
+    font-weight: bold;
+}
+
+#box3 {
+    width: 300px;
+    height: 200px;
+    border-right: 1px solid #DCDCDC;
+    border-left: 1px solid #DCDCDC;
+    float: left;
+    margin: 10px 0px 20px 50px;
+    padding-right: 20px;
+    text-align: center;
+    line-height: 250px;
+}
+
+#box {
+    width: 300px;
+    height: 200px;
+    border-right: 1px solid #DCDCDC;
+    float: left;
+    margin: 10px 20px 10px 30px;
+    text-align: center;
+    line-height: 250px;
+}
+
+#box1 {
+    width: 300px;
+    height: 200px;
+    border-right: 1px solid #DCDCDC;
+    float: left;
+    margin: 10px 20px 10px 20px;
+    padding-right: 30px;
+    text-align: center;
+    line-height: 250px;
+}
+
+#box2 {
+    width: 300px;
+    height: 200px;
+    float: left;
+    margin: 0px 0px 10px 20px;
+    padding-right: 80px;
+    text-align: center;
+    line-height: 250px;
+}
+
+.my-page-header {
+    text-align: center;
+    text-color: black;
+}
+
+.header-part {
+    margin: 10px;
+    background-color: white;
+}
+
+.card-my_page {
+    border: solid 1px #e6b33a;
+    border-radius: 0.25rem;
+    background: rgb(255, 182, 9);
+    background: radial-gradient(circle, rgba(255, 182, 9, 1) 0%, rgba(235, 194, 75, 1) 100%);
+    color: white;
+    text-align: center;
+    font-family: NanumSquare;
+    padding: 1rem 0;
+    width: 15rem;
+}
+
+.card-my_page:hover {
+    color: #fff;
+    box-shadow: 0 0 0 0.25rem rgba(255, 208, 38, 0.5);
+}
+
+.card-my_page:focus {
+    color: #fff;
+    box-shadow: 0 0 0 0.25rem rgba(255, 208, 38, 0.5);
+}
+
+
+.my_page {
+    font-family: NanumSquare;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.main-menu {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.side-nav {
+    width: 80%;
+    border-radius: 3px;
+    font-weight: 400;
+    font-size: 15px;
+    font-family: 'NanumSquare';
+    padding-left: 0px;
+    margin-top: 5rem;
+}
+
+.side-nav-item {
+    padding : 10px 0;
+    border-bottom: solid 1px;
+    border-bottom-color: #F4E8DC;
+    padding-left: 20px;
+}

@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Contact Form with AJAX and jQuery Validations</title>
+    <meta name="description" content="Contact form created using Boostrap 4 with jQuery validations and AJAX form submit that returns JSON response." />
+
+    <!-- Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="assets/css/custom.css" rel="stylesheet" />
+	<link href="assets/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/css/styles.css" rel="stylesheet" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-47923629-1', 'gigagit.com');
+      ga('send', 'pageview');
+
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="https://www.gigagit.com/">GIGAGIT.com</a>
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbar-header">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbar-header">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/bootstrap-4/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Contact Form with AJAX and jQuery Validations</h1>
+            <p class="lead">Contact form created using Bootstrap 4 with jQuery validations and AJAX form submit that returns JSON response.</p>
+            <hr class="my-4" />
+            <p>It uses Bootstrap 4 framework for responsive layout, jQuery validations, submits form using AJAX callback method with JSON response returned by PHP code.</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="https://www.gigagit.com/item/bootstrap-contact-form-with-ajax-and-jquery-validations" role="button">Learn more</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-6 align-self-center">
+                <form id="form_contact" novalidate="novalidate">
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h5 class="card-title m-0">
+                                    <i class="fa fa-send mr-1"></i>CONTACT FORM
+                                </h5>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="form-row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="contact_firstname">First Name</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-user"></i>
+                                                </span>
+                                                <input type="text" id="contact_firstname" name="contact_firstname" class="form-control" placeholder="First Name" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="contact_lastname">Last Name</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-user"></i>
+                                                </span>
+                                                <input type="text" id="contact_lastname" name="contact_lastname" class="form-control" placeholder="Last Name" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact_email">Email address</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                        <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="Enter email" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact_message">Message</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-edit"></i>
+                                        </span>
+                                        <textarea id="contact_message" name="contact_message" class="form-control" placeholder="Message body"></textarea>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <button type="submit" class="btn btn-primary">SEND</button>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6 text-center align-self-center">
+                <h6>Result</h6>
+                <div id="contact_result">
+                    <div class="alert">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            &copy; 2019 <a href="https://www.gigagit.com">gigagit.com</a>. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+	<script src="assets/js/app.js"></script>
+</body>
+</html>

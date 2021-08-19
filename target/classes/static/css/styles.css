@@ -1,0 +1,272 @@
+/*custom css*/
+/*bootstrap.css은 건드리지말고 그안의 소스를 따와서 custom 하자고 만든 css*/
+/*부트스트랩처럼 html에 연결하면 적용됩니다*/
+/*밑으로 추가해주세요*/
+
+/*font*/
+@font-face {
+  font-family: "BBTreeGB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 400;
+  src: url(NanumSquareR.eot);
+  src: url(NanumSquareR.eot?#iefix) format("embedded-opentype"),
+    url(NanumSquareR.woff) format("woff"),
+    url(NanumSquareR.ttf) format("truetype");
+}
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 700;
+  src: url(NanumSquareB.eot);
+  src: url(NanumSquareB.eot?#iefix) format("embedded-opentype"),
+    url(NanumSquareB.woff) format("woff"),
+    url(NanumSquareB.ttf) format("truetype");
+}
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 800;
+  src: url(NanumSquareEB.eot);
+  src: url(NanumSquareEB.eot?#iefix) format("embedded-opentype"),
+    url(NanumSquareEB.woff) format("woff"),
+    url(NanumSquareEB.ttf) format("truetype");
+}
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 300;
+  src: url(NanumSquareL.eot);
+  src: url(NanumSquareL.eot?#iefix) format("embedded-opentype"),
+    url(NanumSquareL.woff) format("woff"),
+    url(NanumSquareL.ttf) format("truetype");
+}
+
+/*etc*/
+
+.container-1 {
+  margin-top: 20%;
+  margin-bottom: 20%;
+  font-family: "BBTreeGB";
+}
+
+.mb-6 {
+  margin-bottom: 4rem;
+}
+
+.subs-container {
+  width: 100vw;
+  height: 600px;
+  background-image: url("/static/main_page/assets/img/sub-main2.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  text-align: center;
+}
+
+.contents {
+  font-family: "NanumSquare";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.contents p.contents1 {
+  color: #fff;
+  font-size: 300%;
+}
+
+.contents p.contents2 {
+  margin-top: -5%;
+  color: #fff;
+  font-size: 300%;
+}
+
+.contents p.contents3 {
+  margin-top: -15px;
+  color: #fff;
+  font-size: 150%;
+}
+
+a.btn-outline-yellow {
+  color: #ffc107;
+  border-color: #ffc107;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+a.btn-outline-yellow:hover {
+  color: #fff;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+.col-12.produce {
+  padding-inline-start: 10%;
+  margin-bottom: 5rem;
+  display: flex;
+}
+
+.col-8.package-text {
+  padding: 5%;
+  float: right;
+  text-align: center;
+}
+
+/*faq*/
+
+.col-sm-6 {
+  margin: auto;
+}
+.faq-title {
+  margin-top: 5%;
+  font-family: "NanumSquare";
+  text-align: center;
+}
+
+.title {
+  display: inline-block;
+}
+
+.panel-heading .panel-title {
+  font-family: "NanumSquare";
+  font-size: 16px;
+}
+
+.panel-body {
+  font-family: "NanumSquare";
+  font-size: 16px;
+}
+
+.accordion_one .panel .panel-heading a.collapsed {
+  color: #999999;
+  display: block;
+  padding: 12px 30px;
+  margin-bottom: -5px;
+  border-top: 1px solid #f1f1f1;
+}
+
+.accordion_one .panel .panel-heading a {
+  display: block;
+  padding: 12px 30px;
+  background: #fff;
+  color: #313131;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.accordion-wrap .panel .panel-heading a {
+  font-size: 14px;
+}
+
+.accordion_one .panel-group .panel-heading + .panel-collapse > .panel-body {
+  border-top: 0;
+  padding-top: 0;
+  padding: 25px 30px 30px 35px;
+  background: #fff;
+  color: #999999;
+}
+
+.accordion_one .panel-group {
+  border: 1px solid #f1f1f1;
+  margin-top: 90px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.accordion_one .panel {
+  background-color: transparent;
+  box-shadow: none;
+  border-bottom: 0px solid transparent;
+  border-radius: 0;
+  margin: 0;
+}
+
+.accordion_one .panel-default {
+  border: 0;
+}
+
+.accordion-wrap .panel-heading {
+  padding: 0px;
+  border-radius: 0px;
+}
+
+h4 {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.img-accordion {
+  width: 40px;
+  float: left;
+  margin-right: 40px;
+  display: block;
+}
+
+.accordion_one .panel .panel-heading a.collapsed:after {
+  content: "\2b";
+  color: #999999;
+  background: #f1f1f1;
+}
+
+.accordion_one .panel .panel-heading a:after,
+.accordion_one .panel .panel-heading a.collapsed:after {
+  font-family: "NanumSquare";
+  font-size: 15px;
+  width: 36px;
+  line-height: 48px;
+  text-align: center;
+  background: #f1f1f1;
+  float: left;
+  margin-left: -31px;
+  margin-top: -13px;
+  margin-right: 15px;
+}
+
+.accordion_one .panel .panel-heading a:after {
+  content: "\2212";
+}
+
+.accordion_one .panel .panel-heading a:after,
+.accordion_one .panel .panel-heading a.collapsed:after {
+  /*버튼*/
+  font-family: "NanumSquare";
+  font-size: 15px;
+  width: 36px;
+  height: 44px;
+  line-height: 48px;
+  text-align: center;
+  background: #f1f1f1;
+  float: left;
+  margin-left: -31px;
+  margin-right: 15px;
+}
+
+/*form*/
+/* div .col-md-12 .col-md-4 {
+  margin: auto;
+} */
+
+.sub_nav {
+  padding-top: 75px;
+}
+
+.btn-outline-success {
+  color: #ebc24b;
+  border-color: #ebc24b;
+}
+
+/*event*/
+h4.section-heading {
+  font-family: "NanumSquare";
+}
+
+.card {
+  margin-right: 3rem !important;
+}
+
+
+

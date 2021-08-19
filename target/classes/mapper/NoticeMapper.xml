@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.bit.ex.mapper.NoticeMapper">
+    <select id="getList" resultType="edu.bit.ex.vo.NoticeVO">
+        <![CDATA[
+        select board_id, b_title, b_content, board_type_id, b_date, b_hit from barny_board where board_type_id = 0 order by board_id desc
+        ]]>
+    </select>
+
+    <select id="getTotalCount" resultType="int">
+        <![CDATA[
+           select count(*) from barny_board where
+           ]]>
+        <if test="keyword != null">
+            <include refid="criteria"></include>
+        </if>
+        <![CDATA[  
+           board_type_id = 0
+        ]]>
+    </select>
+
+    <select id="getListWithPaging" resultType="edu.bit.ex.vo.NoticeVO">
+        <!-- ROWNUM: sql이 실행된 결과에 넘버링을 해줌 -->
+        <![CDATA[
+            SELECT * FROM ( 
+                   SELECT ROWNUM AS RNUM, A.* FROM (
+                            SELECT
+                        board_id, b_title, b_content, board_type_id, b_date, b_hit
+                              FROM
+                            barny_board 
+                where
+                ]]>
+        <if test="keyword != null">
+            <include refid="criteria"></include>
+        </if>
+        <![CDATA[ 
+                board_type_id = 0 order by board_id desc                  
+                ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+              ) WHERE RNUM > (#{pageNum}-1) * #{amount}
+              ]]>
+
+    </select>
+
+    <insert id="write">
+        <![CDATA[
+        INSERT INTO barny_board (board_id, b_date, b_title, b_content, board_type_id, member_idx, b_group) 
+        VALUES(board_id_seq.NEXTVAL, sysdate, #{b_title}, #{b_content}, 0, 1, board_id_seq.currval)
+        ]]>
+    </insert>
+
+    <select id="read" resultType="edu.bit.ex.vo.NoticeVO">
+        <![CDATA[
+           select * from barny_board where board_id = #{board_id}
+        ]]>
+    </select>
+
+    <update id="update">
+        <![CDATA[
+           update barny_board set b_date = sysdate, b_title = #{b_title}, b_content = #{b_content} where board_id = #{board_id}
+        ]]>
+    </update>
+
+    <delete id="delete">
+        <![CDATA[
+           delete from barny_board where board_id = #{board_id}
+        ]]>
+    </delete>
+
+    <!-- 검색 조건문 -->
+    <sql id="criteria">
+        <trim prefix="(" suffix=") AND" prefixOverrides="OR">
+            <foreach collection="typeArr" item="type">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'T'.toString()">
+                        b_title like '%'||#{keyword}||'%' 
+                    </when>
+                        <when test="type == 'C'.toString()">
+                        b_content like '%'||#{keyword}||'%' 
+                    </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+
+    </sql>
+
+    <delete id="delete2">
+        <![CDATA[
+        delete from barny_board where board_id = #{board_id}
+        ]]>
+    </delete>
+
+    <update id="updateHit">
+        <![CDATA[
+        update barny_board set b_hit = b_hit + 1 where board_id = #{board_id}
+        ]]>
+    </update>
+
+</mapper>

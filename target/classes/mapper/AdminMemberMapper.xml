@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="edu.bit.ex.mapper.AdminMemberMapper">
+    <select id="getList" resultType="edu.bit.ex.vo.AdminMemberVO">
+        <![CDATA[
+          SELECT MEMBER_ID,MEMBER_IDX,MEMBER_NAME,NICKNAME,EMAIL,PAYMENT,TEL,ADDRESS,
+          DATE_OF_BIRTH,POINT FROM MEMBER ORDER BY MEMBER_IDX ASC
+        ]]>
+    </select>
+    
+   <insert id="insertMember">
+       <![CDATA[ insert into member(member_id,pw,member_idx,member_name,nickname,email,payment,tel,address,date_of_birth,point)
+        values (#{member_id},#{pw},BARNY_member_SEQ.NEXTVAL,#{member_name},#{nickname},#{email},null,#{tel},#{address},#{date_of_birth},0)]]>
+    </insert>
+    
+  
+	<select id="read" resultType="edu.bit.ex.vo.AdminMemberVO">
+   <![CDATA[ 
+      select * from member where member_idx = #{member_idx}
+   ]]>
+	</select> 
+
+   <update id="update">
+      <![CDATA[
+         update member set member_name = #{member_name}, nickname = #{nickname}, email = #{email}, payment = #{payment}, tel = #{tel}, address = #{address}, date_of_birth = #{date_of_birth}, point = #{point} where member_idx = #{member_idx}
+      ]]>
+      </update>
+
+      <update id="delete">
+         <![CDATA[
+          update auth set active = 0 where member_idx = #{memebr_idx}
+         ]]>
+      </update>
+     
+	
+	<!-- <update id="updateHit">
+   <![CDATA[
+      update mvc_board set bHit = bHit + 1 where bId = #{bid}
+   ]]>
+	</update> 
+     -->
+
+
+</mapper>
