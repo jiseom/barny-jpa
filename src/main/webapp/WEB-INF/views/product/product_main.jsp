@@ -124,12 +124,8 @@
                 <sec:authorize access="hasAnyRole('ROLE_USER')">
                     <li class="nav-item"><a class="nav-link" href="/board/my_page">마이페이지</a></li>
                 </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-<<<<<<< HEAD
-                    <li class="nav-item"><a class="nav-link" href="/statistics">관리페이지</a></li>
-=======
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">               
                     <li class="nav-item"><a class="nav-link" href="/admin/statistics">관리페이지</a></li>
->>>>>>> 148d5f487683ccc628036008efc93781d60b3e89
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('ROLE_USER')">
                     <li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
