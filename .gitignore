@@ -288,3 +288,7 @@ fabric.properties
 
 # Vscode
 .vscode
+
+#application.yaml
+application.yaml
+application-test.yaml
