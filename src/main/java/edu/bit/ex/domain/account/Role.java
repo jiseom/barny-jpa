@@ -1,4 +1,4 @@
-package edu.bit.ex.domain.constant;
+package edu.bit.ex.domain.account;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum Role {
 
-    USER("ROLE_USER","회원"),
-    ADMIN("ROLE_ADMIN","관리자");
+    ROLE_USER("ROLE_USER", "회원"),
+    ROLE_ADMIN("ROLE_ADMIN", "관리자");
 
     private final String key;
     private final String title;
