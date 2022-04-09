@@ -10,7 +10,7 @@ $(function() {
 			// email = email + "@" + $(".domain").val(); // 셀렉트 박스에 @뒤 값들을 더함.
 			$.ajax({
 				type: 'post',
-				url: '/CheckMail',
+				url: '/check-email',
 				dataType: 'json',
 				async: "false",
 				data: {

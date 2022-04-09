@@ -28,104 +28,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"--%>
-    <%--          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">--%>
-    <%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"--%>
-    <%--            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"--%>
-    <%--            crossorigin="anonymous"></script>--%>
-
-
-    <!--  <style> body {
-          min-height: 100vh;
-          background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
-          background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-          background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-          background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-          background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
-      }
-
-      .input-form {
-          max-width: 680px;
-          margin-top: 80px;
-          padding: 32px;
-          background: #fff;
-          -webkit-border-radius: 10px;
-          -moz-border-radius: 10px;
-          border-radius: 10px;
-          -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-          -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-          box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
-      } </style>
-  -->
-
 </head>
-
 
 <body id="page-top">
 
-
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
-     id="mainNav_2">
-    <div class="container">
-        <a class="navbar-brand" href="/main"><img
-                src="/static/main_page/assets/img/logo.png" alt="바니 로고 1"/></a>
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            Menu <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/subscribe">구독</a></li>
-                <li class="nav-item"><a class="nav-link" href="/story">브랜드
-                    스토리</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 상품 보기 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/product_main">패키지</a></li>
-                        <li><a class="dropdown-item" href="/product_main_liquor">술</a></li>
-                        <li><a class="dropdown-item" href="/product_main_food">안주</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/notice">공지사항</a></li>
-                        <li><a class="dropdown-item" href="/notice/faq">자주 묻는 질문</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <sec:authorize access="isAnonymous()">
-                    <li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/board/my_page">마이페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-                    <li class="nav-item"><a class="nav-link" href="/admin/statistics">관리페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-                </sec:authorize>
-            </ul>
-        </div>
-    </div>
-</nav>
+<%@ include file="/WEB-INF/views/include/navbar.jsp" %>
 
 <form:form name="findMember" modelAttribute="memberVO" action="/findId" method="POST">
     <div class="container pt-5" style="width:60%">
