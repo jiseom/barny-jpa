@@ -295,3 +295,6 @@ fabric.properties
 #application.yaml
 application.yaml
 application-test.yaml
+
+#test application.yaml
+src/test/resources/application.yaml
