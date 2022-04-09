@@ -1,6 +1,6 @@
 package edu.bit.ex.config;
 
-import edu.bit.ex.oauth2.PrincipalOauth2UserService;
+//import edu.bit.ex.oauth2.PrincipalOauth2UserService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String ROLE_USER = "USER";
     public static final String ROLE_ADMIN = "ADMIN";
     private final UserDetailsService userDetailsService;
-    private final PrincipalOauth2UserService principalOauth2UserService;
+//    private final PrincipalOauth2UserService principalOauth2UserService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .formLogin()
-                .loginPage("/loginForm")
+                .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/main")
 
@@ -49,15 +49,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/main") // 로그아웃 성공시 리다이렉트 주소
                 .invalidateHttpSession(true) // 로그아웃 이후 세션 전체 삭제 여부
-                .permitAll()
+                .permitAll();
 
-                .and()
-                .oauth2Login()
-                .loginPage("/login")
-                .userInfoEndpoint() // OAuth2 로그인 성공 이후 사용자 정보를 가져올 때의 설정
-                .userService(principalOauth2UserService)
-                .and()
-                .defaultSuccessUrl("/main");
+//                .and()
+//                .oauth2Login()
+//                .loginPage("/login")
+//                .userInfoEndpoint() // OAuth2 로그인 성공 이후 사용자 정보를 가져올 때의 설정
+//                .userService(principalOauth2UserService)
+//                .and()
+//                .defaultSuccessUrl("/main");
 //                .and()
 //                .oauth2Login()
 //                .loginPage("/loginForm")
@@ -82,6 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         //== css 같은 리소스 파일 허가할때는 configure(WebSecurity web) 메소드 쓰세요. ==//
+        web.ignoring().antMatchers("/css/**", "/script/**", "/image/**", "/fonts/**", "/lib/**","/static/**");
         web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
