@@ -1,8 +1,7 @@
-package edu.bit.ex.domain;
+package edu.bit.ex.domain.account;
 
 import javax.persistence.Entity;
 
-import edu.bit.ex.domain.constant.Role;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
