@@ -56,7 +56,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public boolean checkValidateId(String member_id) {
+    public boolean check(String member_id) {
         return member_id.matches("^[A-Za-z0-9]{6,12}$");
     }
 

@@ -27,7 +27,7 @@ public class MemberValidator implements Validator {
             errors.rejectValue("member_id", "duplicate.member_id", "사용중인 아이디입니다.");
         }
 
-        if (!memberService.checkValidateId(memberVO.getMember_id())) {
+        if (!memberService.check(memberVO.getMember_id())) {
             errors.rejectValue("member_id", "validate.member_id", "6~12자 이내로 영문,숫자 포함");
         }
 

@@ -16,7 +16,7 @@ public interface MemberService {
 
     boolean emailCheck(String email);
 
-    boolean checkValidateId(String member_id);
+    boolean check(String member_id);
 
     boolean checkValidateNickname(String nickname);
 
