@@ -1,18 +1,20 @@
 package edu.bit.ex.web.controller;
 
+import com.google.gson.Gson;
 import edu.bit.ex.web.dto.SignUpForm;
 import edu.bit.ex.web.service.AccountService;
 import edu.bit.ex.web.validator.SignUpFormValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
+import java.util.Random;
 
 @Controller
 @RequiredArgsConstructor
@@ -54,7 +56,51 @@ public class AccountController {
         return "account/success-sign-up";
     }
 
+    /**
+     * 로그인 로직
+     */
+    @GetMapping("/login")
+    public String login() {
+        return "account/login-form";
+    }
 
+
+    /**
+     * 아이디 /비밀번호 찾기 뷰
+     */
+    @GetMapping("/username-recovery")
+    public String findId() {
+        return "account/username-recovery";
+    }
+
+    @GetMapping("/password-recovery")
+    public String password() {
+        return "account/password-recovery";
+    }
+
+    /**
+     * 인증 메일 관련 로직
+     */
+    //==  회원가입 인증 메일  ==//
+    @PostMapping("/check-email")
+    @ResponseBody
+    public String checkEmail(@RequestParam("email") String email) {
+        return accountService.checkEmail(email);
+    }
+
+    //==   아이디 찾기  ==//
+    @PostMapping("/username-recovery")
+    @ResponseBody
+    public String usernameRecovery(@RequestParam("email") String email) {
+        return accountService.usernameRecovery(email);
+    }
+
+    //==   비번 찾기  ==//
+    @PostMapping("/password-recovery")
+    @ResponseBody
+    public String passwordRecovery(@RequestParam("email") String email) {
+        return accountService.passwordRecovery(email);
+    }
 }
 
 
