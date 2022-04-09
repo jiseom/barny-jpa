@@ -1,8 +1,8 @@
-package edu.bit.ex.config.auth;
+package edu.bit.ex.domain.account;
 
-import edu.bit.ex.domain.Account;
-import edu.bit.ex.domain.AccountRepository;
-import edu.bit.ex.domain.UserAccount;
+import edu.bit.ex.domain.account.Account;
+import edu.bit.ex.domain.account.AccountRepository;
+import edu.bit.ex.domain.account.UserAccount;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +19,10 @@ public class PrincipalDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String accountIdOrEmail) throws UsernameNotFoundException {
-        Account findAccount = accountRepository.findByAccountIdOrEmail(accountIdOrEmail);
+        Account findAccount = accountRepository.findByAccountId(accountIdOrEmail);
+        if (findAccount == null) {
+             findAccount = accountRepository.findByEmail(accountIdOrEmail);
+        }
         if (findAccount == null) {
             throw new UsernameNotFoundException(accountIdOrEmail + " Not Found!");
         }
