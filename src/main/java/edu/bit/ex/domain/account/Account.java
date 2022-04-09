@@ -52,4 +52,7 @@ public class Account {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    public void updatePassword(String password) {
+        this.password = password;
+    }
 }
