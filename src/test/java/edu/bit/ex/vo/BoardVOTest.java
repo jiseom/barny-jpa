@@ -1,19 +1,17 @@
 package edu.bit.ex.vo;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import edu.bit.ex.service.BoardService;
+import edu.bit.ex.service.BoardServiceDeprecated;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootTest
 class BoardVOTest {
 	@Autowired
-	private BoardService boardSerivce;
+	private BoardServiceDeprecated boardSerivce;
 
 	@Test
 	void test() {

@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import edu.bit.ex.page.Criteria;
 import edu.bit.ex.page.PageVO;
-import edu.bit.ex.service.BoardService;
-import edu.bit.ex.service.ProductMainService;
+import edu.bit.ex.service.BoardServiceDeprecated;
 import edu.bit.ex.vo.BoardVO;
 import edu.bit.ex.vo.MemberVO;
-import edu.bit.ex.vo.OrderDetailVO;
 import edu.bit.ex.vo.OrderVO;
 import edu.bit.ex.vo.ProductMainVO;
 import edu.bit.ex.vo.account.MemberContext;
@@ -25,19 +22,19 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-public class BoardController {
+public class BoardControllerDeprecated {
 
 	@Autowired
-	private BoardService boardService;
+	private BoardServiceDeprecated boardService;
 
-	// 마이페이지
-	@GetMapping("/board/my_page")
-	public String my_page(Model model, Principal principal, @AuthenticationPrincipal MemberContext ctx) {
-
-		log.info("User name=======" + principal.getName());
-
-		return "/board/my_page";
-	}
+//	// 마이페이지
+//	@GetMapping("/board/my_page")
+//	public String my_page(Model model, Principal principal, @AuthenticationPrincipal MemberContext ctx) {
+//
+//		log.info("User name=======" + principal.getName());
+//
+//		return "/board/my_page";
+//	}
 
 	// 마이페이지 (구독)
 	@GetMapping("/board/press")
@@ -98,22 +95,22 @@ public class BoardController {
 	}
 
 	// 마이페이지 (1:1문의내역)리스트
-	@GetMapping("/board/my_view")
-	public String my_view(Model model, Principal principal, @AuthenticationPrincipal MemberContext ctx) {
-
-		log.info("my_view() Principal.." + principal.getName());
-		log.info("my_view()..: Principal" + ctx.getMemberVO().getMember_idx());
-
-		log.info("Principal" + ctx.getMemberVO().getMember_idx());
-
-		List<BoardVO> boardList = boardService.getMemberList(ctx.getMemberVO().getMember_idx());
-
-		model.addAttribute("my_view", boardList);
-
-		log.info("List<boardVO> boardList" + boardList);
-
-		return "/board/my_view";
-	}
+//	@GetMapping("/board/my_view")
+//	public String my_view(Model model, Principal principal, @AuthenticationPrincipal MemberContext ctx) {
+//
+//		log.info("my_view() Principal.." + principal.getName());
+//		log.info("my_view()..: Principal" + ctx.getMemberVO().getMember_idx());
+//
+//		log.info("Principal" + ctx.getMemberVO().getMember_idx());
+//
+//		List<BoardVO> boardList = boardService.getMemberList(ctx.getMemberVO().getMember_idx());
+//
+//		model.addAttribute("my_view", boardList);
+//
+//		log.info("List<boardVO> boardList" + boardList);
+//
+//		return "/board/my_view";
+//	}
 
 	// 1:1문의상세보기
 	@GetMapping("/board/my_content_view")

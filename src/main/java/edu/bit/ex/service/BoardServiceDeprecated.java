@@ -9,7 +9,7 @@ import edu.bit.ex.vo.OrderDetailVO;
 import edu.bit.ex.vo.OrderVO;
 import edu.bit.ex.vo.ProductMainVO;
 
-public interface BoardService {
+public interface BoardServiceDeprecated {
 	// 관리자리스트
 	public List<BoardVO> getAdminList(Criteria cri);
 	// 관리자주문내역읽기

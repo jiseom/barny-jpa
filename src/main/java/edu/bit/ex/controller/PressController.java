@@ -1,22 +1,16 @@
 package edu.bit.ex.controller;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.bit.ex.service.BoardService;
+import edu.bit.ex.service.BoardServiceDeprecated;
 import edu.bit.ex.service.ProductMainService;
-import edu.bit.ex.vo.MemberVO;
 import edu.bit.ex.vo.OrderDetailVO;
-import edu.bit.ex.vo.OrderVO;
-import edu.bit.ex.vo.ProductMainVO;
-import edu.bit.ex.vo.account.MemberContext;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PressController {
 
 	@Autowired
-	private BoardService boardService;
+	private BoardServiceDeprecated boardService;
 	
 	@Autowired
 	private ProductMainService productMainService;

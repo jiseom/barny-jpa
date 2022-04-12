@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class BoardServiceImpl implements BoardService {
+public class BoardServiceImpl implements BoardServiceDeprecated {
 	// 1:1문의 게시판 주문문의 관리자모드 리스트
 	@Autowired
 	private BoardMapper boardMapper;
@@ -75,7 +75,6 @@ public class BoardServiceImpl implements BoardService {
 
 		return boardMapper.getMemberList(member_idx);
 	}
-
 	// 1:1문의 게시판 하나 읽기
 	@Override
 	public BoardVO get1(int board_id) {
