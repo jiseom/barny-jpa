@@ -64,7 +64,7 @@
 
                     <c:choose>
 
-                        <c:when test="${empty myEnquiries}">
+                        <c:when test="${empty myInquiries}">
 
                             <tr>
                                 <td colspan="5" align="center">게시글이없습니다</td>
@@ -72,32 +72,34 @@
 
                         </c:when>
 
-                        <c:when test="${!empty myEnquiries}">
+                        <c:when test="${!empty myInquiries}">
 
 
-                            <c:forEach var="boardList" items="${myEnquiries}">
+                            <c:forEach var="boardList" items="${myInquiries}">
 
                             </c:forEach>
                         </c:when>
                     </c:choose>
 
-                    <c:forEach items="${myEnquiries}" var="dto">
+                    <c:forEach items="${myInquiries}" var="dto">
                         <tr style="font-weight: 400;">
-                            <td style="width : 15%;">${dto.board_id}</td>
+                            <td style="width : 15%;">${dto.id}</td>
                             <td>
-                                <c:forEach begin="1" end="${dto.b_indent}">ㄴ</c:forEach>
-                                <a href="my_content_view?board_id=${dto.board_id}">${dto.b_title}</a></td>
-                            <td style="width : 15%;">${dto.b_date}</td>
+                                <c:forEach begin="1" end="${dto.boardIndent}">ㄴ</c:forEach>
+<%--                                /inquiries/{boardId}/detail--%>
+                                <a href="inquiries/${dto.id}/detail">${dto.boardTitle}</a></td>
+<%--                                <a href="my_content_view?boardId=${dto.id}">${dto.boardTitle}</a></td>--%>
+                            <td style="width : 15%;">${dto.createdDate}</td>
                         </tr>
                     </c:forEach>
 
                     <c:forEach items="${reply_view}" var="dtt">
                         <tr style="font-weight: 400;">
-                            <td style="width : 15%;">${dtt.board_id}</td>
+                            <td style="width : 15%;">${dtt.boardId}</td>
                             <td>
-                                <c:forEach begin="1" end="${dtt.b_indent}">ㄴ</c:forEach>
-                                <a href="reply_content_view?board_id=${dtt.board_id}">${dtt.b_title}</a></td>
-                            <td style="width : 15%;">${dtt.b_date}</td>
+                                <c:forEach begin="1" end="${dtt.boardIndent}">ㄴ</c:forEach>
+                                <a href="reply_content_view?board_id=${dtt.id}">${dtt.boardTitle}</a></td>
+                            <td style="width : 15%;">${dtt.createdDate}</td>
                         </tr>
                     </c:forEach>
                     </tbody>

@@ -68,7 +68,7 @@
                     구매 내역
                 </div>
             </div>
-            <div class="card card-my_page col-4" type="button" onclick="location.href='/board/my_view'">
+            <div class="card card-my_page col-4" type="button" onclick="location.href='/inquiries'">
                 <div class="card-body my_page">
                     문의 내역
                 </div>

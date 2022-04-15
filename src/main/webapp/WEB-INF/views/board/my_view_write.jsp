@@ -1,97 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ page import="edu.bit.ex.domain.board.*" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Find your own drink, Barny</title>
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!--font-->
     <link rel="stylesheet" href="fonts/icomoon/style.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
-
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="/static/main_page/assets/favicon-2.ico"/>
-
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-
     <!-- Core theme CSS (includes Bootstrap)-->
     <link rel="stylesheet" href="/static/my_page/css/my_page.css"/>
     <link rel="stylesheet" href="/static/main_page/css/styles.css"/>
     <link rel="stylesheet" href="/static/table/css/style.css"/>
     <link rel="stylesheet" href="/static/table/css/owl.carousel.min.css"/>
-
-    <!--JQuery-->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
 </head>
 <body>
 
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
-     id="mainNav_2">
-    <div class="container">
-        <a class="navbar-brand" href="/main"><img
-                src="/static/main_page/assets/img/logo.png" alt="바니 로고 1"/></a>
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            Menu <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/subscribe">구독</a></li>
-                <li class="nav-item"><a class="nav-link" href="/story">브랜드
-                    스토리</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 상품 보기 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/product_main">패키지</a></li>
-                        <li><a class="dropdown-item" href="/product_main_liquor">술</a></li>
-                        <li><a class="dropdown-item" href="/product_main_food">안주</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/notice">공지사항</a></li>
-                        <li><a class="dropdown-item" href="/notice/faq">자주 묻는 질문</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <sec:authorize access="isAnonymous()">
-                    <li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/board/my_page">마이페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-                    <li class="nav-item"><a class="nav-link" href="/admin/statistics">관리페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-                </sec:authorize>
-            </ul>
-        </div>
-    </div>
-</nav>
+<%--navbar--%>
+<%@ include file="/WEB-INF/views/include/navbar.jsp" %>
 
 <!--content-->
 <div class="container" style="padding-top: 2rem;">
@@ -120,13 +57,27 @@
                             <td class="content_head"> 문의 종류</td>
                             <td>
                                 <div class="form-group">
-                                    <select name="board_type_id" id="board_type_id" class="category-form" value="">
+<%--                                    <div class="a">--%>
+<%--                                            <c:forEach items="BoardType" var="type">--%>
+<%--                                                <option value="${type}">${type.value}</option>--%>
+<%--                                            </c:forEach>--%>
+<%--                                    </div>--%>
+
+                                    <select name="boardType" id="boardType" class="category-form" value="">
                                         <option value="0">--</option>
-                                        <option value="3">주문 문의</option>
-                                        <option value="4">상품 문의</option>
-                                        <option value="5">배송 문의</option>
-                                        <option value="6">기타 문의</option>
+                                        <option value="${BoardType.ORDER_INQUIRY}">주문 문의</option>
+                                        <option value="${BoardType.PRODUCT_INQUIRY}">상품 문의</option>
+                                        <option value="${BoardType.SHIP_INQUIRY}">배송 문의</option>
+                                        <option value="${BoardType.ETC_INQUIRY}">기타 문의</option>
+
+<%--                                        <option value="${boardTypeList.ORDER_INQUIRY}">주문 문의</option>--%>
+<%--                                        <option value="${boardTypeList.PRODUCT_INQUIRY}">상품 문의</option>--%>
+<%--                                        <option value="${boardTypeList.SHIP_INQUIRY}">배송 문의</option>--%>
+<%--                                        <option value="${boardTypeList.ETC_INQUIRY}">기타 문의</option>--%>
+
+
                                     </select>
+
                                 </div>
                             </td>
                         </tr>
@@ -134,7 +85,8 @@
                             <td class="content_head"> 제목</td>
                             <td>
                                 <div class="form-group">
-                                    <input type="text" class="form-control_2" name="b_title" id="b_title"
+                                    <input type="text" class="form-control_2" name="boardTitle" id="boardTitle"
+                                           value="${inquiryForm.boardTitle}"
                                            placeholder="제목을 입력하세요"/>
                                 </div>
                             </td>
@@ -145,7 +97,8 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control_2"
                                            style="padding-top: 1rem; padding-bottom: 13rem;"
-                                           name="b_content" id="b_content" placeholder="내용을 입력하세요">
+                                           value="${inquiryForm.boardContent}"
+                                           name="boardContent" id="boardContent" placeholder="내용을 입력하세요">
                                 </div>
                             </td>
                         </tr>
@@ -205,15 +158,15 @@
 <script>
     $(function () {
         $("#inquiry").submit(function () {
-            if ($("#board_type_id").val() == 0) {
+            if ($("#boardType").val() == 0) {
                 alert('문의 종류를 선택해주세요.')
                 return false
             }
-            if ($("#b_title").val() == "") {
+            if ($("#boardTitle").val() == "") {
                 alert('제목을 입력해주세요.')
                 return false
             }
-            if ($("#b_content").val() == "") {
+            if ($("#boardContent").val() == "") {
                 alert('내용을 입력해주세요.')
                 return false
             }
