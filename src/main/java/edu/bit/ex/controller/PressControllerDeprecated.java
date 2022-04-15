@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @AllArgsConstructor
 @Slf4j
-public class PressController {
+public class PressControllerDeprecated {
 
 	@Autowired
 	private BoardServiceDeprecated boardService;

@@ -112,18 +112,18 @@ public class BoardControllerDeprecated {
 //		return "/board/my_view";
 //	}
 
-	// 1:1문의상세보기
-	@GetMapping("/board/my_content_view")
-	public String my_content_view(BoardVO boardVO, Model model) {
-		log.info("my_content_view()..");
-		log.info("my_content_view()..boardVO" + boardVO);
-
-		model.addAttribute("my_content_view", boardService.get(boardVO.getBoard_id()));
-
-		log.info("my_content_view boardVO_Get " + boardService.get(boardVO.getBoard_id()));
-
-		return "/board/my_content_view";
-	}
+//	// 1:1문의상세보기
+//	@GetMapping("/board/my_content_view")
+//	public String my_content_view(BoardVO boardVO, Model model) {
+//		log.info("my_content_view()..");
+//		log.info("my_content_view()..boardVO" + boardVO);
+//
+//		model.addAttribute("my_content_view", boardService.get(boardVO.getBoard_id()));
+//
+//		log.info("my_content_view boardVO_Get " + boardService.get(boardVO.getBoard_id()));
+//
+//		return "/board/my_content_view";
+//	}
 
 	// 답글
 	@GetMapping("/board/reply_view")
@@ -147,38 +147,38 @@ public class BoardControllerDeprecated {
 		return "/board/reply_content_view";
 	}
 
-	// 회원 마이페이지 1:1문의 글쓰기 입력폼
-	@GetMapping("/board/my_view_write")
-	public String my_view_write() {
-		log.info("my_view_write");
-
-		return "/board/my_view_write";
-	}
-
-	// 회원 마이페이지 1:1문의 글작성 후 입력누르면 넘어가는 입력버튼
-	@PostMapping("/board/write_my_view")
-	public String write_my_view(BoardVO boardVO, @AuthenticationPrincipal MemberContext ctx) {
-		log.info("write_my_view()");
-
-		boardVO.setMember_idx(ctx.getMemberVO().getMember_idx());
-
-		log.info("boardVO :" + boardVO);
-
-		boardService.writeBoard1(boardVO);
-
-		return "redirect:/board/my_view";
-
-	}
-
-	// 회원 1:1문의 내역 게시판 수정
-	@PostMapping("/board/my_modify")
-	public String my_modify(BoardVO boardVO, Model model) {
-		log.info("my_modify()..");
-
-		boardService.my_modify(boardVO);
-
-		return "redirect:/board/my_view";
-	}
+//	// 회원 마이페이지 1:1문의 글쓰기 입력폼
+//	@GetMapping("/board/my_view_write")
+//	public String my_view_write() {
+//		log.info("my_view_write");
+//
+//		return "/board/my_view_write";
+//	}
+//
+//	// 회원 마이페이지 1:1문의 글작성 후 입력누르면 넘어가는 입력버튼
+//	@PostMapping("/board/write_my_view")
+//	public String write_my_view(BoardVO boardVO, @AuthenticationPrincipal MemberContext ctx) {
+//		log.info("write_my_view()");
+//
+//		boardVO.setMember_idx(ctx.getMemberVO().getMember_idx());
+//
+//		log.info("boardVO :" + boardVO);
+//
+//		boardService.writeBoard1(boardVO);
+//
+//		return "redirect:/board/my_view";
+//
+//	}
+//
+//	// 회원 1:1문의 내역 게시판 수정
+//	@PostMapping("/board/my_modify")
+//	public String my_modify(BoardVO boardVO, Model model) {
+//		log.info("my_modify()..");
+//
+//		boardService.my_modify(boardVO);
+//
+//		return "redirect:/board/my_view";
+//	}
 
 	// 회원 1:1문의 내역 게시판 삭제
 	@GetMapping("/board/my_delete")
