@@ -9,12 +9,18 @@ import java.util.List;
 @Transactional(readOnly = true)
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
-    @Query("SELECT b FROM Board b " +
+    @Query("SELECT b " +
+            "FROM Board b " +
             "LEFT JOIN b.writer a " +
-            "ON b.id =:id " +
+            "ON a.id =:id " +
             "AND b.boardType in (:boardTypes)")
     List<Board> getInquiries(@Param("id") Long id, List<BoardType>boardTypes);
 
+    @Query("SELECT b " +
+            "FROM Board b " +
+            "LEFT JOIN b.writer a " +
+            "ON b.id=:id ")
+    Board findWriter(@Param("id") Long id);
 }
 
 
