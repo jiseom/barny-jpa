@@ -1,12 +1,15 @@
 package edu.bit.ex.domain.board;
 
 import edu.bit.ex.domain.account.Account;
+import edu.bit.ex.web.dto.InquiryForm;
 import lombok.*;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 
-@Getter @Setter
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +20,7 @@ public class Board {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Account writer;
 
     private String boardTitle;
@@ -40,5 +43,11 @@ public class Board {
 
     private LocalDate updatedDate;
 
+
+    public void update(InquiryForm inquiryForm) {
+        this.boardTitle = inquiryForm.getBoardTitle();
+        this.boardContent = inquiryForm.getBoardContent();
+        this.boardType = inquiryForm.getBoardType();
+    }
 
 }
