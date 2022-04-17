@@ -59,7 +59,7 @@ class ProductControllerTest {
         product.setProductType(ProductType.FOOD);
         productRepository.save(product);
 
-        mockMvc.perform(get("/products/{id}/detail", product.getId()))
+        mockMvc.perform(get("/products/{productId}/detail", product.getId()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("product/product_view"));
 
