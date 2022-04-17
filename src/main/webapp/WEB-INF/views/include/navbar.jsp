@@ -30,9 +30,9 @@
                     <ul class="dropdown-menu"
                         aria-labelledby="navbarDarkDropdownMenuLink">
                         <li></li>
-                        <a class="dropdown-item" href="/product_main">패키지</a></li>
-                        <li><a class="dropdown-item" href="/product_main_liquor">술</a></li>
-                        <li><a class="dropdown-item" href="/product_main_food">안주</a></li>
+                        <a class="dropdown-item" href="/products/main">패키지</a></li>
+                        <li><a class="dropdown-item" href="/products/drink">술</a></li>
+                        <li><a class="dropdown-item" href="/products/food">안주</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>

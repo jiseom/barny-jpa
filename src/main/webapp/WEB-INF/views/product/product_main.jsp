@@ -25,15 +25,14 @@
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
 </head>
 <style>
   .card-img {
   width: 200px;
   height: 250px;
   object-fit: cover;
-
-  } 
-
+  }
  .searchForm1 {
 	position:fixed;  
 	width:175px; 
@@ -43,23 +42,18 @@
 	background-color: transparent; 
 	margin:0;
 	text-align: center;
-} 
-
+}
  .package {
 	margin-left : 15%; 
 	margin-right : 4%;
-	margin-top : 80px;  
-
+	margin-top : 80px;
 }
-
 .pagination {
 	margin-left: 600px;
-} 
-
+}
 .total-1 {
 	margin-left : 8%;
 }
-
 .sidebar {
  	/* position : fixed; */ 
  	position : absolute; 
@@ -68,75 +62,14 @@
 	right : 500; /* 창에서 오른쪽 길이 */ 
 	top : 16%; /* 창에서 위에서 부터의 높이 */ 
 	background-color : transparent; 
-	margin : 0; 	
-
+	margin : 0;
 }
-
 
 </style>
 <body id="page-top">
 
-
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
-     id="mainNav_2">
-    <div class="container">
-        <a class="navbar-brand" href="/main"><img
-                src="/static/main_page/assets/img/logo.png" alt="바니 로고 1"/></a>
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            Menu <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/subscribe">구독</a></li>
-                <li class="nav-item"><a class="nav-link" href="/story">브랜드
-                    스토리</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 상품 보기 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/product_main">패키지</a></li>
-                        <li><a class="dropdown-item" href="/product_main_liquor">술</a></li>
-                        <li><a class="dropdown-item" href="/product_main_food">안주</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/notice">공지사항</a></li>
-                        <li><a class="dropdown-item" href="/notice/faq">자주 묻는 질문</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <sec:authorize access="isAnonymous()">
-                    <li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/board/my_page">마이페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">               
-                    <li class="nav-item"><a class="nav-link" href="/admin/statistics">관리페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-                </sec:authorize>
-            </ul>
-        </div>
-    </div>
-</nav>
+<%--navbar--%>
+<%@ include file="/WEB-INF/views/include/navbar.jsp" %>
 
 <!--슬라이더바-->
 
@@ -148,13 +81,13 @@
     </div>
     <div class="carousel-inner" style="width:100%; height: 450px !important;">
         <div class="carousel-item active">
-            <img src="static/img/first.jpg" class="d-block w-100" alt="First Slide">
+            <img src="/static/img/first.jpg" class="d-block w-100" alt="First Slide">
         </div>
         <div class="carousel-item">
-            <img src="static/img/second.jpg" class="d-block w-100" alt="Second Slide">
+            <img src="/static/img/second.jpg" class="d-block w-100" alt="Second Slide">
         </div>
         <div class="carousel-item">
-            <img src="static/img/third.jpg" class="d-block w-100" alt="Third Slide">
+            <img src="/static/img/third.jpg" class="d-block w-100" alt="Third Slide">
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -169,56 +102,60 @@
 
 <!-- Sidebar -->
 <div class="total-1">
-     <div class="sidebar p-3 bg-light" style="width: 15%; margin-top:200px; "> 
-      <!-- <a href="/" class="sidebar align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"> -->
+    <div class="sidebar p-3 bg-light" style="width: 15%; margin-top:200px; ">
+        <!-- <a href="/" class="sidebar align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"> -->
+
         <span class="fs-4">상품보기</span>
-      </a>
-      <hr>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-          <a href="/product_main" class="nav-link link-dark active" >
-            구독패키지
-          </a>
-        </li>
-        <li>
-          <a href="/product_main_liquor" class="nav-link link-dark" >
-            술
-          </a>
-        </li>
-        <li>
-          <a href="product_main_food" class="nav-link link-dark">
-            안주
-          </a>
-        </li>
-      </ul>
-      <hr class="my-2">
-      <div class="col-lg-12">
-		<form id='searchForm1' action="/product_main_liquor" method='get' style="font-size:10px;">
-  			<select name='type' >
- 				<option value=""<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
-				<option value="C"<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>상품이름</option> 
-			</select>  
-			<input type='text' name='keyword' style="width:60px;"value='<c:out value="${pageMaker.cri.keyword}"/>'/>
-<%-- 			<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>'/>
-			<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>'/> --%>
-			<button class='btn btn-secondary btn-sm'>Search</button>
-		</form>
-	</div>
-</div>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li id="main">
+                <a href="/products/main" class="nav-link link-dark active">
+                    구독패키지
+                </a>
+            </li>
+            <li id="drink">
+                <a href="/products/drink" class="nav-link link-dark ">
+                    술
+                </a>
+            </li>
+            <li id="food">
+                <a href="/products/food" class=" nav-link link-dark ">
+                    안주
+                </a>
+            </li>
+        </ul>
+
+        <hr class="my-2">
+        <div class="col-lg-12">
+            <form id='searchForm1' action="/product_main_liquor" method='get' style="font-size:10px;">
+                <%--     서치--%>
+                <select name='type'>
+                    <option value=""<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
+                    <option value="C"<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>상품이름</option>
+                </select>
+
+                <input type='text' name='keyword' style="width:60px;" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
+                <%-- 			<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>'/>
+                            <input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>'/> --%>
+                <button class='btn btn-secondary btn-sm'>Search</button>
+            </form>
+        </div>
+    </div>
 
 <!-- 패키지 상품 보기 -->
-<div class="package text-center"> 
+<div class="package text-center">
     <div class="row">
-        <c:forEach items="${product_main}" var="dto">
+        <c:forEach items="${products}" var="dto">
             <div class="col-4">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img width=100" src="${dto.image_route}"></a>
+<%--                    <a href="#"><img class="card-img width=100" src="${dto.image_route}"></a>--%>
+<a href="#"><img class="card-img width=100" src="${pageContext.request.contextPath}/static/ProductImg/3.png"></a>
                     <div class="card-body">
-                        <h2>${dto.product_name}</h2>
+                        <h2>${dto.productName}</h2>
                         <p>회원할인가</p>
-                        <sup style="text-decoration:line-through; color:#999999; ">70,000 원</sup>  
+                        <sup style="text-decoration:line-through; color:#999999; ">70,000 원</sup>
                         <p> ${dto.price} 원</p>
-                        <p><a class="btn btn-secondary" href="product_view?product_id=${dto.product_id}">상품보러가기</a></p>
+                        <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/products/${dto.id}/detail">상품보러가기</a></p>
                     </div>
                 </div>
             </div>
@@ -308,7 +245,7 @@
 
 <div class="text-center mb-5 mt-5">
     <!--  <button type="button" class="btn btn-outline-dark btn-lg mt-5">상품 더 보러가기!</button> -->
-    <a class="btn btn-secondary btn-lg text-uppercase" href="/product_main_liquor">상품 더 보러가기!</a>
+    <a class="btn btn-secondary btn-lg text-uppercase" href="/products/drink">상품 더 보러가기!</a>
 </div>
 </div>
 </div>

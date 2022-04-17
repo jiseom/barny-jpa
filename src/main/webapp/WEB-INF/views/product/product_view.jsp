@@ -51,12 +51,14 @@
 			height: 350px;
 			object-fit: cover;
 		}
-		.product_view {
+		.productDetail
+		{
 			padding-top: 100px;
 			/*margin-left: 200px;
 	margin-right: 200px;*/
 		}
-		.product_view1 {
+		.productDetail
+		1 {
 			/* margin-left: 400px; */
 			margin-left: 25%;
 		}
@@ -90,92 +92,36 @@
 
 <body id="page-top">
 
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
-	 id="mainNav_2">
-	<div class="container">
-		<a class="navbar-brand" href="/main"><img
-				src="/static/main_page/assets/img/logo.png" alt="바니 로고 1"/></a>
-		<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
-			Menu <i class="fas fa-bars ms-1"></i>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-				<li class="nav-item"><a class="nav-link" href="/subscribe">구독</a></li>
-				<li class="nav-item"><a class="nav-link" href="/story">브랜드
-					스토리</a></li>
-				<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false"> 상품 보기 </a>
-					<ul class="dropdown-menu"
-						aria-labelledby="navbarDarkDropdownMenuLink">
-						<li></li>
-						<a class="dropdown-item" href="/product_main">패키지</a></li>
-						<li><a class="dropdown-item" href="/product_main_liquor">술</a></li>
-						<li><a class="dropdown-item" href="/product_main_food">안주</a></li>
-					</ul>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>
-				<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
-					<ul class="dropdown-menu"
-						aria-labelledby="navbarDarkDropdownMenuLink">
-						<li></li>
-						<a class="dropdown-item" href="/notice">공지사항</a></li>
-						<li><a class="dropdown-item" href="/notice/faq">자주 묻는 질문</a></li>
-					</ul>
-				</li>
-			</ul>
-			<ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-				<sec:authorize access="isAnonymous()">
-					<li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
-				</sec:authorize>
-				<sec:authorize access="hasAnyRole('ROLE_USER')">
-					<li class="nav-item"><a class="nav-link" href="/board/my_page">마이페이지</a></li>
-				</sec:authorize>
-				<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-					<li class="nav-item"><a class="nav-link" href="/admin/statistics">관리페이지</a></li>
-				</sec:authorize>
-				<sec:authorize access="hasAnyRole('ROLE_USER')">
-					<li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
-				</sec:authorize>
-				<sec:authorize access="isAuthenticated()">
-					<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-				</sec:authorize>
-			</ul>
-		</div>
-	</div>
-</nav>
+<%--navbar--%>
+<%@ include file="/WEB-INF/views/include/navbar.jsp" %>
 
 	<!-- 상품상세보기 -->
-	<div class="product_view">
-		<div class="product_view1">
+	<div class="productDetail">
+		<div class="productDetail1">
 			<!-- <div class="container mt-4"> -->
 			<div class="row">
 				<div class="col-md-4">
-					<img class="card-img" src="${product_view.image_route}" alt="상품이미지">
+					<img class="card-img" src="${pageContext.request.contextPath}/static/ProductImg/3.png" alt="상품이미지">
 				</div>
 				<div class="col-md-4 mt-4">
-					<h3>${product_view.product_name}</h3>
+					<h3>${productDetail.productName}</h3>
 					<hr class="my-6">
-					<!-- <label>가격&nbsp : ${product_view.price} 원</label> -->
-					<p>상품할인가&nbsp; : &nbsp;${product_view.price} 원</p>
+					<!-- <label>가격&nbsp : ${productDetail.price} 원</label> -->
+					<p>상품할인가&nbsp; : &nbsp;${productDetail.price} 원</p>
 					<hr class="my-2">
 					<p style="text-color: #999999;">배송구분&nbsp; : &nbsp;일반배송</p>
 					<hr class="my-2">
 					<label>구매수량&nbsp; : &nbsp;</label> <input id="product_qty" name="amount" type="number" value="1" /> </br>
 					<hr class="my-2">
 
-					<input id="pro_id" name="product_id" type="hidden" value="${product_view.product_id}">
+					<input id="pro_id" name="id" type="hidden" value="${productDetail
+					.id}">
 					<sec:authorize access="hasAnyRole('ROLE_USER')">
 						<button id="cart" type="button" class="btn btn-secondary btn-md">장바구니</button>
 					</sec:authorize>
-					<!--<input id="pro_id" name="product_id" type="hidden"
-						value="${product_view.product_id}">
+					<!--<input id="pro_id" name="id" type="hidden"
+						value="${productDetail
+						.id}">
 					<button id="cart" type="button" class="btn btn-secondary btn-md">장바구니</button>
 					 <button id="order2" type="button" class="btn btn-secondary btn-md">바로구매</button> -->
 					<button id="re" type="button" disabled class="btn btn-secondary btn-md">재입고알림</button>
@@ -201,121 +147,125 @@
 
 		<!--best 후기-->
 
-		<div class="container table-wrap col-md-8">
-			<p style="text-align: center; font-size: large;">💛🧡베스트 후기🧡💛</p>
-			<table class="table myaccordion table-hover" id="accordion">
-				<thead>
-					<tr>
-						<th class="th-sm" style="text-indent: -10000px;">글번호</th>
-						<th class="th-sm"></th>
-						<th class="th-sm">제목</th>
-						<th class="th-sm">작성자</th>
-						<th class="th-sm">좋아요</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:choose>
-						<c:when test="${empty list}">
-							<tr>
-								<td colspan="6" align="center">작성한 후기가 없습니다</td>
-							</tr>
-						</c:when>
-						<c:when test="${!empty list}">
-							<c:forEach items="${best_list}" var="ff" varStatus="file">
-								<tr data-toggle="collapse" data-target="#best_collapse${file.index}" aria-expanded="true"
-									aria-controls="collapse" class="collapsed">
-									<td id="board_id" value="${vo.board_id}" style="text-indent: -10000px;">${ff.board_id}</td>
-									<td>
-										<img src="https://image.flaticon.com/icons/png/512/3712/3712572.png" style="height: 20px;"></td>
-									<td>${ff.b_title}</td>
-									<td>${ff.nickname}</td>
-									<td id="like_count${status.index}">${ff.like_count}</td>
-								</tr>
-								<tr>
-									<td colspan="6" id="best_collapse${file.index}" class="collapse acc" data-parent="#accordion"
-										aria-expanded="false">
-										<p style="text-align: center; margin: 5%;">${ff.b_content}</p>
-										<c:forEach items="${ff.fileList}" var="image">
-											<div style="float: left; margin-right: 10px;">
-												<img style="width: 200px; height: 200px;" src="${image.image_route}">
-											</div>
-										</c:forEach>
-									</td>
-								</tr>
-							</c:forEach>
-						</c:when>
-					</c:choose>
-				</tbody>
-			</table>
-		</div>
-		</br>
-		<hr class="my-4">
+<%--		<div class="container table-wrap col-md-8">--%>
+<%--			<p style="text-align: center; font-size: large;">💛🧡베스트 후기🧡💛</p>--%>
+<%--			<table class="table myaccordion table-hover" id="accordion">--%>
+<%--				<thead>--%>
+<%--					<tr>--%>
+<%--						<th class="th-sm" style="text-indent: -10000px;">글번호</th>--%>
+<%--						<th class="th-sm"></th>--%>
+<%--						<th class="th-sm">제목</th>--%>
+<%--						<th class="th-sm">작성자</th>--%>
+<%--						<th class="th-sm">좋아요</th>--%>
+<%--					</tr>--%>
+<%--				</thead>--%>
+<%--				<tbody>--%>
+<%--					<c:choose>--%>
+<%--						<c:when test="${empty list}">--%>
+<%--							<tr>--%>
+<%--								<td colspan="6" align="center">작성한 후기가 없습니다</td>--%>
+<%--							</tr>--%>
+<%--						</c:when>--%>
+<%--						<c:when test="${!empty list}">--%>
+<%--							<c:forEach items="${best_list}" var="ff" varStatus="file">--%>
+<%--								<tr data-toggle="collapse" data-target="#best_collapse${file.index}" aria-expanded="true"--%>
+<%--									aria-controls="collapse" class="collapsed">--%>
+<%--									<td id="board_id" value="${vo.board_id}" style="text-indent: -10000px;">${ff.board_id}</td>--%>
+<%--									<td>--%>
+<%--										<img src="https://image.flaticon.com/icons/png/512/3712/3712572.png" style="height: 20px;"></td>--%>
+<%--									<td>${ff.b_title}</td>--%>
+<%--									<td>${ff.nickname}</td>--%>
+<%--									<td id="like_count${status.index}">${ff.like_count}</td>--%>
+<%--								</tr>--%>
+<%--								<tr>--%>
+<%--									<td colspan="6" id="best_collapse${file.index}" class="collapse acc" data-parent="#accordion"--%>
+<%--										aria-expanded="false">--%>
+<%--										<p style="text-align: center; margin: 5%;">${ff.b_content}</p>--%>
+<%--										<c:forEach items="${ff.fileList}" var="image">--%>
+<%--											<div style="float: left; margin-right: 10px;">--%>
+<%--												<img style="width: 200px; height: 200px;" src="${image.image_route}">--%>
+<%--											</div>--%>
+<%--										</c:forEach>--%>
+<%--									</td>--%>
+<%--								</tr>--%>
+<%--							</c:forEach>--%>
+<%--						</c:when>--%>
+<%--					</c:choose>--%>
+<%--				</tbody>--%>
+<%--			</table>--%>
+<%--		</div>--%>
+<%--		</br>--%>
+<%--		<hr class="my-4">--%>
 
-		<!--후기 list-->
-		<div class="container table-wrap col-md-8">
-			<p style="text-align: center; font-size: large;">💛🧡후기 목록🧡💛</p>
-			<table class="table myaccordion table-hover" id="accordion">
-				<form role="form" method="post" id="reviewForm"
-					action="${pageContext.request.contextPath}/product_view?product_id=${product_view.product_id}">
-					<thead>
-						<tr>
-							<th class="th-sm">글번호</th>
-							<th class="th-sm">제목</th>
-							<th class="th-sm">작성자</th>
-							<th class="th-sm">작성일</th>
-							<th class="th-sm">좋아요</th>
-							<th class="th-sm">조회</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:choose>
-							<c:when test="${empty list}">
-								<tr>
-									<td colspan="6" align="center">작성한 후기가 없습니다</td>
-								</tr>
-							</c:when>
-							<c:when test="${!empty list}">
-								<c:forEach items="${list}" var="vo" varStatus="status">
-									<tr data-toggle="collapse" data-target="#collapse${status.index}" aria-expanded="true"
-										aria-controls="collapse" class="collapsed">
-										<td id="board_id" value="${vo.board_id}">${vo.board_id}</td>
-										<td>${vo.b_title}</td>
-										<td>${vo.nickname}</td>
-										<td>${vo.b_date}</td>
-										<td id="like_count${status.index}">${vo.like_count}</td>
-										<td id="b_hit">${vo.b_hit}</td>
-									</tr>
-									<tr>
-										<td colspan="6" id="collapse${status.index}" class="collapse acc" data-parent="#accordion"
-											aria-expanded="false">
-											<p style="text-align: center; margin: 5%;">${vo.b_content}</p>
-											<button value="${vo.board_id}" id="${status.index}" type="button"
-												class="like_button btn btn-outline-danger" style="float: right;">
-												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-													class="bi bi-heart" viewBox="0 0 16 16">
-													<path
-														d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-												</svg>
-											</button>
-											<c:forEach items="${vo.fileList}" var="image" varStatus="status">
-												<div style="float: left; margin-right: 10px;">
-													<img style="width: 200px; height: 200px;" src="${image.image_route}" onerror="history.go(0);">
-												</div>
-											</c:forEach>
-										</td>
-									</tr>
-								</c:forEach>
-							</c:when>
-						</c:choose>
-					</tbody>
+<%--		<!--후기 list-->--%>
+<%--		<div class="container table-wrap col-md-8">--%>
+<%--			<p style="text-align: center; font-size: large;">💛🧡후기 목록🧡💛</p>--%>
+<%--			<table class="table myaccordion table-hover" id="accordion">--%>
+<%--				<form role="form" method="post" id="reviewForm"--%>
+<%--					action="${pageContext.request.contextPath}/productDetail--%>
+<%--					?id=${productDetail--%>
+<%--					.id}">--%>
+<%--					<thead>--%>
+<%--						<tr>--%>
+<%--							<th class="th-sm">글번호</th>--%>
+<%--							<th class="th-sm">제목</th>--%>
+<%--							<th class="th-sm">작성자</th>--%>
+<%--							<th class="th-sm">작성일</th>--%>
+<%--							<th class="th-sm">좋아요</th>--%>
+<%--							<th class="th-sm">조회</th>--%>
+<%--						</tr>--%>
+<%--					</thead>--%>
+<%--					<tbody>--%>
+<%--						<c:choose>--%>
+<%--							<c:when test="${empty list}">--%>
+<%--								<tr>--%>
+<%--									<td colspan="6" align="center">작성한 후기가 없습니다</td>--%>
+<%--								</tr>--%>
+<%--							</c:when>--%>
+<%--							<c:when test="${!empty list}">--%>
+<%--								<c:forEach items="${list}" var="vo" varStatus="status">--%>
+<%--									<tr data-toggle="collapse" data-target="#collapse${status.index}" aria-expanded="true"--%>
+<%--										aria-controls="collapse" class="collapsed">--%>
+<%--										<td id="board_id" value="${vo.board_id}">${vo.board_id}</td>--%>
+<%--										<td>${vo.b_title}</td>--%>
+<%--										<td>${vo.nickname}</td>--%>
+<%--										<td>${vo.b_date}</td>--%>
+<%--										<td id="like_count${status.index}">${vo.like_count}</td>--%>
+<%--										<td id="b_hit">${vo.b_hit}</td>--%>
+<%--									</tr>--%>
+<%--									<tr>--%>
+<%--										<td colspan="6" id="collapse${status.index}" class="collapse acc" data-parent="#accordion"--%>
+<%--											aria-expanded="false">--%>
+<%--											<p style="text-align: center; margin: 5%;">${vo.b_content}</p>--%>
+<%--											<button value="${vo.board_id}" id="${status.index}" type="button"--%>
+<%--												class="like_button btn btn-outline-danger" style="float: right;">--%>
+<%--												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"--%>
+<%--													class="bi bi-heart" viewBox="0 0 16 16">--%>
+<%--													<path--%>
+<%--														d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />--%>
+<%--												</svg>--%>
+<%--											</button>--%>
+<%--											<c:forEach items="${vo.fileList}" var="image" varStatus="status">--%>
+<%--												<div style="float: left; margin-right: 10px;">--%>
+<%--													<img style="width: 200px; height: 200px;" src="${image.image_route}" onerror="history.go(0);">--%>
+<%--												</div>--%>
+<%--											</c:forEach>--%>
+<%--										</td>--%>
+<%--									</tr>--%>
+<%--								</c:forEach>--%>
+<%--							</c:when>--%>
+<%--						</c:choose>--%>
+<%--					</tbody>--%>
 
-				</form>
+<%--				</form>--%>
 
-			</table>
-			<button class="btn btn-warning btn-sm" style="float: right;" type="button"
-				onclick="location.href='/user/review/write_view/product_view?product_id=${product_view.product_id}'">후기
-				등록</button>
-		</div>
+<%--			</table>--%>
+<%--			<button class="btn btn-warning btn-sm" style="float: right;" type="button"--%>
+<%--				onclick="location.href='/user/review/write_view/productDetail' + //TODO: url 바꾸기--%>
+<%--						'?id=${productDetail--%>
+<%--						.id}'">후기--%>
+<%--				등록</button>--%>
+<%--		</div>--%>
 
 	</div>
 	<br>
@@ -326,19 +276,22 @@
 		<ul class="pagination justify-content-center">
 			<c:if test="${pageMaker.prev}">
 				<li class="page-item"><a class="page-link"
-						href="${pageMaker.makeNum(pageMaker.startPage - 1)}&product_id=${product_view.product_id}"
+						href="${pageMaker.makeNum(pageMaker.startPage - 1)}&id=${productDetail
+						.id}"
 						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						<span class="sr-only">Previous</span>
 					</a></li>
 			</c:if>
 			<c:forEach var="idx" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
 				<li class="page-item "><a class="page-link"
-						href="${pageMaker.makeNum(idx)}&product_id=${product_view.product_id}">
+						href="${pageMaker.makeNum(idx)}&id=${productDetail
+						.id}">
 						${idx} </a></li>
 			</c:forEach>
 			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 				<li class="page-item"><a class="page-link" aria-label="Next"
-						href="${pageMaker.makeQuery(pageMaker.endPage +1) }&product_id=${product_view.product_id}">
+						href="${pageMaker.makeQuery(pageMaker.endPage +1) }&id=${productDetail
+						.id}">
 						<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
 					</a></li>
 			</c:if>
@@ -354,10 +307,10 @@
 		$(document).ready(function () {
 			$("#cart").click(function (event) {
 				event.preventDefault();
-				var product_id = $("#pro_id").val();
+				var id = $("#pro_id").val();
 				var product_qty = $("#product_qty").val();
 				var cart = {
-					product_id: product_id,
+					id: id,
 					product_qty: product_qty
 				};
 				//dataType: 'json',

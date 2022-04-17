@@ -88,119 +88,63 @@
 </script>
 <body id="page-top">
 
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
-     id="mainNav_2">
-    <div class="container">
-        <a class="navbar-brand" href="/main"><img
-                src="/static/main_page/assets/img/logo.png" alt="바니 로고 1"/></a>
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            Menu <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/subscribe">구독</a></li>
-                <li class="nav-item"><a class="nav-link" href="/story">브랜드
-                    스토리</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 상품 보기 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="product_main">패키지</a></li>
-                        <li><a class="dropdown-item" href="product_main_liquor">술</a></li>
-                        <li><a class="dropdown-item" href="product_main_food">안주</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/notice">공지사항</a></li>
-                        <li><a class="dropdown-item" href="/notice/faq">자주 묻는 질문</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <sec:authorize access="isAnonymous()">
-                    <li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/board/my_page">마이페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-                    <li class="nav-item"><a class="nav-link" href="/admin/statistics">관리페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-                </sec:authorize>
-            </ul>
-        </div>
-    </div>
-</nav>
+<%--navbar--%>
+<%@ include file="/WEB-INF/views/include/navbar.jsp" %>
 
 <!-- Sidebar -->
 <div class="total-1">
-     <div class="sidebar p-3 bg-light" style="width: 15%; margin-top:200px; "> 
-      <!-- <a href="/" class="sidebar align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"> -->
+    <div class="sidebar p-3 bg-light" style="width: 15%; margin-top:200px; ">
+        <!-- <a href="/" class="sidebar align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"> -->
+
         <span class="fs-4">상품보기</span>
-      </a>
-      <hr>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-          <a href="/product_main" class="nav-link link-dark" >
-            구독패키지
-          </a>
-        </li>
-        <li>
-          <a href="/product_main_liquor" class="nav-link link-dark active" >
-            술
-          </a>
-        </li>
-        <li>
-          <a href="product_main_food" class="nav-link link-dark">
-            안주
-          </a>
-        </li>
-      </ul>
-      <hr class="my-2">
-      <div class="col-lg-12">
-		<form id='searchForm1' action="/product_main_liquor" method='get' style="font-size:10px;">
-  			<select name='type'>
- 				<option value=""<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
-				<option value="C"<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>상품이름</option> 
-			</select>  
-			<input type='text' name='keyword' style="width:60px;" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
-<%-- 			<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>'/>
-			<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>'/> --%>
-			<button class='btn btn-secondary btn-sm'>Search</button>
-		</form>
-	</div>
-</div>
-                 
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li id="main">
+                <a href="/products/main" class="nav-link link-dark ">
+                    구독패키지
+                </a>
+            </li>
+            <li id="drink">
+                <a href="/products/drink" class="nav-link link-dark active ">
+                    술
+                </a>
+            </li>
+            <li id="food">
+                <a href="/products/food" class=" nav-link link-dark ">
+                    안주
+                </a>
+            </li>
+        </ul>
+
+        <hr class="my-2">
+        <div class="col-lg-12">
+            <form id='searchForm1' action="/product_main_liquor" method='get' style="font-size:10px;">
+                <%--     서치--%>
+                <select name='type'>
+                    <option value=""<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
+                    <option value="C"<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>상품이름</option>
+                </select>
+
+                <input type='text' name='keyword' style="width:60px;" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
+                <%-- 			<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>'/>
+                            <input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>'/> --%>
+                <button class='btn btn-secondary btn-sm'>Search</button>
+            </form>
+        </div>
+    </div>
 
 <!-- 술 상품 보기 -->
 
   <div class="liquor text-center">  
    	 <div class="row">  	   
-	  <c:forEach items="${product_main_liquor}" var="dto">
+	  <c:forEach items="${products}" var="dto">
       <div class="col-4">
         <div class="card h-100">
-          <a href="#"><img class="card-img width=100" src="${dto.image_route}"></a>
+          <a href="#"><img class="card-img width=100" src="${pageContext.request.contextPath}/static/ProductImg/5.jpg"></a>
           	<div class="card-body">
-            <h2>${dto.product_name}</h2>
+            <h2>${dto.productName}</h2>
             <p>${dto.price} 원</p>
-            <p><a class="btn btn-secondary" href="product_view?product_id=${dto.product_id}">상품보러가기</a></p>
+            <p><a class="btn btn-secondary" href="product_view?product_id=${dto.id}">상품보러가기</a></p>
           	</div>
         </div>
       </div>
@@ -224,23 +168,24 @@
 
 	<nav aria-label="Page navigation example">
 		<ul class="pagination">
-			<c:if test="${pageMaker.prev}">
+            <c:if test="${pageMaker.prev}">
 				<li class="page-item">
-					<a class="page-link" href="product_main_liquor${pageMaker.makeQuery(pageMaker.startPage - 1) }" aria-label="Previous">
+					<a class="page-link"
+                       href="product_main_liquor${pageMaker.makeQuery(pageMaker.startPage - 1) }" aria-label="Previous">
 						<span aria-hidden="true">&laquo;</span>
 						<span class="sr-only">Previous</span>
 					</a>
 				</li>
 			</c:if>
-		
-			<c:forEach var="idx" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+
+			<c:forEach var="idx" begin="${pageMaker.startPage }" end="${pageMaker.endPage}">
 				<li class="page-item "><a class="page-link" href="product_main_liquor${pageMaker.makeQuery(idx)}">
 					${idx}
 				</a>
 				</li>
 			</c:forEach>
 			<!-- 페이지 메이커에 링크 걸어줌 -->
-		
+
 			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 				<li class="page-item">
 					<a class="page-link" aria-label="Next" href="product_main_liquor${pageMaker.makeQuery(pageMaker.endPage +1) }">

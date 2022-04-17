@@ -26,6 +26,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/static/main_page/css/styles.css" rel="stylesheet"/>
 
+
+
 </head>
 <body id="page-top">
 <%--navbar--%>
