@@ -5,29 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
-import edu.bit.ex.service.cart.CartService;
+import edu.bit.ex.service.cart.CartServiceDeprecated;
 import edu.bit.ex.service.cart.OrderService;
 import edu.bit.ex.service.member.MemberService;
-import edu.bit.ex.vo.MemberVO;
-import edu.bit.ex.vo.OrderVO;
 import edu.bit.ex.vo.account.MemberContext;
 import edu.bit.ex.vo.cart.CartVO;
 import edu.bit.ex.vo.cart.OrderPaymentVO;
@@ -38,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class OrderController {
 	
 	@Autowired
-	private CartService cartService;
+	private CartServiceDeprecated cartService;
 	@Autowired
 	private OrderService orderService;
 	@Autowired
