@@ -58,7 +58,7 @@
                     <li class="nav-item"><a class="nav-link" href="/admin/statistics">관리페이지</a></li>
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/cart">장바구니</a></li>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>

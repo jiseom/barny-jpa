@@ -8,7 +8,7 @@
 
 <head>
 	<title>Find your own drink, Barny</title>
-	<meta charset="utf-8" />
+	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
@@ -86,60 +86,8 @@
 
 <body id="page-top">
 
-	<!-- Navigation-->
-	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav_2">
-		<div class="container">
-			<a class="navbar-brand" href="/main"><img src="/static/main_page/assets/img/logo.png" alt="바니 로고 1" /></a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-				Menu <i class="fas fa-bars ms-1"></i>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-					<li class="nav-item"><a class="nav-link" href="/subscribe">구독</a></li>
-					<li class="nav-item"><a class="nav-link" href="/story">브랜드
-							스토리</a></li>
-					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-							aria-expanded="false"> 상품 보기 </a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-							<li></li>
-							<a class="dropdown-item" href="/product_main">패키지</a>
-					</li>
-					<li><a class="dropdown-item" href="/product_main_liquor">술</a></li>
-					<li><a class="dropdown-item" href="/product_main_food">안주</a></li>
-				</ul>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>
-				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-						aria-expanded="false"> 고객센터 </a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-						<li></li>
-						<a class="dropdown-item" href="/notice">공지사항</a>
-				</li>
-				<li><a class="dropdown-item" href="/notice/faq">자주 묻는 질문</a></li>
-				</ul>
-				</li>
-				</ul>
-				<ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-					<sec:authorize access="isAnonymous()">
-						<li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
-					</sec:authorize>
-					<sec:authorize access="hasAnyRole('ROLE_USER')">
-						<li class="nav-item"><a class="nav-link" href="/board/my_page">마이페이지</a></li>
-					</sec:authorize>
-					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-						<li class="nav-item"><a class="nav-link" href="/statistics">관리페이지</a></li>
-					</sec:authorize>
-					<sec:authorize access="hasAnyRole('ROLE_USER')">
-						<li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
-					</sec:authorize>
-					<sec:authorize access="isAuthenticated()">
-						<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-					</sec:authorize>
-				</ul>
-			</div>
-		</div>
-	</nav>
+<%--navbar--%>
+<%@ include file="/WEB-INF/views/include/navbar.jsp" %>
 
 	<!-- 장바구니 -->
 	<section class="ftco-section">
@@ -158,7 +106,7 @@
 					</div>
 					<hr class="my-4 mb-6">
 					<div class="text-center mb-5 mt-5">
-						<a class="btn-basic btn-lg text-uppercase" href="/product_main">쇼핑하러가기!</a>
+						<a class="btn-basic btn-lg text-uppercase" href="/products/main">쇼핑하러가기!</a>
 					</div>
 				</c:when>
 
@@ -191,27 +139,28 @@
 											<tr class="alert" role="alert">
 												<th scope="row">
 													<label class="control control--checkbox">
-														<input type="checkbox" value="${dto.product_id}" name="RowCheck" />
+														<input type="checkbox" value="${dto.id}" name="RowCheck" />
 														<div class="control__indicator"></div>
 													</label>
 												</th>
 												<td>
 													<%-- <div class="img" src="${dto.image_route}"></div> --%>
-													<a href="#"><img class="img" src="/${dto.image_route}"></a>
+<%--													<a href="#"><img class="img" src="/${dto.image_route}"></a>--%>
+													<a href="#"><img class="img" src="/static/img/002.png"></a>
 												</td>
 												<td>
 													<div class="productname">
-														<span>${dto.product_name} </span>
+														<span>${dto.selectedItem.productName} </span>
 													</div>
 												</td>
-												<td>${dto.price} </td>
+												<td>${dto.selectedItem.price} </td>
 												<td class="qty">
 													<div class="input-group1">
-														<%-- <input type="text" name="qty" class="qty form-control input-number" value="${dto.product_qty}" min="1" max="10"> --%>
-														<input id="product_qty" name="product_qty"
+														<%-- <input type="text" name="qty" class="qty form-control input-number" value="${dto.quantity}" min="1" max="10"> --%>
+														<input id="quantity" name="quantity"
 															style="text-align:center; width:60px; margin-left:30%; margin-right: 10px;" type="number"
-															value="${dto.product_qty}" />
-														<input id="product_id" name="product_id" type="hidden" value="${dto.product_id}">
+															value="${dto.quantity}" />
+														<input id="id" name="id" type="hidden" value="${dto.id}">
 														<button id="update" type="button" class="btn-basic1 btn-sm">수량변경</button>
 
 													</div>
@@ -222,15 +171,15 @@
 										</c:forEach>
 
 									</tbody>
-									<tr>
-										<td id="total_price" colspan="5" align="right">
-											장바구니 금액 합계 :
-											<fmt:formatNumber value="${map.sumMoney}" pattern="#,###,###" />원 <br>
-											배송료 : ${map.fee} 원<br>
-											총 주문금액 :
-											<fmt:formatNumber value="${map.sum}" pattern="#,###,###" />원
-										</td>
-									</tr>
+<%--									<tr>--%>
+<%--										<td id="total_price" colspan="5" align="right">--%>
+<%--											장바구니 금액 합계 :--%>
+<%--											<fmt:formatNumber value="${map.sumMoney}" pattern="#,###,###" />원 <br>--%>
+<%--											배송료 : ${map.fee} 원<br>--%>
+<%--											총 주문금액 :--%>
+<%--											<fmt:formatNumber value="${map.sum}" pattern="#,###,###" />원--%>
+<%--										</td>--%>
+<%--									</tr>--%>
 								</table>
 							</div>
 						</div>
@@ -238,7 +187,7 @@
 		</div>
 		<div class="text-center mb-5 mt-5">
 			<a class="btn-basic btn-lg text-uppercase" href="/user/order">주문하기</a>
-			<a class="btn-basic btn-lg text-uppercase" href="/product_main">더 쇼핑하기</a>
+			<a class="btn-basic btn-lg text-uppercase" href="/products/main">더 쇼핑하기</a>
 		</div>
 		</c:otherwise>
 		</c:choose>
@@ -294,22 +243,24 @@
 		$(document).ready(function () {
 			$("#update").click(function (event) {
 				event.preventDefault();
-				var product_id = $("#product_id").val();
-				var product_qty = $("#product_qty").val();
+				var id = $("#id").val();
+				var quantity = $("#quantity").val();
+				var productName = $("#productName").val();
 				var update = {
-					product_id: product_id,
-					product_qty: product_qty
+					id: id,
+					quantity: quantity,
+					productName : productName
 				};
 				//dataType: 'json',
 				$.ajax({
-					type: "POST",
-					url: "/user/updateCart",
+					type: "GET",
+					url: "/addCart",
 					cache: false,
-					contentType: 'application/json; charset=utf-8',
+					contentType: 'application/json; charset=UTF-8',
 					data: JSON.stringify(update),
 					success: function (result) {
 						// console.log("수정 성공");
-						location.href = "/user/cart5";
+						location.href = "/cart/cart5";
 					},
 					error: function (e) {
 						console.log("실패");

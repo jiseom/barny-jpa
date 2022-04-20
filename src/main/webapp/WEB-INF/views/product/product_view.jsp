@@ -111,17 +111,15 @@
 					<hr class="my-2">
 					<p style="text-color: #999999;">배송구분&nbsp; : &nbsp;일반배송</p>
 					<hr class="my-2">
-					<label>구매수량&nbsp; : &nbsp;</label> <input id="product_qty" name="amount" type="number" value="1" /> </br>
+					<label>구매수량&nbsp; : &nbsp;</label> <input id="quantity" name="amount" type="number" value="1" /> </br>
 					<hr class="my-2">
 
-					<input id="pro_id" name="id" type="hidden" value="${productDetail
-					.id}">
+					<input id="id" name="id" type="hidden" value="${productDetail.id}">
 					<sec:authorize access="hasAnyRole('ROLE_USER')">
 						<button id="cart" type="button" class="btn btn-secondary btn-md">장바구니</button>
 					</sec:authorize>
-					<!--<input id="pro_id" name="id" type="hidden"
-						value="${productDetail
-						.id}">
+					<!--<input id="id" name="id" type="hidden"
+						value="${productDetail.id}">
 					<button id="cart" type="button" class="btn btn-secondary btn-md">장바구니</button>
 					 <button id="order2" type="button" class="btn btn-secondary btn-md">바로구매</button> -->
 					<button id="re" type="button" disabled class="btn btn-secondary btn-md">재입고알림</button>
@@ -307,16 +305,16 @@
 		$(document).ready(function () {
 			$("#cart").click(function (event) {
 				event.preventDefault();
-				var id = $("#pro_id").val();
-				var product_qty = $("#product_qty").val();
+				var id = $("#id").val();
+				var quantity = $("#quantity").val();
 				var cart = {
 					id: id,
-					product_qty: product_qty
+					quantity: quantity
 				};
 				//dataType: 'json',
 				$.ajax({
 					type: "GET",
-					url: "/user/writeCart",
+					url: "/addCart",
 					cache: false,
 					contentType: 'application/json; charset=utf-8',
 					data: cart,
