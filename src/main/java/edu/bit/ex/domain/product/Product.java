@@ -20,7 +20,7 @@ public class Product {
 
     private int price;
 
-    private int quantity;
+//    private int quantity;
 
     private int stock;
 

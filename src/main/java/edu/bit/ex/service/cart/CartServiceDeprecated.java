@@ -4,7 +4,7 @@ import java.util.List;
 
 import edu.bit.ex.vo.cart.CartVO;
 
-public interface CartService {
+public interface CartServiceDeprecated {
     // List<CartVO> cartMoney(); // 장바구니 리스트 보기
     List<CartVO> cartList(int member_idx); // 장바구니 목록보기	
     void writeCart(CartVO cartVO); // 장바구니 추가
