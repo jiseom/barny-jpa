@@ -186,7 +186,7 @@
 					</div>
 		</div>
 		<div class="text-center mb-5 mt-5">
-			<a class="btn-basic btn-lg text-uppercase" href="/user/order">주문하기</a>
+			<a class="btn-basic btn-lg text-uppercase" href="/order">주문하기</a>
 			<a class="btn-basic btn-lg text-uppercase" href="/products/main">더 쇼핑하기</a>
 		</div>
 		</c:otherwise>

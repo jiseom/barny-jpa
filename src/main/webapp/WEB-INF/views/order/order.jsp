@@ -54,66 +54,8 @@
 </style>
 <body id="page-top">
 
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
-     id="mainNav_2">
-    <div class="container">
-        <a class="navbar-brand" href="/main"><img
-                src="/static/main_page/assets/img/logo.png" alt="바니 로고 1"/></a>
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            Menu <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/subscribe">구독</a></li>
-                <li class="nav-item"><a class="nav-link" href="/story">브랜드
-                    스토리</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 상품 보기 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/product_main">패키지</a></li>
-                        <li><a class="dropdown-item" href="/product_main_liquor">술</a></li>
-                        <li><a class="dropdown-item" href="/product_main_food">안주</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/notice">공지사항</a></li>
-                        <li><a class="dropdown-item" href="/notice/faq">자주 묻는 질문</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <sec:authorize access="isAnonymous()">
-                    <li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/board/my_page">마이페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-                    <li class="nav-item"><a class="nav-link" href="/statistics">관리페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-                </sec:authorize>
-            </ul>
-        </div>
-    </div>
-</nav>
+<%--navbar--%>
+<%@ include file="/WEB-INF/views/include/navbar.jsp" %>
 
 <!-- 주문페이지  -->  
 <div class="order">
@@ -125,8 +67,8 @@
     <h3>주문상품</h3>
     <div class="row">
         <div class="col-md-8">       
-            <form action="<c:url value='/user/order' />" method="post">
-<%--                 <input name="member_idx" type="hidden" value="<sec:authentication property="principal.cartList"/>"> 
+            <form action="<c:url value='/order' />" method="post">
+<%--                 <input name="id" type="hidden" value="<sec:authentication property="principal.cartList"/>">
                 <td><sec:authentication property="principal.cartList"/></td>              
               <tr>
 		      <td>상품이름</td>
@@ -137,8 +79,8 @@
 		
 		      <c:forEach items="${cartList}" var="dto">
 		      <tr>
-		         <td>${dto.product_name}</td>
-		         <td>${dto.product_qty}</td>
+		         <td>${dto.productName}</td>
+		         <td>${dto.quantity}</td>
 		         <%-- <td>${dto.price}</td> 
 		      </tr></br>
 		      </c:forEach>	--%>	 
@@ -160,10 +102,10 @@
 									<c:forEach items="${cartList}" var="dto">						
 									<tr class="alert" role="alert">
   										<td>&nbsp;</td>
-										<td><a href="#"><img class="img" style="width:70px; height:70px;" src="/${dto.image_route}"></a></td>									
-										<td>${dto.product_name}</td>
-										<td>${dto.price} </td>
-										<td>${dto.product_qty}</td> 
+										<td><a href="#"><img class="img" style="width:70px; height:70px;" src="/static/img/002.png"></a></td>
+										<td>${dto.selectedItem.productName}</td>
+										<td>${dto.selectedItem.price} </td>
+										<td>${dto.quantity}</td>
 									</tr>														
 									</c:forEach>
 									<td id ="total_price" colspan="5" align="right">
@@ -188,15 +130,15 @@
     <h3>주문자 정보</h3>
     <div class="row">
         <div class="col-md-8">
-            <form action="<c:url value='/user/cart5' />" method="post">
-                <input name="member_idx" type="hidden" value="<sec:authentication property="principal.memberVO.member_idx"/>">
-                <p>주문아이디 : <sec:authentication property="principal.memberVO.member_id"/></p>
-                <input id="name" name="name" type="hidden" value="<sec:authentication property="principal.memberVO.member_name"/>"></p>
-                <p>주문자이름 : <sec:authentication property="principal.memberVO.member_name"/></p>
-                <input id="tel" name="tel" type="hidden" value="<sec:authentication property="principal.memberVO.tel"/>"></p>
-                <p>휴대폰 : <sec:authentication property="principal.memberVO.tel"/> </p>
-                <input id="email" name="email" type="hidden" value="<sec:authentication property="principal.memberVO.email"/>"></p>
-                <p>이메일 : <sec:authentication property="principal.memberVO.email"/> </p>               
+            <form action="<c:url value='/cart' />" method="post">
+                <input name="id" type="hidden" value="<sec:authentication property="principal.account.accountId"/>">
+                <p>주문아이디 : <sec:authentication property="principal.account.accountId"/></p>
+                <input id="name" name="name" type="hidden" value="<sec:authentication property="principal.account.name"/>"></p>
+                <p>주문자이름 : <sec:authentication property="principal.account.name"/></p>
+                <input id="tel" name="tel" type="hidden" value="<sec:authentication property="principal.account.tel"/>"></p>
+                <p>휴대폰 : <sec:authentication property="principal.account.tel"/> </p>
+                <input id="email" name="email" type="hidden" value="<sec:authentication property="principal.account.email"/>"></p>
+                <p>이메일 : <sec:authentication property="principal.account.email"/> </p>
                 <hr class="my-4">
             </form>
         </div>
@@ -205,11 +147,11 @@
     <h3>적립금</h3>
     <div class="row">
         <div class="col-md-8">
-            <form action="<c:url value='/user/cart5' />" method="post">
-                <input name="member_idx" type="hidden" value="<sec:authentication property="principal.memberVO.member_idx"/>">
-                <p>적립금 :&nbsp; <sec:authentication property="principal.memberVO.point"/>&nbsp;p&nbsp;<button id="point" type="button" class="btn btn-secondary btn-md">사용하기</button></p>
+            <form action="<c:url value='/cart' />" method="post">
+                <input name="id" type="hidden" value="<sec:authentication property="principal.account.id"/>">
+                <p>적립금 :&nbsp; <sec:authentication property="principal.account.point"/>&nbsp;p&nbsp;<button id="point" type="button" class="btn btn-secondary btn-md">사용하기</button></p>
                 <p>(5000p 이상 사용가능)
-                <input id="point1" type="hidden" value="<sec:authentication property="principal.memberVO.point"/>"></p>
+                <input id="point1" type="hidden" value="<sec:authentication property="principal.account.point"/>"></p>
                 <hr class="my-4">
             </form>
         </div>
@@ -218,10 +160,10 @@
     <h3>배송 정보</h3>
     <div class="row">
         <div class="col-md-8">
-            <form action="<c:url value='/user/cart5' />" method="post">
-                <input name="member_idx" type="hidden" value="<sec:authentication property="principal.memberVO.member_idx"/>">
-                <input id="address" name="address" type="hidden" value="<sec:authentication property="principal.memberVO.address"/>"></p>
-                <p>배송지 : <sec:authentication property="principal.memberVO.address"/> </p>
+            <form action="<c:url value='/cart' />" method="post">
+                <input name="id" type="hidden" value="<sec:authentication property="principal.account.id"/>">
+                <input id="address" name="address" type="hidden" value="<sec:authentication property="principal.account.address"/>"></p>
+                <p>배송지 : <sec:authentication property="principal.account.address"/> </p>
                 <hr class="my-4">
             </form>
                 <!-- <button id="payment" type="button" class="btn-outline-dark btn-sm">결제하기</button> -->
@@ -265,9 +207,9 @@
 </div>
 <!-- <button type="submit" class="orderPage btn-outline-dark btn-sm" href="/user/orderPage">주문하기</button> -->
 <div class="text-center mb-5 mt-5">
-<input id="point2" name="point2" type="hidden" value="<sec:authentication property="principal.memberVO.point"/>">
+<input id="point2" name="point2" type="hidden" value="<sec:authentication property="principal.account.point"/>">
     <!-- <a class="btn btn-secondary btn-lg text-uppercase" href="/orderPage">주문하기!</a> -->
-    <button id="insertPoint_1" type="button" value="<sec:authentication property="principal.memberVO.point"/>" 
+    <button id="insertPoint_1" type="button" value="<sec:authentication property="principal.account.point"/>"
     class="btn btn-secondary btn-lg text-uppercase" href="/orderPage">주문하기!</button>
 </div>
 
