@@ -12,16 +12,17 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     @Query("SELECT b " +
             "FROM Board b " +
             "LEFT JOIN b.writer a " +
-            "ON a.id =:id " +
+            "WHERE b.writer.id =:id " +
             "AND b.boardType in (:boardTypes)")
     List<Board> getInquiries(@Param("id") Long id, List<BoardType>boardTypes);
-
+    
     @Query("SELECT b " +
             "FROM Board b " +
             "LEFT JOIN b.writer a " +
-            "ON b.id=:id ")
+            "WHERE b.writer.id=:id ")
     Board findWriter(@Param("id") Long id);
-}
+
+    }
 
 
 
