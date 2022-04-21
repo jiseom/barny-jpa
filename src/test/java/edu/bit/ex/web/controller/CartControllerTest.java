@@ -27,8 +27,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @AutoConfigureMockMvc
 @Transactional
@@ -91,6 +94,17 @@ class CartControllerTest {
         product.setProductType(ProductType.FOOD);
         return productRepository.save(product);
     }
+    public Product addProduct1() {
+        Product product = new Product();
+        product.setId(2L);
+        product.setProductName("안주200");
+        product.setPrice(20000);
+        product.setStock(10);
+        product.setProductType(ProductType.DRINK);
+        return productRepository.save(product);
+    }
+
+
 
     @BeforeEach
     void deleteAll() {
@@ -103,6 +117,7 @@ class CartControllerTest {
     @Test
     public void addCart() throws Exception {
         Product product = addProduct();
+        Product product1 = addProduct1();
         Account account = addAccount("wltjs123", "지선", "wltjs", "jiseon@email.com", "wltjs123!", "서울", "010-1000-1000", toLocalDate("2020-06-22"), Role.ROLE_USER);
         UserAccount userAccount = new UserAccount(account);
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userAccount, userAccount.getPassword(), userAccount.getAuthorities());
@@ -120,4 +135,23 @@ class CartControllerTest {
         Assertions.assertEquals(cart.getCartCustomer().id, createCartForm.getCartCustomer().id);
         
     }
+    @DisplayName("장바구니 조회")
+    @Test
+    public void getCartList() throws Exception {
+
+        Account account = addAccount("wltjs123", "지선", "wltjs", "jiseon@email.com", "wltjs123!", "서울", "010-1000-1000", toLocalDate("2020-06-22"), Role.ROLE_USER);
+        UserAccount userAccount = new UserAccount(account);
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userAccount, userAccount.getPassword(), userAccount.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(token);
+
+        List<Product> cartList = new ArrayList<>();
+        cartList.add(addProduct());
+        cartList.add(addProduct1());
+
+        mockMvc.perform(get("/cart"))
+                .andExpect(model().attributeExists("cartList"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("/cart/cart"));
+    }
+
 }
