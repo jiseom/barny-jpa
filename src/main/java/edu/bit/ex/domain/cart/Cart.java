@@ -4,10 +4,8 @@ import edu.bit.ex.domain.account.Account;
 import edu.bit.ex.domain.product.Product;
 import lombok.Getter;
 import lombok.Setter;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+
+import javax.persistence.*;
 
 @Setter
 @Getter
@@ -18,7 +16,7 @@ public class Cart {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Account cartCustomer;
 
     @ManyToOne
@@ -26,7 +24,10 @@ public class Cart {
 
     private int quantity;
 
-    private int money ; //아임포트
+    private int money; //아임포트
 
+    public void updateQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
 }
