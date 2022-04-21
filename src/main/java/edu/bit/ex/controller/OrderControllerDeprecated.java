@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class OrderController {
+public class OrderControllerDeprecated {
 	
 	@Autowired
 	private CartServiceDeprecated cartService;
