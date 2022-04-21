@@ -70,6 +70,19 @@ public class CartService {
                 .sum();
     }
 
+    /**
+     * 장바구니 수량 변경
+     */
+    public void updateCart(Account account, UpdateCartForm updateCartForm) {
+        //1.현재 로그인한 회원의 장바구니 엔티티를 조회
+        cartRepository.getAccountCart(account.getId());
+        Cart cart = cartRepository.findById(updateCartForm.getId())
+                .orElseThrow(IllegalArgumentException::new);
+        cart.setQuantity(updateCartForm.getQuantity());
+    }
+
+
+
 
 }
 
