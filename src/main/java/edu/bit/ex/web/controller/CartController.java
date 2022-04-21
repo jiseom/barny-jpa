@@ -59,6 +59,16 @@ public class CartController {
         return "success";
     }
 
-   
+    //장바구니 수량 업데이트
+    @ResponseBody
+    @PostMapping("/update")
+    public String updateCart(@CurrentAccount Account account,
+                             @RequestBody UpdateCartForm updateCartForm){
+
+        cartService.updateCart(account,updateCartForm);
+        return "success";
+
+    }
+    
 
 }
