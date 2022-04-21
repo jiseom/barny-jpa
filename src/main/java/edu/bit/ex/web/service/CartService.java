@@ -54,5 +54,22 @@ public class CartService {
         return cartRepository.getAccountCart(account.getId());
     }
 
+    /**
+     * 장바구니 합계
+     */
+    public int sumMoney(Account account) {
+        return cartRepository.getAccountCart(account.getId()).stream()
+                .mapToInt(cart -> {
+                    // 상품 가격 가져오기
+                    int price = cart.getSelectedItem().getPrice();
+                    // 상품 수량 가져오기
+                    int quantity = cart.getQuantity();
+                    // 상품 가격 * 수량 반환하기
+                    return price * quantity;
+                })
+                .sum();
+    }
+
+
 }
 
