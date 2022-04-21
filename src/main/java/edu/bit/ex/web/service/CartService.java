@@ -82,7 +82,13 @@ public class CartService {
     }
 
 
-
+    /**
+     * 장바구니 선택 삭제
+     */
+    public void delete(DeleteCartForm deleteCartForm) {
+        //선택한 카트 id 들을  가져와서 삭제함
+        cartRepository.deleteAllByIdIn(deleteCartForm.getIds());
+    }
 
 }
 
