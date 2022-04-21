@@ -4,18 +4,15 @@ import edu.bit.ex.domain.account.Account;
 import edu.bit.ex.domain.account.CurrentAccount;
 import edu.bit.ex.domain.cart.Cart;
 import edu.bit.ex.domain.product.Product;
-import edu.bit.ex.vo.account.MemberContext;
 import edu.bit.ex.web.dto.CreateCartForm;
 import edu.bit.ex.web.dto.DeleteCartForm;
 import edu.bit.ex.web.dto.UpdateCartForm;
 import edu.bit.ex.web.service.CartService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,6 +66,13 @@ public class CartController {
         return "success";
 
     }
-    
+
+    //장바구니 선택 삭제
+    @ResponseBody
+    @PostMapping("/delete")
+    public String deleteCart(@RequestBody DeleteCartForm deleteCartForm) {
+        cartService.delete(deleteCartForm);
+        return "success";
+    }
 
 }
