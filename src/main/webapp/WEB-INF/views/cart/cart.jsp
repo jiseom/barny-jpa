@@ -171,15 +171,15 @@
 										</c:forEach>
 
 									</tbody>
-<%--									<tr>--%>
-<%--										<td id="total_price" colspan="5" align="right">--%>
-<%--											장바구니 금액 합계 :--%>
-<%--											<fmt:formatNumber value="${map.sumMoney}" pattern="#,###,###" />원 <br>--%>
-<%--											배송료 : ${map.fee} 원<br>--%>
-<%--											총 주문금액 :--%>
-<%--											<fmt:formatNumber value="${map.sum}" pattern="#,###,###" />원--%>
-<%--										</td>--%>
-<%--									</tr>--%>
+									<tr>
+										<td id="total_price" colspan="5" align="right">
+											장바구니 금액 합계 :
+											<fmt:formatNumber value="${map.sumMoney}" pattern="#,###,###" />원 <br>
+											배송료 : ${map.fee} 원<br>
+											총 주문금액 :
+											<fmt:formatNumber value="${map.sum}" pattern="#,###,###" />원
+										</td>
+									</tr>
 								</table>
 							</div>
 						</div>
@@ -245,22 +245,23 @@
 				event.preventDefault();
 				var id = $("#id").val();
 				var quantity = $("#quantity").val();
-				var productName = $("#productName").val();
+				// var productName = $("#productName").val();
 				var update = {
 					id: id,
-					quantity: quantity,
-					productName : productName
+					quantity: quantity
 				};
+				debugger;
 				//dataType: 'json',
 				$.ajax({
-					type: "GET",
-					url: "/addCart",
+					type: "POST",
+					url: "/cart/update",
 					cache: false,
 					contentType: 'application/json; charset=UTF-8',
 					data: JSON.stringify(update),
 					success: function (result) {
 						// console.log("수정 성공");
-						location.href = "/cart/cart5";
+						location.href = "/cart";
+
 					},
 					error: function (e) {
 						console.log("실패");
@@ -287,38 +288,43 @@
 				} else {
 					$("input[name='allCheck']")[0].checked = false;
 				}
+
 			});
 		});
 		function deleteValue() {
-			var url = "${pageContext.request.contextPath}/user/delete";
-			var valueArr = new Array();
+			var url = "${pageContext.request.contextPath}/cart/delete";
+			var ids = [];
 			var list = $("input[name='RowCheck']");
-			var trArray = new Array();
+			var trArray = [];
 			for (var i = 0; i < list.length; i++) {
 				if (list[i].checked) { //선택되어 있으면 배열에 값을 저장함
-					valueArr.push(list[i].value);
+					ids.push(list[i].value);
 					trArray = $(list[i]).parent().parent().parent();
 				}
 			}
-			if (valueArr.length == 0) {
+			if (ids.length === 0) {
 				alert("선택된 글이 없습니다.");
 			} else {
 				if (confirm("해당 상품을 삭제하시겠습니까?")) {
+					debugger;
 					// var chk = confirm("정말 삭제하시겠습니까?");
+					let data = {
+						ids: ids
+					};
+					data = JSON.stringify(data);
 					$.ajax({
 						url: url,
 						type: 'POST',
 						traditional: true,
-						data: {
-							valueArr: valueArr
-						},
+						contentType: 'application/json',
+						data: data,
 						success: function (result) {
 							if (result == "SUCCESS") {
 								//alert("삭제되었습니다.");								
 								//for(var i = 0; i < trArray.length; i++){									
 								//	$(trArray[i]).remove();
 								//}
-								location.href = "/user/cart5";
+								location.href = "/cart";
 							} else {
 								alert("삭제가 실패하였습니다.");
 							}

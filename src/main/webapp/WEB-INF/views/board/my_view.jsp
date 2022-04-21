@@ -105,7 +105,7 @@
                     </tbody>
                 </table>
                 <div class="line mb-3" style="border-bottom: solid 2px; border-bottom-color: #EBC24B;"></div>
-                <a class="btn-basic post mb-2" type="button" title="글쓰기" onclick="location.href='/board/my_view_write'">글쓰기</a>
+                <a class="btn-basic post mb-2" type="button" title="글쓰기" onclick="location.href='/inquiries/new'">글쓰기</a>
             </div>
         </div>
 

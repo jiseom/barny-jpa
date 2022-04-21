@@ -52,7 +52,7 @@
             </div>
             <div class="table-responsive outline pt-3">
                 <table class="table" style="font-size: 13px; border-top : solid 1px; border-top-color: #dee2e6;">
-                    <form action="write_my_view" method="post" id="inquiry" name="inquiry">
+                    <form action="/inquiries/new" method="post" id="inquiry" name="inquiry">
                         <tr>
                             <td class="content_head"> 문의 종류</td>
                             <td>

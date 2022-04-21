@@ -314,7 +314,7 @@
 				//dataType: 'json',
 				$.ajax({
 					type: "GET",
-					url: "/addCart",
+					url: "/cart/addCart",
 					cache: false,
 					contentType: 'application/json; charset=utf-8',
 					data: cart,
