@@ -35,7 +35,7 @@
                         <li><a class="dropdown-item" href="/products/food">안주</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>
+                <li class="nav-item"><a class="nav-link" href="/all-events">이벤트</a></li>
                 <li class="nav-item dropdown"><a
                         class="nav-link dropdown-toggle" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>

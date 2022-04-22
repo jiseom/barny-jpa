@@ -55,66 +55,8 @@
 </style>
 
 <body>
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
-     id="mainNav_2">
-    <div class="container">
-        <a class="navbar-brand" href="/main"><img
-                src="/static/main_page/assets/img/logo.png" alt="바니 로고 1"/></a>
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            Menu <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/subscribe">구독</a></li>
-                <li class="nav-item"><a class="nav-link" href="/story">브랜드
-                    스토리</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 상품 보기 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/product_main">패키지</a></li>
-                        <li><a class="dropdown-item" href="/product_main_liquor">술</a></li>
-                        <li><a class="dropdown-item" href="/product_main_food">안주</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/notice">공지사항</a></li>
-                        <li><a class="dropdown-item" href="/notice/faq">자주 묻는 질문</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <sec:authorize access="isAnonymous()">
-                    <li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/board/my_page">마이페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-                    <li class="nav-item"><a class="nav-link" href="/statistics">관리페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-                </sec:authorize>
-            </ul>
-        </div>
-    </div>
-</nav>
+<%--navbar--%>
+<%@ include file="/WEB-INF/views/include/navbar.jsp" %>
     <!--now event Grid-->
     <section class="page-section bg-light">
         <div class="container mt-5">
@@ -129,10 +71,11 @@
 
             <div class="card-group col d-flex justify-content-center" style="margin-left: 15px">
                 <div class="card event-card">
-                    <a href="/user/event/cardbarny">
+                    <a href="/events/cardbarny">
                         <img src="/static/img/event1.png" class="card-img-top" /></a>
                     <div class="card-body">
                         <h6 class="card-title event-t">[상시 이벤트] 바니를 찾아라!</h6>
+                        <input id="id" name="id" type="hidden" value="${board.id}">
                         <p class="card-text event-b ">
                             숨어있는 바니의 짝을 맞추면 100포인트를 드려요!
                         </p>
@@ -142,7 +85,7 @@
                     </div>
                 </div>
                 <div class="card event-card">
-                    <a href="/user/event/roulette">
+                    <a href="/events/roulette">
                         <img src="/static/img/event2.png" class="card-img-top" alt="..." /></a>
                     <div class="card-body">
                         <h6 class="card-title event-t">[상시 이벤트] 8월의 출석 체크룰렛!</h6>

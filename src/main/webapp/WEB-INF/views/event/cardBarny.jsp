@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
@@ -33,60 +33,8 @@
 
 <body>
 
-  <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav_2">
-    <div class="container">
-      <a class="navbar-brand" href="/main"><img src="/static/main_page/assets/img/logo.png" alt="바니 로고 1" /></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu <i class="fas fa-bars ms-1"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-          <li class="nav-item"><a class="nav-link" href="/subscribe">구독</a></li>
-          <li class="nav-item"><a class="nav-link" href="/story">브랜드
-              스토리</a></li>
-          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false"> 상품 보기 </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li></li>
-              <a class="dropdown-item" href="product_main">패키지</a>
-          </li>
-          <li><a class="dropdown-item" href="product_main_liquor">술</a></li>
-          <li><a class="dropdown-item" href="product_main_food">안주</a></li>
-        </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>
-        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false"> 고객센터 </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li></li>
-            <a class="dropdown-item" href="/notice">공지사항</a>
-        </li>
-        <li><a class="dropdown-item" href="/notice/faq">자주 묻는 질문</a></li>
-        </ul>
-        </li>
-        </ul>
-        <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-          <sec:authorize access="isAnonymous()">
-            <li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
-          </sec:authorize>
-          <sec:authorize access="hasAnyRole('ROLE_USER')">
-            <li class="nav-item"><a class="nav-link" href="/board/my_page">마이페이지</a></li>
-          </sec:authorize>
-          <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-            <li class="nav-item"><a class="nav-link" href="/#">관리페이지</a></li>
-          </sec:authorize>
-          <sec:authorize access="hasAnyRole('ROLE_USER')">
-            <li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
-          </sec:authorize>
-          <sec:authorize access="isAuthenticated()">
-            <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-          </sec:authorize>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<%--navbar--%>
+<%@ include file="/WEB-INF/views/include/navbar.jsp" %>
 
   <!--게임-->
   <div id="wrapper" class="container" style="margin-top: 2%; margin-bottom: 1%;">
@@ -96,8 +44,8 @@
     <div id="cardground"></div>
     <br>
     <div>
-      <form name="addPoint" action="/event/add_point2" method="post">
-        <input id="member_idx" type="hidden" name="member_idx" value="<sec:authentication property="principal.memberVO.member_idx" />">
+      <form name="addPoint" action="/events/cardbarny/add-point" method="post">
+        <input id="id" type="hidden" name="id" value="<sec:authentication property="principal.account.id"/>">
         <input id="start_btn" type="button" style="display: none" class="btn btn-lg btn-outline-warning" value='적립하기'/>
       </form>
     </div>
@@ -106,18 +54,19 @@
   <script>
     window.onload = function () {
         $('#start_btn').click(function () {
-            function convertDateFormat(date) {
-                var year = date.getFullYear();
-                var month = date.getMonth() + 1;
+          debugger;
+            function convertDateFormat(LocalDate) {
+                var year = LocalDate.getFullYear();
+                var month = LocalDate.getMonth() + 1;
                 month = month >= 10 ? month : '0' + month;
-                var day = date.getDate();
+                var day = LocalDate.getDate();
                 day = day >= 10 ? day : '0' + day;
                 return [year, month, day].join('');
             }
 
-            var today = convertDateFormat(new Date());
-            var participate_date = '${participate_date}';
-            if (participate_date == today) {
+            var today = convertDateFormat(new LocalDate());
+            var participatedDate = '${participatedDate}';
+            if (participatedDate == today) {
                 alert('해당 이벤트는 하루에 한번만 참여 가능합니다.')
                 return false
             }
