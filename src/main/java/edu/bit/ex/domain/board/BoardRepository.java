@@ -21,7 +21,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
             "LEFT JOIN b.writer a " +
             "WHERE b.writer.id=:id ")
     Board findWriter(@Param("id") Long id);
-
+    List<Board> findByBoardType(BoardType boardType);
     }
 
 
