@@ -55,4 +55,8 @@ public class Account {
     public void updatePassword(String password) {
         this.password = password;
     }
+
+    public void updateCardGamePoint() {
+        this.point += 100;
+    }
 }
