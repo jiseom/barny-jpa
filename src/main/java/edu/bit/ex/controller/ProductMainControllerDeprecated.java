@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class ProductMainController {
+public class ProductMainControllerDeprecated {
 
     // 상품보기
     @Autowired

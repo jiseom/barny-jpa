@@ -1,6 +1,5 @@
 package edu.bit.ex.controller;
 
-import edu.bit.ex.controller.validator.MemberValidator;
 import edu.bit.ex.service.member.MemberService;
 import edu.bit.ex.vo.MemberVO;
 import edu.bit.ex.vo.account.MemberContext;
@@ -22,7 +21,6 @@ import java.security.Principal;
 @Controller
 public class MemberController {
 	private final MemberService memberService;
-	private final MemberValidator memberValidator;
 
 	// 회원정보수정 페이지 이동
 	@GetMapping("/user/edit")

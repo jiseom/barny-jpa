@@ -1,4 +1,4 @@
-package edu.bit.ex.controller;
+package edu.bit.ex.web.controller;
 
 import java.nio.file.AccessDeniedException;
 
