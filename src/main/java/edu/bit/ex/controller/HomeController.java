@@ -54,17 +54,6 @@ public class HomeController {
 		return "subs";
 	}
 
-	// event list
-	@GetMapping("/event")
-	public String event_main(Model model, Criteria cri) {
-
-		model.addAttribute("event_list", eventService.getList(cri));
-
-		int total = eventService.getTotal(cri);
-		model.addAttribute("pageMaker", new PageVO(cri, total));
-
-		return "event/m_event_list";
-	}
 
 	// notice list
 	@GetMapping("/notice")

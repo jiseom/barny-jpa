@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Slf4j
 @Controller
 
-public class EventController {
+public class EventControllerDeprecated {
 
     @Autowired
     private EventService eventService;

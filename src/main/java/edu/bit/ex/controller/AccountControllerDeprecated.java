@@ -1,7 +1,6 @@
 package edu.bit.ex.controller;
 
 
-import edu.bit.ex.controller.validator.MemberValidator;
 import edu.bit.ex.service.member.MemberService;
 import edu.bit.ex.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +21,8 @@ import org.springframework.web.bind.annotation.*;
 public class AccountControllerDeprecated {
 
     private final MemberService memberService;
-    private final MemberValidator memberValidator;
 
-    @InitBinder("memberVO")
-    public void memberValidatorInitBinder(WebDataBinder binder) {
-        binder.addValidators(memberValidator);
-    }
+
 
     @GetMapping("/user")
     public @ResponseBody
