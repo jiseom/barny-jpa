@@ -51,13 +51,13 @@
                 <sec:authorize access="isAnonymous()">
                     <li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>
                 </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
+                <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
                     <li class="nav-item"><a class="nav-link" href="/my-page">마이페이지</a></li>
                 </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <li class="nav-item"><a class="nav-link" href="/admin/statistics">관리페이지</a></li>
                 </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
+                <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
                     <li class="nav-item"><a class="nav-link" href="/cart">장바구니</a></li>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">

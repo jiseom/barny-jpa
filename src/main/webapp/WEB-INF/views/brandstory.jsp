@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
@@ -7,7 +7,7 @@
 
 <head>
   <title>Find your own drink, Barny</title>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="/static/css/5.0bootstrap.min.css">
@@ -32,61 +32,8 @@
 
 
 <body id="page-top">
-
-  <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav_2">
-    <div class="container">
-      <a class="navbar-brand" href="/main"><img src="/static/main_page/assets/img/logo.png" alt="바니 로고 1" /></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu <i class="fas fa-bars ms-1"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-          <li class="nav-item"><a class="nav-link" href="/subscribe">구독</a></li>
-          <li class="nav-item"><a class="nav-link" href="/story">브랜드
-              스토리</a></li>
-          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false"> 상품 보기 </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li></li>
-              <a class="dropdown-item" href="product_main">패키지</a>
-          </li>
-          <li><a class="dropdown-item" href="product_main_liquor">술</a></li>
-          <li><a class="dropdown-item" href="product_main_food">안주</a></li>
-        </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>
-        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false"> 고객센터 </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li></li>
-            <a class="dropdown-item" href="/notice">공지사항</a>
-        </li>
-        <li><a class="dropdown-item" href="/notice/faq">자주 묻는 질문</a></li>
-        </ul>
-        </li>
-        </ul>
-        <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-          <sec:authorize access="isAnonymous()">
-            <li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
-          </sec:authorize>
-          <sec:authorize access="hasAnyRole('ROLE_USER')">
-            <li class="nav-item"><a class="nav-link" href="/board/my_page">마이페이지</a></li>
-          </sec:authorize>
-          <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-            <li class="nav-item"><a class="nav-link" href="/admin/statistics">관리페이지</a></li>
-          </sec:authorize>
-          <sec:authorize access="hasAnyRole('ROLE_USER')">
-            <li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
-          </sec:authorize>
-          <sec:authorize access="isAuthenticated()">
-            <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-          </sec:authorize>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<%--navbar--%>
+<%@ include file="/WEB-INF/views/include/navbar.jsp" %>
 
   <!--메인 헤더-->
   <div class="first-img" id="main">
@@ -124,7 +71,7 @@
   <div class="container-1">
     <div class="text-center mb-5 mt-5">
       <H1 class="display-4 mb-5">합리적인 가격으로 지금 시작해보세요</H1>
-      <a class="btn btn-outline-dark btn-lg mt-5 text-uppercase" href="/product_main">구독하기</a>
+      <a class="btn btn-outline-dark btn-lg mt-5 text-uppercase" href="/products/main">구독하기</a>
     </div>
   </div>
 
