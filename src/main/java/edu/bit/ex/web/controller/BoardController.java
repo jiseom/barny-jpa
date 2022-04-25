@@ -3,6 +3,9 @@ package edu.bit.ex.web.controller;
 import edu.bit.ex.domain.account.Account;
 import edu.bit.ex.domain.account.CurrentAccount;
 import edu.bit.ex.domain.board.Board;
+import edu.bit.ex.domain.order.Order;
+import edu.bit.ex.domain.product.Product;
+import edu.bit.ex.vo.ProductMainVO;
 import edu.bit.ex.web.dto.InquiryForm;
 import edu.bit.ex.web.dto.UpdateInquiryForm;
 import edu.bit.ex.web.service.BoardService;
@@ -92,9 +95,34 @@ public class BoardController {
     //1:1 문의글 삭제
     @GetMapping("/inquiries/{id}/delete")
     public String deleteInquiry(@PathVariable("id") Board board,
-                                @CurrentAccount Account account){
-        boardService.deleteInquiry(account,board);
+                                @CurrentAccount Account account) {
+        boardService.deleteInquiry(account, board);
         return "redirect:/inquiries";
+    }
+
+    //구독 내역 목록
+    @GetMapping("/my-page/press")
+    public String getPressItem(@CurrentAccount Account account,
+                               Model model) {
+        List<Product> pressList = boardService.getPressItem(account);
+        model.addAttribute("press", pressList);
+        return "/board/press";
+    }
+
+//    //구독 내역 수정
+//    @PostMapping("/press/update")
+//    public String updatePress(@CurrentAccount Account account) {
+//
+//        return "redirect:/board/press";
+//    }
+
+    //구매내역 목록
+    @GetMapping("/my-page/purchase-list")
+    public String getPurchaseList(@CurrentAccount Account account,
+                                  Model model) {
+        List<Order> purchaseList = boardService.getPurchaseList(account);
+        model.addAttribute("purchase_list", purchaseList);
+        return "/board/purchase_list";
     }
 }
 

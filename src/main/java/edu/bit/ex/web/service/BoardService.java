@@ -5,6 +5,11 @@ import edu.bit.ex.domain.account.Role;
 import edu.bit.ex.domain.board.Board;
 import edu.bit.ex.domain.board.BoardRepository;
 import edu.bit.ex.domain.board.BoardType;
+import edu.bit.ex.domain.order.Order;
+import edu.bit.ex.domain.order.OrderRepository;
+import edu.bit.ex.domain.product.Product;
+import edu.bit.ex.domain.product.ProductRepository;
+import edu.bit.ex.domain.product.ProductType;
 import edu.bit.ex.web.dto.InquiryForm;
 import edu.bit.ex.web.dto.UpdateInquiryForm;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +20,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @RequiredArgsConstructor
@@ -22,6 +28,8 @@ import java.util.List;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final ProductRepository productRepository;
+    private final OrderRepository orderRepository;
 
     /**
      * 나의 1:1 문의 내역
@@ -62,9 +70,21 @@ public class BoardService {
     /**
      * 1:1 문의글 삭제
      */
-    public void deleteInquiry(Account account,Board board) {
+    public void deleteInquiry(Account account, Board board) {
         boardRepository.findWriter(account.getId());
         boardRepository.delete(board);
+    }
+
+    //구독 내역 리스트 조회
+    public List<Product> getPressItem(Account account) {
+        return productRepository.findByAccountAndProductType(account.getId(), ProductType.PACKAGE);
+
+    }
+
+    //구매 내역 리스트 조회
+    public List<Order> getPurchaseList(Account account) {
+       return orderRepository.getAccountOrderList(account.getId());
+
     }
 }
 
