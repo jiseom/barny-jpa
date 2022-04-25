@@ -1,6 +1,7 @@
 package edu.bit.ex.web.service;
 
 import edu.bit.ex.domain.account.Account;
+import edu.bit.ex.domain.account.AccountRepository;
 import edu.bit.ex.domain.account.Role;
 import edu.bit.ex.domain.board.Board;
 import edu.bit.ex.domain.board.BoardRepository;
@@ -30,6 +31,8 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
+
+    private final AccountRepository accountRepository;
 
     /**
      * 나의 1:1 문의 내역
@@ -85,6 +88,10 @@ public class BoardService {
     public List<Order> getPurchaseList(Account account) {
        return orderRepository.getAccountOrderList(account.getId());
 
+    }
+
+    public List<Account> getPointList(Account account) {
+        return accountRepository.getPointList(account.getId());
     }
 }
 

@@ -124,5 +124,15 @@ public class BoardController {
         model.addAttribute("purchase_list", purchaseList);
         return "/board/purchase_list";
     }
+
+    //포인트 내역
+    @GetMapping("/my-page/point")
+    public String getPointList(@CurrentAccount Account account,
+                               Model model) {
+        List<Account> pointList = boardService.getPointList(account);
+        model.addAttribute("point", pointList);
+        return "/board/point";
+
+    }
 }
 
