@@ -27,7 +27,7 @@ public class AccountInfoController {
 
     //회원 수정
     @PostMapping("/update")
-    public String accountInfoUpdate(@CurrentAccount Account account,
+    public String updateAccountInfo(@CurrentAccount Account account,
                                     UpdateAccountForm updateAccountForm,
                                     Model model) {
         model.addAttribute("updateAccountForm", updateAccountForm);
@@ -35,6 +35,21 @@ public class AccountInfoController {
         return "redirect:/login";
     }
 
-    
+    //회원 탈퇴 뷰
+    @GetMapping("/delete")
+    public String deleteAccount(@CurrentAccount Account account,
+                                Model model) {
+        model.addAttribute("account", account);
+        return "/user/delete";
+    }
+
+    //회원 탈퇴
+    @PostMapping("/delete")
+    public String deleteAccount(@CurrentAccount Account account) {
+        accountService.deleteAccount(account);
+
+        return "redirect:/logout";
+    }
+
 }
 

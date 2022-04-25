@@ -124,5 +124,10 @@ public class AccountService {
         account.updateAccountInfo(updateAccountForm);
         accountRepository.save(account);
     }
+    //회원 탈퇴
+    public void deleteAccount(Account account) {
+        account.deleteAccount();
+        accountRepository.save(account);
+    }
 }
 
