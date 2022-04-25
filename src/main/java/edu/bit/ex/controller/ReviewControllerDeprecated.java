@@ -37,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class ReviewController {
+public class ReviewControllerDeprecated {
 
     // 상품보기
     @Autowired
