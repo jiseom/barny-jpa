@@ -56,6 +56,7 @@ public class Account {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    private int enabled;
     public void updatePassword(String password) {
         this.password = password;
     }
@@ -73,4 +74,9 @@ public class Account {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    public void deleteAccount() {
+        this.enabled = 1;
+    }
+
 }
