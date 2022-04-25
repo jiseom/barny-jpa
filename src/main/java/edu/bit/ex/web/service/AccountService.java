@@ -4,8 +4,11 @@ import com.google.gson.Gson;
 import edu.bit.ex.domain.account.Account;
 import edu.bit.ex.domain.account.AccountRepository;
 import edu.bit.ex.domain.account.Role;
+import edu.bit.ex.domain.cart.Cart;
 import edu.bit.ex.web.dto.SignUpForm;
+import edu.bit.ex.web.dto.UpdateAccountForm;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,6 +25,7 @@ public class AccountService {
     private final PasswordEncoder passwordEncoder;
     private final AccountRepository accountRepository;
     private final JavaMailSender javaMailSender;
+    private final ModelMapper modelMapper;
 
     public Account addAccount(SignUpForm signUpForm) {
         String encodedPassword = passwordEncoder.encode(signUpForm.getPassword());
@@ -115,6 +119,10 @@ public class AccountService {
         return gson.toJson(key);
 
     }
-
+    //개인 정보 수정
+    public void updateAccountInfo( Account account, UpdateAccountForm updateAccountForm) {
+        account.updateAccountInfo(updateAccountForm);
+        accountRepository.save(account);
+    }
 }
 

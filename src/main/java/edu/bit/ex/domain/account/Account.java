@@ -2,7 +2,11 @@ package edu.bit.ex.domain.account;
 
 import javax.persistence.Entity;
 
+import edu.bit.ex.web.dto.UpdateAccountForm;
 import lombok.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
@@ -58,5 +62,15 @@ public class Account {
 
     public void updateCardGamePoint() {
         this.point += 100;
+    }
+
+    public void updateAccountInfo(UpdateAccountForm updateAccountForm) {
+        this.setPassword(passwordEncoder().encode(updateAccountForm.getPassword()));
+        this.setAddress(updateAccountForm.getAddress());
+        this.setTel(updateAccountForm.getTel());
+    }
+
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
