@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Random;
 
 @RequiredArgsConstructor
@@ -128,6 +129,17 @@ public class AccountService {
     public void deleteAccount(Account account) {
         account.deleteAccount();
         accountRepository.save(account);
+    }
+    //가입된 모든 회원 조회
+    public List<Account> getAccountList() {
+        return accountRepository.findAll();
+    }
+
+    //회원 상세 보기
+    public Account getAccountDetail(Long id) {
+        return accountRepository.findById(id)
+                .orElseThrow(IllegalArgumentException::new);
+
     }
 }
 
