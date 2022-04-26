@@ -89,10 +89,21 @@ public class BoardService {
        return orderRepository.getAccountOrderList(account.getId());
 
     }
-
+    //포인트 내역 조회
     public List<Account> getPointList(Account account) {
         return accountRepository.getPointList(account.getId());
     }
+
+    //공지사항 내역 조회
+    public List<Board> getNotices() {
+        return boardRepository.findAllByBoardType(BoardType.NOTICE);
+    }
+
+    //리뷰 내역 조회
+//    public List<Board> getReviewList(Account account,Order order) {
+//
+//        return boardRepository.findByIdAndBoardType(account.getId(),order.getId(),BoardType.REVIEW);
+//    }
 }
 
 
