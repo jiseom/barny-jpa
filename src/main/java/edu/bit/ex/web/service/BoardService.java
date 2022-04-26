@@ -11,6 +11,7 @@ import edu.bit.ex.domain.order.OrderRepository;
 import edu.bit.ex.domain.product.Product;
 import edu.bit.ex.domain.product.ProductRepository;
 import edu.bit.ex.domain.product.ProductType;
+import edu.bit.ex.web.dto.CreateNoticeForm;
 import edu.bit.ex.web.dto.InquiryForm;
 import edu.bit.ex.web.dto.UpdateInquiryForm;
 import lombok.RequiredArgsConstructor;
@@ -97,6 +98,16 @@ public class BoardService {
     //공지사항 내역 조회
     public List<Board> getNotices() {
         return boardRepository.findAllByBoardType(BoardType.NOTICE);
+    }
+
+    public void addNotice(Account account, CreateNoticeForm createNoticeForm) {
+        createNoticeForm.setAdmin(account);
+        createNoticeForm.setBoardTitle(createNoticeForm.getBoardTitle());
+        createNoticeForm.setBoardContent(createNoticeForm.getBoardContent());
+        createNoticeForm.setBoardType(BoardType.NOTICE);
+        createNoticeForm.setCreateDateTime(LocalDate.now());
+        Board board = createNoticeForm.toEntity(createNoticeForm);
+        boardRepository.save(board);
     }
 
     //리뷰 내역 조회
