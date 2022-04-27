@@ -27,6 +27,12 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     //보드타입 리스트 조회
     List<Board> findAllByBoardType(BoardType boardType);
 
+    List<Board> findAllByBoardTypeIn(List<BoardType>boardTypes);
+    //체크 박스 선택 삭제
+    void deleteAllByIdIn(List<Long> ids);
+
+
+
 //    @Query("SELECT b " +
 //            "FROM Board b " +
 //            "JOIN b.writer a JOIN b.purchaseItems p " +

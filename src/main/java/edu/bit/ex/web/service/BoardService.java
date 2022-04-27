@@ -10,10 +10,7 @@ import edu.bit.ex.domain.order.OrderRepository;
 import edu.bit.ex.domain.product.Product;
 import edu.bit.ex.domain.product.ProductRepository;
 import edu.bit.ex.domain.product.ProductType;
-import edu.bit.ex.web.dto.CreateNoticeForm;
-import edu.bit.ex.web.dto.InquiryForm;
-import edu.bit.ex.web.dto.UpdateInquiryForm;
-import edu.bit.ex.web.dto.UpdateNoticeForm;
+import edu.bit.ex.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Service;
@@ -23,6 +20,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @RequiredArgsConstructor
@@ -127,6 +125,21 @@ public class BoardService {
         //조회수
         board.updateHit();
         return board;
+    }
+
+    public void deleteByCheckBox(DeleteMultipleForm deleteMultipleForm) {
+        boardRepository.deleteAllByIdIn(deleteMultipleForm.getIds());
+    }
+
+    //모든 회원의 1:1 문의 글을 가져오기
+    public List<Board> getAccountInquiries() {
+        List<BoardType> boardTypes = new ArrayList<>(List.of(BoardType.ORDER_INQUIRY, BoardType.PRODUCT_INQUIRY, BoardType.SHIP_INQUIRY, BoardType.ETC_INQUIRY));
+       return boardRepository.findAllByBoardTypeIn(boardTypes);
+    }
+
+    public Board getAccountInquiriesDetail(Long boardId) {
+       return boardRepository.findById(boardId)
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     //리뷰 내역 조회
