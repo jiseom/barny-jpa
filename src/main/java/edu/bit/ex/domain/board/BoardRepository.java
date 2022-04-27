@@ -24,7 +24,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     Board findWriter(@Param("id") Long id);
 
     List<Board> findByBoardType(BoardType boardType);
-
+    //보드타입 리스트 조회
     List<Board> findAllByBoardType(BoardType boardType);
 
 //    @Query("SELECT b " +

@@ -2,7 +2,6 @@ package edu.bit.ex.web.service;
 
 import edu.bit.ex.domain.account.Account;
 import edu.bit.ex.domain.account.AccountRepository;
-import edu.bit.ex.domain.account.Role;
 import edu.bit.ex.domain.board.Board;
 import edu.bit.ex.domain.board.BoardRepository;
 import edu.bit.ex.domain.board.BoardType;
@@ -14,7 +13,9 @@ import edu.bit.ex.domain.product.ProductType;
 import edu.bit.ex.web.dto.CreateNoticeForm;
 import edu.bit.ex.web.dto.InquiryForm;
 import edu.bit.ex.web.dto.UpdateInquiryForm;
+import edu.bit.ex.web.dto.UpdateNoticeForm;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +23,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Transactional
 @RequiredArgsConstructor
@@ -87,9 +87,10 @@ public class BoardService {
 
     //구매 내역 리스트 조회
     public List<Order> getPurchaseList(Account account) {
-       return orderRepository.getAccountOrderList(account.getId());
+        return orderRepository.getAccountOrderList(account.getId());
 
     }
+
     //포인트 내역 조회
     public List<Account> getPointList(Account account) {
         return accountRepository.getPointList(account.getId());
@@ -100,6 +101,7 @@ public class BoardService {
         return boardRepository.findAllByBoardType(BoardType.NOTICE);
     }
 
+    //공지사항 글쓰기
     public void addNotice(Account account, CreateNoticeForm createNoticeForm) {
         createNoticeForm.setAdmin(account);
         createNoticeForm.setBoardTitle(createNoticeForm.getBoardTitle());
@@ -108,6 +110,20 @@ public class BoardService {
         createNoticeForm.setCreateDateTime(LocalDate.now());
         Board board = createNoticeForm.toEntity(createNoticeForm);
         boardRepository.save(board);
+    }
+
+    //공지사항 수정
+    public void updateNotice(Account account, Long id, UpdateNoticeForm updateNoticeForm) {
+        Board board = boardRepository.findById(id)
+                .orElseThrow(IllegalArgumentException::new);
+        board.setWriter(account);
+        board.updateNotice(updateNoticeForm);
+        boardRepository.save(board);
+    }
+
+    public Board findBoard(Long id) {
+        return boardRepository.findById(id)
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     //리뷰 내역 조회

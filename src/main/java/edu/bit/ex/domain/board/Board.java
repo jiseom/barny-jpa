@@ -1,7 +1,9 @@
 package edu.bit.ex.domain.board;
 
 import edu.bit.ex.domain.account.Account;
+import edu.bit.ex.domain.product.Product;
 import edu.bit.ex.web.dto.InquiryForm;
+import edu.bit.ex.web.dto.UpdateNoticeForm;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,8 +25,10 @@ public class Board {
     @ManyToOne(fetch = FetchType.LAZY)
     private Account writer;
 
-    private String boardTitle;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Product purchaseItems;
 
+    private String boardTitle;
     @Lob
     private String boardContent;
 
@@ -50,4 +54,9 @@ public class Board {
         this.boardType = inquiryForm.getBoardType();
     }
 
+    public void updateNotice(UpdateNoticeForm updateNoticeForm) {
+        this.boardTitle = updateNoticeForm.getBoardTitle();
+        this.boardContent = updateNoticeForm.getBoardContent();
+        this.updatedDate = LocalDate.now();
+    }
 }

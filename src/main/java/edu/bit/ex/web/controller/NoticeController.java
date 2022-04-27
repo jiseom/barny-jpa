@@ -4,12 +4,14 @@ import edu.bit.ex.domain.account.Account;
 import edu.bit.ex.domain.account.CurrentAccount;
 import edu.bit.ex.domain.board.Board;
 import edu.bit.ex.web.dto.CreateNoticeForm;
+import edu.bit.ex.web.dto.UpdateNoticeForm;
 import edu.bit.ex.web.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,8 +37,8 @@ public class NoticeController {
     //공지사항 폼
     @GetMapping("/new")
     public String noticeForm(@CurrentAccount Account account,
-                            CreateNoticeForm createNoticeForm,
-                            Model model) {
+                             CreateNoticeForm createNoticeForm,
+                             Model model) {
         model.addAttribute("createNoticeForm", createNoticeForm);
         return "/notice/write_view";
     }
@@ -51,10 +53,31 @@ public class NoticeController {
             model.addAttribute("createNoticeForm", createNoticeForm);
             return "/notice/write_view";
         }
-        boardService.addNotice(account,createNoticeForm);
+        boardService.addNotice(account, createNoticeForm);
         return "redirect:/admin/notices";
 
     }
 
-    
+    //공지사항 상세보기 뷰
+    @GetMapping("/{boardId}/detail")
+    public String noticeDetail(@CurrentAccount Account account,
+                               @PathVariable Long boardId,
+                               Model model) {
+        Board board = boardService.findBoard(boardId);
+        model.addAttribute("board", board);
+        return "/notice/content_view";
+    }
+
+    //공지사항 수정
+    @PostMapping("/{boardId}/update")
+    public String updateNotice(@CurrentAccount Account account, UpdateNoticeForm updateNoticeForm,
+                               @PathVariable Long boardId, Model model,Errors errors) {
+
+        if (errors.hasErrors()) {
+                    model.addAttribute("updateNoticeForm", updateNoticeForm);
+            return "/notice/content_view";
+        }
+        boardService.updateNotice(account,boardId, updateNoticeForm);
+        return "redirect:/admin/notices";
+    }
 }
