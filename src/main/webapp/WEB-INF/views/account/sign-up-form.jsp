@@ -38,6 +38,7 @@
     <link rel="stylesheet" type="text/css" href="/static/login/css/util.css">
     <link rel="stylesheet" type="text/css" href="/static/login/css/main.css">
 </head>
+
 <body id="page-top">
 
 <%--navbar--%>
@@ -45,104 +46,104 @@
 
 <!--signUpForm-->
 <form:form name="frmMember" modelAttribute="signUpForm" action="/account/new" method="POST">
-    <div class="container" style="width:60%; padding: 8rem 0;">
-        <div class="input-form-backgroud row">
-            <div class="input-form col-md-12 mx-auto">
-                <h4 class="mb-3 join_title">회원가입</h4>
-                <div class="form-line"></div>
-                <form class="validation-form" novalidate>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <div class="wrap-input100 validate-input m-b-16" style="background-color: transparent;">
-                                <label for="accountId">아이디</label>
-                                <input class="form-control" type="text" id="accountId" name="accountId"
-                                       value="${signUpForm.accountId}"
-                                       placeholder="6~12자 이내의 영어,숫자 조합 " required
-                                       minlength="6" maxlength="12">
-                                <form:errors path="accountId"/>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="wrap-input100 validate-input m-b-16" style="background-color: transparent;">
-                                <label for="name">이름</label>
-                                <input class="form-control" type="text" id="name" name="name"
-                                       value="${signUpForm.name}"
-                                       placeholder="" required>
-                                <form:errors path="name"/>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="wrap-input100 validate-input m-b-16" style="background-color: transparent;">
-                                <label for="password">패스워드</label>
-                                <input class="form-control" type="password" id="password" name="password"
-                                       placeholder="8자~20자 이내의 영문,숫자,특수기호 조합" required>
-                                <form:errors path="password"/>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="wrap-input100 validate-input m-b-16" style="background-color: transparent;">
-                                <label for="nickname">닉네임</label>
-                                <input class="form-control" type="text" id="nickname" name="nickname"
-                                       value="${signUpForm.nickname}"
-                                       placeholder="" required>
-                                <form:errors path="nickname"/>
-                            </div>
+<div class="container" style="width:60%; padding: 8rem 0;">
+    <div class="input-form-backgroud row">
+        <div class="input-form col-md-12 mx-auto">
+            <h4 class="mb-3 join_title">회원가입</h4>
+            <div class="form-line"></div>
+            <form class="validation-form" novalidate>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="wrap-input100 validate-input m-b-16" style="background-color: transparent;">
+                            <label for="accountId">아이디</label>
+                            <input class="form-control" type="text" id="accountId" name="accountId"
+                                   value="${signUpForm.accountId}"
+                                   placeholder="6~12자 이내의 영어,숫자 조합 " required
+                                   minlength="6" maxlength="12">
+                            <form:errors path="accountId"/>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-8 mb-3 ">
-                            <div class="wrap-input100 validate-input m-b-16" style="background-color: transparent;">
-                                <label for="email">이메일</label>
-                                <input type="email"
-                                       placeholder="E-Mail" name="email" id="email"
-                                       value="${signUpForm.email}"
-                                       class="form-control" required>
-                                <form:errors path="email" cssStyle="color: #e80f25"/>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-4 pt-4">
-                            <input type="button" value="인증하기" id="sendMail" class="btn btn-outline-primary btn-s"> <br>
-                        </div>
-                        <div class="col-md-8 mb-3 ">
-                            <input type="text" placeholder="인증 키 입력" style="display: none;"
-                                   class="compare form-control" required><span class="compare-text"
-                                                                               style="display: none">불일치</span>
+                    <div class="col-md-6 mb-3">
+                        <div class="wrap-input100 validate-input m-b-16" style="background-color: transparent;">
+                            <label for="name">이름</label>
+                            <input class="form-control" type="text" id="name" name="name"
+                                   value="${signUpForm.name}"
+                                   placeholder="" required>
+                            <form:errors path="name"/>
                         </div>
                     </div>
-                    <div class="row">
-                        <label for="postcode">주소</label>
-                        <div class="col-md-8 mb-3">
-                            <input type="text" class="form-control" id="postcode" name="address" placeholder="우편번호">
+                    <div class="col-md-6 mb-3">
+                        <div class="wrap-input100 validate-input m-b-16" style="background-color: transparent;">
+                            <label for="password">패스워드</label>
+                            <input class="form-control" type="password" id="password" name="password"
+                                   placeholder="8자~20자 이내의 영문,숫자,특수기호 조합" required>
+                            <form:errors path="password"/>
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <input type="button" class="btn btn-outline-primary btn-s"
-                                   onclick="execDaumPostcode()"
-                                   value="우편번호 찾기"><br>
-                        </div>
-                        <div class="col-md-8 mb-3">
-                            <input type="text" class="form-control" id="roadAddress"
-                                   value="${signUpForm.address}"
-                                   name="address"
-                                   placeholder="도로명주소 " required>
-                            <div class="invalid-feedback">
-                                주소를 입력해주세요.
-                            </div>
-                        </div>
-                        <div class="col-md-8 mb-3 ">
-                            <input type="text" class="form-control" id="detailAddress"
-                                   value="${signUpForm.address}"
-                                   name="address"
-                                   placeholder="상세주소" required>
-                            <div class="invalid-feedback">
-                                주소를 입력해주세요.
-                            </div>
-                            <input type="hidden" id="jibunAddress" placeholder="지번주소"></br>
-                            <span id="guide" style="color:#6A6666;display:none"></span>
-                            <input type="hidden" id="extraAddress" placeholder="참고항목">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="wrap-input100 validate-input m-b-16" style="background-color: transparent;">
+                            <label for="nickname">닉네임</label>
+                            <input class="form-control" type="text" id="nickname" name="nickname"
+                                   value="${signUpForm.nickname}"
+                                   placeholder="" required>
+                            <form:errors path="nickname"/>
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-8 mb-3 ">
+                        <div class="wrap-input100 validate-input m-b-16" style="background-color: transparent;">
+                            <label for="email">이메일</label>
+                            <input type="email"
+                                   placeholder="E-Mail" name="email" id="email"
+                                   value="${signUpForm.email}"
+                                   class="form-control" required>
+                            <form:errors path="email" cssStyle="color: #e80f25"/>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4 pt-4">
+                        <input type="button" value="인증하기" id="sendMail" class="btn btn-outline-primary btn-s"> <br>
+                    </div>
+                    <div class="col-md-8 mb-3 ">
+                        <input type="text" placeholder="인증 키 입력" style="display: none;"
+                               class="compare form-control" required><span class="compare-text"
+                                                                           style="display: none">불일치</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="postcode">주소</label>
+                    <div class="col-md-8 mb-3">
+                        <input type="text" class="form-control" id="postcode" name="address" placeholder="우편번호">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <input type="button" class="btn btn-outline-primary btn-s"
+                               onclick="execDaumPostcode()"
+                               value="우편번호 찾기"><br>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                        <input type="text" class="form-control" id="roadAddress"
+                               value="${signUpForm.address}"
+                               name="address"
+                               placeholder="도로명주소 " required>
+                        <div class="invalid-feedback">
+                            주소를 입력해주세요.
+                        </div>
+                    </div>
+                    <div class="col-md-8 mb-3 ">
+                        <input type="text" class="form-control" id="detailAddress"
+                               value="${signUpForm.address}"
+                               name="address"
+                               placeholder="상세주소" required>
+                        <div class="invalid-feedback">
+                            주소를 입력해주세요.
+                        </div>
+                        <input type="hidden" id="jibunAddress" placeholder="지번주소"></br>
+                        <span id="guide" style="color:#6A6666;display:none"></span>
+                        <input type="hidden" id="extraAddress" placeholder="참고항목">
+                    </div>
+                </div>
         </div>
+    </div>
     <div class="row">
         <div class="col-md-8 mb-3">
             <label for="tel">연락처</label>
@@ -164,33 +165,56 @@
         </div>
     </div>
 
-    <hr class="mb-4">
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input"
-               id="aggrement" required>
-        <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label></div>
-    <div class="mb-4"></div>
-    <div class="form-line"></div>
-    <div style="text-align: right;">
-        <button class="btn btn-primary btn-lg btn-block" style="font-family: BBTreeGB; " id="submit-btn"
-                type="submit">가입 완료
-        </button>
-        </form>
-    </div>
+    <hr class="mb-4" >
+    <h4 class="h4"> 홈페이지 이용약관 </h4>
+    <hr class="mb-3">
+    <textarea rows="5"  cols="100" name="content">3조(개인정보 보호 원칙) ① 개인정보처리자는 개인정보의 처리 목적을 명확하게 하여야 하고 그 목적에 필요한 범위에서 최소한의 개인정보만을 적법하고 정당하게 수집하여야 한다.
 
-    <script> window.addEventListener('load', () => {
-        const forms = document.getElementsByClassName('validation-form');
-        Array.prototype.filter.call(forms, (form) => {
-            form.addEventListener('submit', function (event) { //이 addEventListener 가 submit 이라는 이벤트를 발생시켰을떄 function실행
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false); </script>
-</form:form>
+② 개인정보처리자는 개인정보의 처리 목적에 필요한 범위에서 적합하게 개인정보를 처리하여야 하며, 그 목적 외의 용도로 활용하여서는 아니 된다.
+
+③ 개인정보처리자는 개인정보의 처리 목적에 필요한 범위에서 개인정보의 정확성, 완전성 및 최신성이 보장되도록 하여야 한다.
+
+④ 개인정보처리자는 개인정보의 처리 방법 및 종류 등에 따라 정보주체의 권리가 침해받을 가능성과 그 위험 정도를 고려하여 개인정보를 안전하게 관리하여야 한다.
+
+⑤ 개인정보처리자는 개인정보 처리방침 등 개인정보의 처리에 관한 사항을 공개하여야 하며, 열람청구권 등 정보주체의 권리를 보장하여야 한다.
+
+⑥ 개인정보처리자는 정보주체의 사생활 침해를 최소화하는 방법으로 개인정보를 처리하여야 한다.
+
+⑦ 개인정보처리자는 개인정보를 익명 또는 가명으로 처리하여도 개인정보 수집목적을 달성할 수 있는 경우 익명처리가 가능한 경우에는 익명에 의하여, 익명처리로 목적을 달성할 수 없는 경우에는 가명에 의하여 처리될 수 있도록 하여야 한다. <개정 2020. 2. 4.>
+
+⑧ 개인정보처리자는 이 법 및 관계 법령에서 규정하고 있는 책임과 의무를 준수하고 실천함으로써 정보주체의 신뢰를 얻기 위하여 노력하여야 한다.
+        </textarea>
+
+    <div>
+        <br>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input"
+                   id="aggrement" required> &nbsp; 개인정보 수집 및 이용에 동의합니다.
+                <%--        <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label></div>--%>
+        </div>
+        <div class="mb-4"></div>
+        <div class="form-line"></div>
+        <div style="text-align: right;">
+            <button class="btn btn-primary btn-lg btn-block" style="font-family: BBTreeGB; " id="submit-btn"
+                    type="submit">가입 완료
+            </button>
+            </form>
+        </div>
+
+        <script> window.addEventListener('load', () => {
+            const forms = document.getElementsByClassName('validation-form');
+            Array.prototype.filter.call(forms, (form) => {
+                form.addEventListener('submit', function (event) { //이 addEventListener 가 submit 이라는 이벤트를 발생시켰을떄 function실행
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false); </script>
+        </form:form>
+    </div>
 </body>
 
 <%--JS--%>
