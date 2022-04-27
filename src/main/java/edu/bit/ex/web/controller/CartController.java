@@ -5,7 +5,7 @@ import edu.bit.ex.domain.account.CurrentAccount;
 import edu.bit.ex.domain.cart.Cart;
 import edu.bit.ex.domain.product.Product;
 import edu.bit.ex.web.dto.CreateCartForm;
-import edu.bit.ex.web.dto.DeleteCartForm;
+import edu.bit.ex.web.dto.DeleteMultipleForm;
 import edu.bit.ex.web.dto.UpdateCartForm;
 import edu.bit.ex.web.service.CartService;
 import lombok.RequiredArgsConstructor;
@@ -70,9 +70,9 @@ public class CartController {
     //장바구니 선택 삭제
     @ResponseBody
     @PostMapping("/delete")
-    public String deleteCart(@RequestBody DeleteCartForm deleteCartForm) {
-        cartService.delete(deleteCartForm);
-        return "success";
+    public String deleteCart(@RequestBody DeleteMultipleForm deleteMultipleForm) {
+        cartService.delete(deleteMultipleForm);
+        return "SUCCESS";
     }
 
 }

@@ -6,7 +6,7 @@ import edu.bit.ex.domain.cart.CartRepository;
 import edu.bit.ex.domain.product.Product;
 import edu.bit.ex.domain.product.ProductRepository;
 import edu.bit.ex.web.dto.CreateCartForm;
-import edu.bit.ex.web.dto.DeleteCartForm;
+import edu.bit.ex.web.dto.DeleteMultipleForm;
 import edu.bit.ex.web.dto.UpdateCartForm;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -85,9 +85,9 @@ public class CartService {
     /**
      * 장바구니 선택 삭제
      */
-    public void delete(DeleteCartForm deleteCartForm) {
+    public void delete(DeleteMultipleForm deleteMultipleForm) {
         //선택한 카트 id 들을  가져와서 삭제함
-        cartRepository.deleteAllByIdIn(deleteCartForm.getIds());
+        cartRepository.deleteAllByIdIn(deleteMultipleForm.getIds());
     }
 
 }
