@@ -2,19 +2,17 @@ package edu.bit.ex.web.controller;
 
 import edu.bit.ex.domain.account.Account;
 import edu.bit.ex.domain.account.CurrentAccount;
+import edu.bit.ex.domain.account.Role;
 import edu.bit.ex.domain.board.Board;
 import edu.bit.ex.web.dto.CreateNoticeForm;
+import edu.bit.ex.web.dto.DeleteMultipleForm;
 import edu.bit.ex.web.dto.UpdateNoticeForm;
 import edu.bit.ex.web.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -31,7 +29,7 @@ public class NoticeController {
         List<Board> notices = boardService.getNotices();
         model.addAttribute("list", notices);
 
-        return "/notice/main";
+        return "/notice/admin-main";
     }
 
     //공지사항 폼
@@ -65,7 +63,7 @@ public class NoticeController {
                                Model model) {
         Board board = boardService.findBoard(boardId);
         model.addAttribute("board", board);
-        return "/notice/content_view";
+        return "/notice/admin-content-view";
     }
 
     //공지사항 수정
@@ -75,9 +73,26 @@ public class NoticeController {
 
         if (errors.hasErrors()) {
                     model.addAttribute("updateNoticeForm", updateNoticeForm);
-            return "/notice/content_view";
+            return "/notice/admin-content-view";
         }
         boardService.updateNotice(account,boardId, updateNoticeForm);
         return "redirect:/admin/notices";
     }
+
+    //공지사항 선택 삭제
+    @ResponseBody
+    @PostMapping("/delete")
+    public String deleteByCheckbox(@CurrentAccount Account account,
+                                   @RequestBody DeleteMultipleForm deleteMultipleForm) {
+        if (isAdmin(account)) {
+            boardService.deleteByCheckBox(deleteMultipleForm);
+            return "success";
+        }
+        throw new IllegalArgumentException();
+    }
+
+    private boolean isAdmin(Account account) {
+        return account.getRole() == Role.ROLE_ADMIN;
+    }
+
 }
