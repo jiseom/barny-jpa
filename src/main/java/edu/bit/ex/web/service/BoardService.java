@@ -122,8 +122,11 @@ public class BoardService {
     }
 
     public Board findBoard(Long id) {
-        return boardRepository.findById(id)
+        Board board = boardRepository.findById(id)
                 .orElseThrow(IllegalArgumentException::new);
+        //조회수
+        board.updateHit();
+        return board;
     }
 
     //리뷰 내역 조회

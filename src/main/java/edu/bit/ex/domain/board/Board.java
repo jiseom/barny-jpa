@@ -59,4 +59,9 @@ public class Board {
         this.boardContent = updateNoticeForm.getBoardContent();
         this.updatedDate = LocalDate.now();
     }
+
+    //조회수 업데이트
+    public void updateHit() {
+        this.boardHit++;
+    }
 }
