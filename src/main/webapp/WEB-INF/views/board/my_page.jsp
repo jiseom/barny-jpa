@@ -58,12 +58,12 @@
     <c:if test="${member == null}"></c:if>
     <div class="main-menu">
         <div class="row mb-3 mt-5">
-            <div class="card card-my_page col-4" type="button" onclick="location.href='/board/press'">
+            <div class="card card-my_page col-4" type="button" onclick="location.href='/my-page/press'">
                 <div class="card-body my_page">
                     구독 정보
                 </div>
             </div>
-            <div class="card card-my_page col-4" type="button" onclick="location.href='/board/purchase_list'">
+            <div class="card card-my_page col-4" type="button" onclick="location.href='/my-page/purchase-list'">
                 <div class="card-body my_page">
                     구매 내역
                 </div>
@@ -75,17 +75,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="card card-my_page col-4" type="button" onclick="location.href='/board/my_review'">
+            <div class="card card-my_page col-4" type="button" onclick="location.href='/reviews'">
                 <div class="card-body my_page">
                     후기
                 </div>
             </div>
-            <div class="card card-my_page col-4" type="button" onclick="location.href='/board/point'">
+            <div class="card card-my_page col-4" type="button" onclick="location.href='/my-page/point'">
                 <div class="card-body my_page">
                     적립금
                 </div>
             </div>
-            <div class="card card-my_page col-4" type="button" onclick="location.href='/user/edit'">
+            <div class="card card-my_page col-4" type="button" onclick="location.href='/my-page/edit'">
                 <div class="card-body my_page">
                     개인 정보 수정
                 </div>

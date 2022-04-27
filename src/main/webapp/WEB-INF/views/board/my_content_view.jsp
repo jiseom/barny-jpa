@@ -38,14 +38,14 @@
     <div class="row">
         <div class="col-3" style="padding: 7rem 0;">
             <div class="list-group side-nav">
-                <a href="/board/press" class="list-group-item list-group-item-action">구독 정보</a>
-                <a href="/board/purchase_list" class="list-group-item list-group-item-action">구매 내역</a>
-                <a href="/board/my_view" class="list-group-item list-group-item-action active" aria-current="true">
+                <a href="/my-page/press" class="list-group-item list-group-item-action">구독 정보</a>
+                <a href="/my-page/purchase-list" class="list-group-item list-group-item-action">구매 내역</a>
+                <a href="/inquiries" class="list-group-item list-group-item-action active" aria-current="true">
                     문의 내역
                 </a>
-                <a href="/board/my_review" class="list-group-item list-group-item-action">후기</a>
-                <a href="/board/point" class="list-group-item list-group-item-action">적립금</a>
-                <a href="/user/edit" class="list-group-item list-group-item-action">개인 정보 수정</a>
+                <a href="/reviews" class="list-group-item list-group-item-action">후기</a>
+                <a href="/my-page/point" class="list-group-item list-group-item-action">적립금</a>
+                <a href="/my-page/edit" class="list-group-item list-group-item-action">개인 정보 수정</a>
             </div>
         </div>
 

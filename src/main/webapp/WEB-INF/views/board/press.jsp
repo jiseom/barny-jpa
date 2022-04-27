@@ -32,14 +32,14 @@
     <div class="row">
         <div class="col-3" style="padding: 7rem 0;">
             <div class="list-group side-nav">
-                <a href="/board/press" class="list-group-item list-group-item-action active" aria-current="true">구독 정보</a>
-                <a href="/board/purchase_list" class="list-group-item list-group-item-action">구매 내역</a>
-                <a href="/board/my_view" class="list-group-item list-group-item-action">
+                <a href="/my-page/press" class="list-group-item list-group-item-action active" aria-current="true">구독 정보</a>
+                <a href="/my-page/purchase-list" class="list-group-item list-group-item-action">구매 내역</a>
+                <a href="/inquiries" class="list-group-item list-group-item-action">
                     문의 내역
                 </a>
-                <a href="/board/my_review" class="list-group-item list-group-item-action">후기</a>
-                <a href="/board/point" class="list-group-item list-group-item-action">적립금</a>
-                <a href="/user/edit" class="list-group-item list-group-item-action">개인 정보 수정</a>
+                <a href="/reviews" class="list-group-item list-group-item-action">후기</a>
+                <a href="/my-page/point" class="list-group-item list-group-item-action">적립금</a>
+                <a href="/my-page/edit" class="list-group-item list-group-item-action">개인 정보 수정</a>
             </div>
         </div>
 
@@ -58,16 +58,16 @@
                     <c:forEach items="${press}" var="dto">
                         <tr>
                             <td>
-                                <a style ="padding-left: 20px;" href="${pageContext.request.contextPath}/product_view?product_id=${dto.product_id}">${dto.product_name}</a>                            </td>
+                                <a style ="padding-left: 70px;" href="/products/${dto.id}/detail">${dto.productName}</a>                            </td>
                             <td>
-                                <a class="btn-basic post mb-2" style ="margin-right: 20px;" type="button" href="${pageContext.request.contextPath}/board/update_modify?subscribe=${dto.subscribe}" onclick="button_event('${pageContext.request.contextPath}/board/update_modify?subscribe=${dto.subscribe}');">구독 취소</a>
+<%--                                <a class="btn-basic post mb-2" style ="margin-right: 20px;" type="button" href="${pageContext.request.contextPath}/board/update_modify?subscribe=${dto.subscribe}" onclick="button_event('${pageContext.request.contextPath}/board/update_modify?subscribe=${dto.subscribe}');">구독 취소</a>--%>
                             </td>
                         <tr>
 
                             <script>
                                 function button_event(url) {
                                 	 console.log(url);
-                                    if (confirm("지정된 다음 달 결제일까지는 구독이 유효합니다") == true) {
+                                    if (confirm("지정된 다음 달 결제일까지는 구독이 유효합니다") === true) {
                                         //document.form.submit();
                                         console.log(url);
                                         $(location).attr(href,url);

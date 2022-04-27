@@ -34,7 +34,7 @@
 
 <%@ include file="/WEB-INF/views/include/navbar.jsp" %>
 
-<form:form name="findMember" modelAttribute="memberVO" action="/findId" method="POST">
+<form:form name="findMember" modelAttribute="account" action="/username-recovery" method="POST">
     <div class="container pt-5" style="width:60%">
         <div class="input-form-backgroud row">
             <div class="input-form col-md-12 mx-auto mt-5">
@@ -47,11 +47,11 @@
 
                         <div class="col-md-6 mb-3">
                             <div class="wrap-input100 validate-input m-b-16">
-                                <label for="member_name">이름</label>
-                                <input class="form-control" type="text" id="member_name" name="member_name"
-                                       value="${memberVO.member_name}"
+                                <label for="name">이름</label>
+                                <input class="form-control" type="text" id="name" name="name"
+                                       value="${account.name}"
                                        placeholder="고객님의 이름을 입력해주세요" required>
-                                <form:errors path="member_name"/>
+                                <form:errors path="name"/>
 
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                                 <label for="email">이메일</label>
                                 <input type="email"
                                        placeholder="가입 시 등록하신 이메일 주소를 입력해주세요" name="email" id="email"
-                                       value="${memberVO.email}"
+                                       value="${account.email}"
                                        class="form-control" required>
                                 <form:errors path="email" cssStyle="color: #e80f25"/>
 

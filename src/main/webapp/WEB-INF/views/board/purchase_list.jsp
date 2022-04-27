@@ -28,80 +28,22 @@
 
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
-     id="mainNav_2">
-    <div class="container">
-        <a class="navbar-brand" href="/main"><img
-                src="/static/main_page/assets/img/logo.png" alt="바니 로고 1"/></a>
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            Menu <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/subscribe">구독</a></li>
-                <li class="nav-item"><a class="nav-link" href="/story">브랜드
-                    스토리</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 상품 보기 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/product_main">패키지</a></li>
-                        <li><a class="dropdown-item" href="/product_main_liquor">술</a></li>
-                        <li><a class="dropdown-item" href="/product_main_food">안주</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/notice">공지사항</a></li>
-                        <li><a class="dropdown-item" href="/notice/faq">자주 묻는 질문</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <sec:authorize access="isAnonymous()">
-                    <li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/board/my_page">마이페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-                    <li class="nav-item"><a class="nav-link" href="/admin/statistics">관리페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-                </sec:authorize>
-            </ul>
-        </div>
-    </div>
-</nav>
+<%--navbar--%>
+<%@ include file="/WEB-INF/views/include/navbar.jsp" %>
 
 <!--content-->
 <div class="container" style="padding-top: 2rem;">
     <div class="row">
         <div class="col-3" style="padding: 7rem 0;">
             <div class="list-group side-nav">
-                <a href="/board/press" class="list-group-item list-group-item-action">구독 정보</a>
-                <a href="/board/purchase_list" class="list-group-item list-group-item-action active" aria-current="true">구매 내역</a>
-                <a href="/board/my_view" class="list-group-item list-group-item-action">
+                <a href="/my-page/press" class="list-group-item list-group-item-action">구독 정보</a>
+                <a href="/my-page/purchase-list" class="list-group-item list-group-item-action active" aria-current="true">구매 내역</a>
+                <a href="/inquiries" class="list-group-item list-group-item-action">
                     문의 내역
                 </a>
-                <a href="/board/my_review" class="list-group-item list-group-item-action">후기</a>
-                <a href="/board/point" class="list-group-item list-group-item-action">적립금</a>
-                <a href="/user/edit" class="list-group-item list-group-item-action">개인 정보 수정</a>
+                <a href="/reviews" class="list-group-item list-group-item-action">후기</a>
+                <a href="/my-page/point" class="list-group-item list-group-item-action">적립금</a>
+                <a href="/my-page/edit" class="list-group-item list-group-item-action">개인 정보 수정</a>
             </div>
         </div>
 
@@ -116,8 +58,8 @@
                         <td>주문번호</td>
                         <td>주문날짜</td>
                         <td>총금액</td>
-                        <td>주문상태</td>
-                        <td>배송번호</td>
+<%--                        <td>주문상태</td>--%>
+<%--                        <td>배송번호</td>--%>
                     </tr>
                     </thead>
                     <tbody>
@@ -138,21 +80,21 @@
                             </c:forEach>
                         </c:when>
                     </c:choose>
-                  
+
                     <c:forEach items="${purchase_list}" var="dto">
                     <tr>
-                        <td>
-                            <a class="order_id"
-                               href="${pageContext.request.contextPath}/board/purchase_view?order_id=${dto.order_id}">${dto.order_id}</a>
+                        <td>${dto.id}
+<%--                            <a class="id" href="${pageContext.request.contextPath}/board/purchase_view?id=${dto.id}">${dto.id}</a>--%>
+
                         </td>
-                        
-                        <td>${dto.order_date}</td>
-                        <td>${dto.total_price}</td>
-                        <td>${dto.ship_status_name}</td>
-                        <td>${dto.ship_id}</td>
-                        <td><a class="ship_id" a
-                               href="${pageContext.request.contextPath}/board/ship_delete?ship_id=${dto.ship_id}"><input type="button" value="취소하기"onclick="button_event();"></a>
-                        </td>
+
+                        <td>${dto.orderDate}</td>
+                        <td>${dto.totalPrice}</td>
+<%--                        <td>${dto.ship_status_name}</td>--%>
+<%--                        <td>${dto.ship_id}</td>--%>
+<%--                        <td><a class="ship_id" a--%>
+<%--                               href="${pageContext.request.contextPath}/board/ship_delete?ship_id=${dto.ship_id}"><input type="button" value="취소하기"onclick="button_event();"></a>--%>
+<%--                        </td>--%>
                     </tr>
                  </c:forEach>
 
@@ -167,27 +109,27 @@
 </div>
 
 <!-- 구매 내역 상세보기  ajax -->
-<c:if test="${press.ship_status_id eq 2}">
-    <script>
-        function button_event() {
-            if (confirm("취소할수없습니다") == true) {
-                document.form.submit();
-            } else {   //취소
-                return;
-            }
-        }
+<%--<c:if test="${press.ship_status_id eq 2}">--%>
+<%--    <script>--%>
+<%--        function button_event() {--%>
+<%--            if (confirm("취소할수없습니다") == true) {--%>
+<%--                document.form.submit();--%>
+<%--            } else {   //취소--%>
+<%--                return;--%>
+<%--            }--%>
+<%--        }--%>
 
-        //-->
-    </script>
-</c:if>
-<c:if test="${press.ship_status_id eq 2}">
-</c:if>
+<%--        //-->--%>
+<%--    </script>--%>
+<%--</c:if>--%>
+<%--<c:if test="${press.ship_status_id eq 2}">--%>
+<%--</c:if>--%>
 <%-- </c:forEach> --%>
 
 <script>
     $(document).ready(function () {
 
-        $(document).on("click", ".order_id", function (event) {
+        $(document).on("click", ".id", function (event) {
             //prevendDefault()는 href로 연결해 주지 않고 단순히 click에 대한 처리를 하도록 해준다.
             event.preventDefault();
 
@@ -224,7 +166,7 @@
 
 
                             htmls += '<td>' + this.order_detail_id + '</td>';
-                            htmls += '<td>' + this.order_id + '</td>';
+                            htmls += '<td>' + this.id + '</td>';
                             htmls += '<td>'
                             htmls += '<a href="${pageContext.request.contextPath}/product_view?product_id=' + this.product_id + '">' + this.product_name + '</a></td>';
 
@@ -284,9 +226,9 @@
                             htmls += '<tr>';
 
                             htmls += '<td>'
-                            htmls += '<a class="product_name" href="${pageContext.request.contextPath}/product/product_name?product_name=' + this.product_name + '">' + this.order_id + '</a></td>';
-                            htmls += '<td>' + this.order_date + '</td>';
-                            htmls += '<td>' + this.total_price + '</td>';
+                            htmls += '<a class="product_name" href="${pageContext.request.contextPath}/product/product_name?product_name=' + this.product_name + '">' + this.id + '</a></td>';
+                            htmls += '<td>' + this.orderDate + '</td>';
+                            htmls += '<td>' + this.totalPrice + '</td>';
 
                             htmls += '</tr>';
                         });   //each end

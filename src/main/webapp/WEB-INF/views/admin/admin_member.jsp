@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
@@ -29,77 +29,27 @@
     <link rel="stylesheet" href="/static/table/css/owl.carousel.min.css"/>
 
 </head>
+<style>
 
+    /*table {*/
+    /*    border-spacing: 1px;*/
+    /*}*/
+    table td {
+        width: 3px;
+    }
+</style>
 <body>
 
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
-     id="mainNav_2">
-    <div class="container">
-        <a class="navbar-brand" href="/main"><img
-                src="/static/main_page/assets/img/logo.png" alt="바니 로고 1"/></a>
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            Menu <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/subscribe">구독</a></li>
-                <li class="nav-item"><a class="nav-link" href="/story">브랜드
-                    스토리</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 상품 보기 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/product_main">패키지</a></li>
-                        <li><a class="dropdown-item" href="/product_main_liquor">술</a></li>
-                        <li><a class="dropdown-item" href="/product_main_food">안주</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/notice">공지사항</a></li>
-                        <li><a class="dropdown-item" href="/notice/faq">자주 묻는 질문</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <sec:authorize access="isAnonymous()">
-                    <li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/board/my_page">마이페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-                    <li class="nav-item"><a class="nav-link" href="/admin/statistics">관리페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-                </sec:authorize>
-            </ul>
-        </div>
-    </div>
-</nav>
+<%--navbar--%>
+<%@ include file="/WEB-INF/views/include/navbar.jsp" %>
 
 <!--content-->
 <div class="container" style="padding-top: 2rem;">
     <div class="row">
         <div class="col-3" style="padding: 7rem 0;">
             <div class="list-group side-nav">
-                <a href="/admin/admin_member" class="list-group-item list-group-item-action  active" aria-current="true">회원 관리</a>
-                <a href="#" class="list-group-item list-group-item-action">상품 관리</a>
+                <a href="/admin/account-list" class="list-group-item list-group-item-action  active" aria-current="true">회원 관리</a>
+                <a href="/admin/notices" class="list-group-item list-group-item-action">공지사항 관리</a>
                 <a href="/board/adminList" class="list-group-item list-group-item-action">
                     게시판 관리
                 </a>
@@ -117,14 +67,15 @@
                 <table class="table custom-table" style="min-width: 500px;">
                     <thead style="border-bottom: solid 1px;">
                     <tr>
+                        <td>회원번호</td>
                         <td>아이디</td>
 			            <!-- <td>비밀번호</td> -->
-			            <td>회원번호</td>
-			            <td>회원이름</td>
-			            <td>닉네임</td>
+
+			            <td>이름</td>
+<%--			            <td>닉네임</td>--%>
 			            <td>이메일</td>
-			            <td>결제수단</td>
-			            <td>전화번호</td>
+<%--			            <td>결제수단</td>--%>
+<%--			            <td>전화번호</td>--%>
 			            <td>주소</td>
 			            <!-- <td>생년월일</td> -->
 			            <td>포인트</td>
@@ -136,27 +87,25 @@
             </tbody>
 
 	
-		<c:forEach items="${admin_member}" var="dto">
+		<c:forEach items="${accountList}" var="dto">
 		<tr style="font-weight: 400;">
-			<td style="width : 15%;">${dto.member_id}</td>
-			<!-- <td>${dto.pw}</td> -->
-			<td>${dto.member_idx}</td>
-			<td>	
-				<a href="content_view?member_idx=${dto.member_idx}">${dto.member_name}</a> 
+            <td>${dto.id}</td>
+            <td style="width : 15%;">${dto.accountId}</td>
+			<td>
+				<a href="/admin/${dto.id}/detail">${dto.name}</a>
 			</td>                             
-			<td>${dto.nickname}</td>
+<%--			<td>${dto.nickname}</td>--%>
 			<td>${dto.email}</td>
-			<td>${dto.payment}</td>
-			<td>${dto.tel}</td>
+<%--			<td>${dto.payment}</td>--%>
+<%--			<td>${dto.tel}</td>--%>
 			<td>${dto.address}</td>
-			<!-- <td>${dto.date_of_birth}</td> -->
+			<!-- <td>${dto.dateOfBirth}</td> -->
 			<td>${dto.point}</td>
-
 		</tr>
 		</c:forEach>
 		
 		<tr>
-         <td colspan="960"> <a href="write_view">글작성</a> </td>
+<%--         <td colspan="960"> <a href="write_view">글작성</a> </td>--%>
       </tr>
       
 	</table>

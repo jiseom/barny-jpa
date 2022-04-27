@@ -68,82 +68,24 @@
 </head>
 <body>
 
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
-     id="mainNav_2">
-    <div class="container">
-        <a class="navbar-brand" href="/main"><img
-                src="/static/main_page/assets/img/logo.png" alt="바니 로고 1"/></a>
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            Menu <i class="fas fa-bars ms-1"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/subscribe">구독</a></li>
-                <li class="nav-item"><a class="nav-link" href="/story">브랜드
-                    스토리</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 상품 보기 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/product_main">패키지</a></li>
-                        <li><a class="dropdown-item" href="/product_main_liquor">술</a></li>
-                        <li><a class="dropdown-item" href="/product_main_food">안주</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/event">이벤트</a></li>
-                <li class="nav-item dropdown"><a
-                        class="nav-link dropdown-toggle" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li></li>
-                        <a class="dropdown-item" href="/notice">공지사항</a></li>
-                        <li><a class="dropdown-item" href="/notice/faq">자주 묻는 질문</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <sec:authorize access="isAnonymous()">
-                    <li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/board/my_page">마이페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-                    <li class="nav-item"><a class="nav-link" href="/statistics">관리페이지</a></li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <li class="nav-item"><a class="nav-link" href="/user/cart5">장바구니</a></li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-                </sec:authorize>
-            </ul>
-        </div>
-    </div>
-</nav>
+<%--navbar--%>
+<%@ include file="/WEB-INF/views/include/navbar.jsp" %>
 
 <!--content-->
 <div class="container" style="padding-top: 2rem;">
     <div class="row">
         <div class="col-3" style="padding: 7rem 0;">
             <div class="list-group side-nav">
-                <a style="font-family: NanumSquare;" href="/board/press" class="list-group-item list-group-item-action">구독
+                <a style="font-family: NanumSquare;" href="/my-page/press" class="list-group-item list-group-item-action">구독
                     정보</a>
-                <a style="font-family: NanumSquare;" href="/board/purchase_list"
+                <a style="font-family: NanumSquare;" href="/my-page/purchase-list"
                    class="list-group-item list-group-item-action">구매 내역</a>
-                <a style="font-family: NanumSquare;" href="/board/my_view"
+                <a style="font-family: NanumSquare;" href="/inquiries"
                    class="list-group-item list-group-item-action">문의 내역</a>
-                <a style="font-family: NanumSquare;" href="/board/my_review"
+                <a style="font-family: NanumSquare;" href="/reviews"
                    class="list-group-item list-group-item-action">후기</a>
-                <a style="font-family: NanumSquare;" href="/board/point" class="list-group-item list-group-item-action">적립금</a>
-                <a style="font-family: NanumSquare;" href="/user/edit"
+                <a style="font-family: NanumSquare;" href="/my-page/point" class="list-group-item list-group-item-action">적립금</a>
+                <a style="font-family: NanumSquare;" href="/my-page/edit"
                    class="list-group-item list-group-item-action active" aria-current="true">
                     개인 정보 수정</a>
             </div>
@@ -158,7 +100,7 @@
                     <tr>
 
                         <!--updateForm-->
-                        <form:form name="frmMember" modelAttribute="memberVO" action="/updateUser" method="POST">
+                        <form:form name="frmMember" modelAttribute="updateAccountForm" action="/my-page/update" method="POST">
                         <div class="container pt-5" style="width: 60%">
                             <div class="input-form-backgroud row">
                                 <div class="input-form col-md-12 mx-auto"></div>
@@ -169,12 +111,11 @@
                                 <div class="col-md-6 mb-3">
                                     <div class="wrap-input100 validate-input m-b-16"
                                          style="background-color: transparent;">
-                                        <label for="member_id">아이디</label>
-                                        <input class="form-control" type="text" id="member_id" name="member_id" readonly
-                                               value="<sec:authentication property="principal.memberVO.member_id"/>"
-                                               placeholder="6~12자 이내의 영어,숫자 조합 "
+                                        <label for="accountId">아이디</label>
+                                        <input class="form-control" type="text" id="accountId" name="accountId" readonly
+                                               placeholder="${account.accountId}"
                                                minlength="6" maxlength="12">
-                                        <form:errors path="member_id"/>
+                                        <form:errors path="accountId"/>
 
                                     </div>
                                 </div>
@@ -182,12 +123,11 @@
                                 <div class="col-md-6 mb-3">
                                     <div class="wrap-input100 validate-input m-b-16"
                                          style="background-color: transparent;">
-                                        <label for="member_name">이름</label>
-                                        <input class="form-control" type="text" id="member_name" name="member_name"
-                                               disabled
-                                               value="<sec:authentication property="principal.memberVO.member_name"/>"
-                                               placeholder="이름">
-                                        <form:errors path="member_name"/>
+                                        <label for="name">이름</label>
+                                        <input class="form-control" type="text" id="name" name="name"
+                                               placeholder="${account.name}" disabled
+                                              >
+                                        <form:errors path="name"/>
 
                                     </div>
                                 </div>
@@ -195,10 +135,11 @@
                                 <div class="col-md-6 mb-3">
                                     <div class="wrap-input100 validate-input m-b-16"
                                          style="background-color: transparent;">
-                                        <label for="pw">패스워드</label>
-                                        <input class="form-control" type="password" id="pw" name="pw"
+                                        <label for="password">패스워드</label>
+                                        <input class="form-control" type="password" id="password" name="password"
+                                               value="${updateAccountForm.password}"
                                                placeholder="8자~20자 이내의 영문,숫자,특수기호 조합" required>
-                                        <form:errors path="pw"/>
+                                        <form:errors path="password"/>
                                     </div>
                                 </div>
 
@@ -206,9 +147,9 @@
                                     <div class="wrap-input100 validate-input m-b-16"
                                          style="background-color: transparent;">
                                         <label for="nickname">닉네임</label>
-                                        <input class="form-control" type="text" id="nickname" name="nickname"
-                                               value="<%-- <sec:authentication property="principal.memberVO.nickname"/> --%>"
-                                               placeholder="닉네임" required>
+                                        <input class="form-control" type="text" id="nickname" name="nickname" readonly
+                                               placeholder="${account.nickname}"
+<%--                                               placeholder="닉네임"--%>required>
                                         <form:errors path="nickname"/>
                                     </div>
                                 </div>
@@ -221,8 +162,8 @@
                                          style="background-color: transparent;">
                                         <label for="email">이메일</label>
                                         <input type="email"
-                                               placeholder="E-Mail" name="email" id="email" disabled
-                                               value="<sec:authentication property="principal.memberVO.email"/>"
+                                                name="email" id="email" disabled
+                                               placeholder="${account.email}" required
                                                class="form-control">
                                         <form:errors path="email" cssStyle="color: #e80f25"/>
 
@@ -244,7 +185,7 @@
                                 </div>
                                 <div class="col-md-8 mb-3">
                                     <input type="text" class="form-control" id="roadAddress"
-                                           value="${memberVO.address}"
+                                           value="${updateAccountForm.address}"
                                            name="address"
                                            placeholder="도로명주소 " required>
                                     <div class="invalid-feedback">
@@ -254,9 +195,9 @@
 
                                 <div class="col-md-8 mb-3 ">
                                     <input type="text" class="form-control" id="detailAddress"
-                                           value="${memberVO.address}"
+                                           value="${updateAccountForm.address}"
                                            name="address"
-                                           placeholder="상세주소" required>
+                                           placeholder="${account.address}" required>
                                     <div class="invalid-feedback">
                                         주소를 입력해주세요.
                                     </div>
@@ -272,22 +213,20 @@
 
         <div class="col-md-8 mb-3" style="padding-left: 1px;">
             <label for="tel">전화번호</label>
-            <input type="tel" class="form-control"
-                   value="<sec:authentication property="principal.memberVO.tel"/>"
-                   placeholder="010-0000-0000"
-                   id="tel" name="tel" required>
+            <input type="tel" class="form-control" id="tel" name="tel"
+                   value="${updateAccountForm.tel}"
+                   placeholder="${account.tel}" required >
+<%--                   placeholder="010-0000-0000"--%>
             <div class="invalid-feedback"> 전화번호를 입력해주세요.</div>
         </div>
 
         <div class="col-md-4 mb-3" style="padding-left: 1px;">
-            <label for="date_of_birth">생년월일</label>
+            <label for="dateOfBirth">생년월일</label>
             <input type="date"
-                   class="form-control" disabled
-                   value="<sec:authentication property="principal.memberVO.date_of_birth"/>"
-                   id="date_of_birth"
-                   name="date_of_birth"
-                   placeholder=""
-            >
+                   class="form-control" id="dateOfBirth"
+                   name="dateOfBirth" disabled
+                   value="${account.dateOfBirth}" required >
+
             <div class="invalid-feedback"> 생년월일을 입력해주세요.</div>
         </div>
     <div class="mt-5" style="border-bottom:solid 2px; border-color:#EBC24B;"></div>
@@ -296,7 +235,7 @@
     <div class="my-3" style="text-align: right;">
         <button class="btn btn-primary btn-lg btn-block edit-btn" type="submit">수정</button>
         <div class="mt-2">
-            <button type="button" onclick="location.href='${pageContext.request.contextPath}/user/delete'"
+            <button type="button" onclick="location.href='/my-page/delete'"
                     class="btn btn-primary btn-lg btn-block edit-btn">탈퇴
             </button>
         </div>

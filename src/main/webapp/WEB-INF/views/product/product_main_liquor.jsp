@@ -144,7 +144,7 @@
           	<div class="card-body">
             <h2>${dto.productName}</h2>
             <p>${dto.price} 원</p>
-            <p><a class="btn btn-secondary" href="product_view?product_id=${dto.id}">상품보러가기</a></p>
+            <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/products/${dto.id}/detail">상품보러가기</a></p>
           	</div>
         </div>
       </div>

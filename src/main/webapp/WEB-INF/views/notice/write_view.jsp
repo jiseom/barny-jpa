@@ -37,13 +37,13 @@
             <div class="board_name">공지사항 등록
             </div>
             <div class="table-responsive outline pt-3">
-                <form action="write" method="post" onsubmit="return confirm('게시글을 등록하시겠습니까?')">
+                <form action="/admin/notices/new" modelAttribute="createNoticeForm" method="post">
                     <table class="table" style="font-size: 13px; border-top : solid 1px; border-top-color: #dee2e6;">
                         <tr>
                             <td class="content_head"> 제목 </td>
                             <td>
                                 <div class="form-group">
-                                    <input type="text" class="form-control_2" name="b_title" placeholder="제목을 입력하세요" />
+                                    <input type="text" class="form-control_2" value="${createNoticeForm.boardTitle}" name="boardTitle" placeholder="제목을 입력하세요" />
                                 </div>
                             </td>
                         </tr>
@@ -52,7 +52,8 @@
                             <td>
                                 <div class="form-group">
                                     <input type="text" class="form-control_2"
-                                        style="padding-top: 1rem; padding-bottom: 15rem;" name="b_content"
+                                           value="${createNoticeForm.boardContent}"
+                                        style="padding-top: 1rem; padding-bottom: 15rem;" name="boardContent"
                                         placeholder="내용을 입력하세요">
                                 </div>
                             </td>
@@ -60,12 +61,12 @@
                         <tr>
                             <td colspan="4" class="py-3" style="text-align: right;">
                                 <input type="submit" class="btn-basic text-uppercase" value="등록">
-                                <a href="main" role="button" class="btn-basic text-uppercase">취소</a>
+                                <a href="/admin/notices" role="button" class="btn-basic text-uppercase">취소</a>
 
                             </td>
                         </tr>
                     </table>
-                </form>
+
             </div>
             <div class="table-responsive outline pb-3" />
         </div>

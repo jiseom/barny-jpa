@@ -21,6 +21,7 @@
 </head>
 <body class="sb-nav-fixed">
 
+
 <main>
     <div class="container-fluid" style="width: 80%;">
         <h1 class="title mt-4 py-4">관리자 페이지</h1>
@@ -29,25 +30,25 @@
                 <div class="card admin-menu text-white mb-4">
                     <div class="card-body">회원 관리</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="/admin/admin_member">더보기</a>
+                        <a class="small text-white stretched-link" href="/admin/account-list">더보기</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
                 <div class="card admin-menu text-white mb-4">
-                    <div class="card-body">상품 관리</div>
+                    <div class="card-body">공지사항 관리</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">더보기</a>
+                        <a class="small text-white stretched-link" href="/admin/notices">더보기</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
                 <div class="card admin-menu text-white mb-4">
-                    <div class="card-body">게시판 관리</div>
+                    <div class="card-body">1:1 문의 관리</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="/board/adminList">공지사항/ 후기/ 1:1 문의 </a>
+                        <a class="small text-white stretched-link" href="/board/adminList">더보기 </a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
@@ -212,4 +213,5 @@
 
 <%--</script>--%>
 </body>
+
 </html>

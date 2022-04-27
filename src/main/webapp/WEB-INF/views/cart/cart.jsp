@@ -320,7 +320,7 @@
 						data: data,
 						success: function (result) {
 							if (result == "SUCCESS") {
-								//alert("삭제되었습니다.");								
+								alert("삭제되었습니다.");
 								//for(var i = 0; i < trArray.length; i++){									
 								//	$(trArray[i]).remove();
 								//}
