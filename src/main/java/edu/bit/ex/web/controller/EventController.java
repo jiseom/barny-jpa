@@ -26,10 +26,10 @@ public class EventController {
     // 게시된 이벤트 화면
     @GetMapping("/all-events")
     public String event_main(Model model, Criteria cri) {
-        List<Board> list = eventService.getList();
-        Board board = list.get(0);
-        model.addAttribute("board", board);
-        model.addAttribute("event_list", eventService.getList());
+//        List<Board> list = eventService.getList();
+//        Board board = list.get(0);
+//        model.addAttribute("board", board);
+//        model.addAttribute("event_list", eventService.getList());
 
 //        int total = eventService.getTotal(cri);
 //        model.addAttribute("pageMaker", new PageVO(cri, total));

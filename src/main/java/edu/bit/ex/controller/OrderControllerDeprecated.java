@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.bit.ex.service.cart.CartServiceDeprecated;
 import edu.bit.ex.service.cart.OrderService;
-import edu.bit.ex.service.member.MemberService;
 import edu.bit.ex.vo.account.MemberContext;
 import edu.bit.ex.vo.cart.CartVO;
 import edu.bit.ex.vo.cart.OrderPaymentVO;
@@ -30,8 +29,7 @@ public class OrderControllerDeprecated {
 	private CartServiceDeprecated cartService;
 	@Autowired
 	private OrderService orderService;
-	@Autowired
-	private MemberService memberService;
+
 	
 	// 장바구니, 주문자 리스트 
 	@GetMapping("/user/order")
