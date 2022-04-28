@@ -12,7 +12,6 @@ import edu.bit.ex.domain.product.ProductRepository;
 import edu.bit.ex.domain.product.ProductType;
 import edu.bit.ex.web.dto.*;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +19,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Transactional
 @RequiredArgsConstructor
@@ -46,24 +44,27 @@ public class BoardService {
     /**
      * 1:1 문의글 등록
      */
-    public void addInquiry(Account account, InquiryForm inquiryForm) {
+    public void addInquiry(Account account,InquiryForm inquiryForm) {
         Board board = inquiryForm.toEntity();
         board.setWriter(account);
         boardRepository.save(board);
+        int boardGroup = Math.toIntExact(board.getId());
+        board.setBoardGroup(boardGroup);
     }
 
     /**
      * 1:1 문의글 상세 보기
      */
-    public Board findAccountAndBoard(Account account) {
-        return boardRepository.findWriter(account.getId());
+    public Board findByAccount(Account account,Long boardId) {
+        return boardRepository.findByWriterAndBoardId(account.getId(), boardId);
     }
+
 
     /**
      * 1:1 문의글 수정
      */
-    public void updateInquiry(Account account, UpdateInquiryForm updateInquiryForm) {
-        Board board = boardRepository.findWriter(account.getId());
+    public void updateInquiry(Account account,Long boardId, UpdateInquiryForm updateInquiryForm) {
+        Board board = boardRepository.findByWriterAndBoardId(account.getId(), boardId);
         board.setBoardTitle(updateInquiryForm.getBoardTitle());
         board.setBoardContent(updateInquiryForm.getBoardContent());
         boardRepository.save(board);
@@ -72,8 +73,8 @@ public class BoardService {
     /**
      * 1:1 문의글 삭제
      */
-    public void deleteInquiry(Account account, Board board) {
-        boardRepository.findWriter(account.getId());
+    public void deleteInquiry(Account account, Long boardId) {
+        Board board = boardRepository.findByWriterAndBoardId(account.getId(), boardId);
         boardRepository.delete(board);
     }
 
@@ -133,13 +134,22 @@ public class BoardService {
 
     //모든 회원의 1:1 문의 글을 가져오기
     public List<Board> getAccountInquiries() {
-        List<BoardType> boardTypes = new ArrayList<>(List.of(BoardType.ORDER_INQUIRY, BoardType.PRODUCT_INQUIRY, BoardType.SHIP_INQUIRY, BoardType.ETC_INQUIRY));
-       return boardRepository.findAllByBoardTypeIn(boardTypes);
+        List<BoardType> boardTypes = new ArrayList<>(List.of(BoardType.REPLY,BoardType.ORDER_INQUIRY, BoardType.PRODUCT_INQUIRY, BoardType.SHIP_INQUIRY, BoardType.ETC_INQUIRY));
+       return boardRepository.findAllByBoardTypeInOrderByBoardGroup(boardTypes);
     }
 
     public Board getAccountInquiriesDetail(Long boardId) {
        return boardRepository.findById(boardId)
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public void addReply(Long boardId, CreateReplyForm createReplyForm) {
+        int boardGroup= Math.toIntExact(boardId);
+        Board board = createReplyForm.toEntity(boardGroup, createReplyForm);
+        board.setBoardIndent(1);
+        board.setBoardGroup(boardGroup);
+        board.setBoardStep(1);
+        boardRepository.save(board);
     }
 
     //리뷰 내역 조회
