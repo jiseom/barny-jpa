@@ -70,56 +70,6 @@
                 </table>
             </div>
 
-<%--            <!--Pagination-->--%>
-<%--            <nav aria-label="Page navigation example">--%>
-<%--                <ul class="pagination justify-content-center">--%>
-<%--                    <c:if test="${pageMaker.prev}">--%>
-<%--                        <li class="page-item">--%>
-<%--                            <a class="page-link" href="notice${pageMaker.makeQuery(pageMaker.startPage - 1) }"--%>
-<%--                                aria-label="Previous">--%>
-<%--                                <span aria-hidden="true">&laquo;</span>--%>
-<%--                                <span class="sr-only">Previous</span>--%>
-<%--                            </a>--%>
-<%--                        </li>--%>
-<%--                    </c:if>--%>
-<%--                    <c:forEach var="idx" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">--%>
-<%--                        <li class="page-item "><a class="page-link" href="notice${pageMaker.makeQuery(idx)}">--%>
-<%--                                ${idx}--%>
-<%--                            </a>--%>
-<%--                        </li>--%>
-<%--                    </c:forEach>--%>
-<%--                    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">--%>
-<%--                        <li class="page-item">--%>
-<%--                            <a class="page-link" aria-label="Next"--%>
-<%--                                href="notice${pageMaker.makeQuery(pageMaker.endPage +1) }">--%>
-<%--                                <span aria-hidden="true">&raquo;</span>--%>
-<%--                                <span class="sr-only">Next</span>--%>
-<%--                            </a>--%>
-<%--                        </li>--%>
-<%--                    </c:if>--%>
-<%--                </ul>--%>
-<%--            </nav>--%>
-
-            <%--searching button--%>
-<%--            <div class="table-responsive outline pt-4">--%>
-<%--                <form class="d-flex mb-3" id="searchForm" action="/notice" method='get' style="float: right;">--%>
-<%--                    <select name='type' class="searching_option">--%>
-<%--                        <option value="" <c:out value="${pageMaker.cri.type == null?'selected':''}" />--%>
-<%--                        >--</option>--%>
-<%--                        <option value="T" <c:out value="${pageMaker.cri.type eq 'T'?'selected':''}" />--%>
-<%--                        >제목</option>--%>
-<%--                        <option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':''}" />--%>
-<%--                        >내용</option>--%>
-<%--                    </select>--%>
-<%--                    <input class="form-control_2 me-2" type='text' name='keyword'--%>
-<%--                        value='<c:out value="${pageMaker.cri.keyword}"/>' />--%>
-<%--                    <input class="form-control_2 me-2" type='hidden' name='pageNum'--%>
-<%--                        value='<c:out value="${pageMaker.cri.pageNum}"/>' />--%>
-<%--                    <input class="form-control_2 me-2" type='hidden' name='amount'--%>
-<%--                        value='<c:out value="${pageMaker.cri.amount}"/>' />--%>
-<%--                    <button class="searching_btn btn-outline-search" type="submit">검색</button>--%>
-<%--                </form>--%>
-<%--            </div>--%>
         </div>
     </div>
 

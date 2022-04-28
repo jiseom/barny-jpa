@@ -83,7 +83,6 @@
                 <a href="/my-page/press" class="list-group-item list-group-item-action">구독 정보</a>
                 <a href="/my-page/purchase-list" class="list-group-item list-group-item-action">구매 내역</a>
                 <a href="/inquiries" class="list-group-item list-group-item-action">문의 내역</a>
-                <a href="/reviews" class="list-group-item list-group-item-action">후기</a>
                 <a href="/my-page/point" class="list-group-item list-group-item-action active" aria-current="true">적립금</a>
                 <a href="/my-page/edit" class="list-group-item list-group-item-action">
                 개인 정보 수정</a>

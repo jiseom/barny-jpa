@@ -5,7 +5,6 @@ import edu.bit.ex.domain.account.CurrentAccount;
 import edu.bit.ex.domain.board.Board;
 import edu.bit.ex.domain.order.Order;
 import edu.bit.ex.domain.product.Product;
-import edu.bit.ex.vo.ProductMainVO;
 import edu.bit.ex.web.dto.InquiryForm;
 import edu.bit.ex.web.dto.UpdateInquiryForm;
 import edu.bit.ex.web.service.BoardService;

@@ -1,4 +1,4 @@
-package edu.bit.ex.vo.account;
+package edu.bit.ex.domain.account;
 
 import lombok.Data;
 

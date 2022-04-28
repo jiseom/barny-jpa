@@ -83,7 +83,6 @@
                 <a style="font-family: NanumSquare;" href="/inquiries"
                    class="list-group-item list-group-item-action">문의 내역</a>
                 <a style="font-family: NanumSquare;" href="/reviews"
-                   class="list-group-item list-group-item-action">후기</a>
                 <a style="font-family: NanumSquare;" href="/my-page/point" class="list-group-item list-group-item-action">적립금</a>
                 <a style="font-family: NanumSquare;" href="/my-page/edit"
                    class="list-group-item list-group-item-action active" aria-current="true">

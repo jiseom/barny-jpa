@@ -126,20 +126,20 @@
         </ul>
 
         <hr class="my-2">
-        <div class="col-lg-12">
-            <form id='searchForm1' action="/product_main_liquor" method='get' style="font-size:10px;">
-                <%--     서치--%>
-                <select name='type'>
-                    <option value=""<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
-                    <option value="C"<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>상품이름</option>
-                </select>
+<%--        <div class="col-lg-12">--%>
+<%--            <form id='searchForm1' action="/product_main_liquor" method='get' style="font-size:10px;">--%>
+<%--                &lt;%&ndash;     서치&ndash;%&gt;--%>
+<%--                <select name='type'>--%>
+<%--                    <option value=""<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>--%>
+<%--                    <option value="C"<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>상품이름</option>--%>
+<%--                </select>--%>
 
-                <input type='text' name='keyword' style="width:60px;" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
-                <%-- 			<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>'/>
-                            <input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>'/> --%>
-                <button class='btn btn-secondary btn-sm'>Search</button>
-            </form>
-        </div>
+<%--                <input type='text' name='keyword' style="width:60px;" value='<c:out value="${pageMaker.cri.keyword}"/>'/>--%>
+<%--                &lt;%&ndash; 			<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>'/>--%>
+<%--                            <input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>'/> &ndash;%&gt;--%>
+<%--                <button class='btn btn-secondary btn-sm'>Search</button>--%>
+<%--            </form>--%>
+<%--        </div>--%>
     </div>
 
 <!-- 패키지 상품 보기 -->
@@ -149,7 +149,7 @@
             <div class="col-4">
                 <div class="card h-100">
 <%--                    <a href="#"><img class="card-img width=100" src="${dto.image_route}"></a>--%>
-<a href="#"><img class="card-img width=100" src="${pageContext.request.contextPath}/static/ProductImg/3.png"></a>
+<a href="#"><img class="card-img width=100" src="/static/ProductImg/3.png"></a>
                     <div class="card-body">
                         <h2>${dto.productName}</h2>
                         <p>회원할인가</p>

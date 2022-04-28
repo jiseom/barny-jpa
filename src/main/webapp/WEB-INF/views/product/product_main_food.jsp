@@ -118,20 +118,20 @@
     </ul>
 
         <hr class="my-2">
-        <div class="col-lg-12">
-            <form id='searchForm1' action="/product_main_liquor" method='get' style="font-size:10px;">
-                <%--     서치--%>
-                <select name='type'>
-                    <option value=""<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
-                    <option value="C"<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>상품이름</option>
-                </select>
+<%--        <div class="col-lg-12">--%>
+<%--            <form id='searchForm1' action="/product_main_liquor" method='get' style="font-size:10px;">--%>
+<%--                &lt;%&ndash;     서치&ndash;%&gt;--%>
+<%--                <select name='type'>--%>
+<%--                    <option value=""<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>--%>
+<%--                    <option value="C"<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>상품이름</option>--%>
+<%--                </select>--%>
 
-                <input type='text' name='keyword' style="width:60px;" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
-                <%-- 			<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>'/>
-                            <input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>'/> --%>
-                <button class='btn btn-secondary btn-sm'>Search</button>
-            </form>
-        </div>
+<%--                <input type='text' name='keyword' style="width:60px;" value='<c:out value="${pageMaker.cri.keyword}"/>'/>--%>
+<%--                &lt;%&ndash; 			<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>'/>--%>
+<%--                            <input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>'/> &ndash;%&gt;--%>
+<%--                <button class='btn btn-secondary btn-sm'>Search</button>--%>
+<%--            </form>--%>
+<%--        </div>--%>
     </div>
 	
 <!-- 안주 상품 보기 -->
@@ -151,36 +151,8 @@
       </c:forEach>
      </div>
    
-<!-- 페이징 처리 -->
-	<nav aria-label="Page navigation example">
-		<ul class="pagination">
-			<c:if test="${pageMaker.prev}">
-				<li class="page-item">
-					<a class="page-link" href="product/product_main_food${pageMaker.makeQuery(pageMaker.startPage - 1) }" aria-label="Previous">
-						<span aria-hidden="true">&laquo;</span>
-						<span class="sr-only">Previous</span>
-					</a>
-				</li>
-			</c:if>
-		
-			<c:forEach var="idx" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-				<li class="page-item "><a class="page-link" href="product_main_food${pageMaker.makeQuery(idx)}">
-					${idx}
-				</a>
-				</li>
-			</c:forEach>
-			<!-- 페이지 메이커에 링크 걸어줌 -->
-		
-			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<li class="page-item">
-					<a class="page-link" aria-label="Next" href="product_main_food${pageMaker.makeQuery(pageMaker.endPage +1) }">
-						<span aria-hidden="true">&raquo;</span>
-	        			<span class="sr-only">Next</span>
-					</a>
-				</li>
-			</c:if>
-		</ul>
-	</nav>
+
+
   </div>
   </div> 
 

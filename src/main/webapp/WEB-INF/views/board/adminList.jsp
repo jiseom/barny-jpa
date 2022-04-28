@@ -88,33 +88,7 @@
      
       	
 	</table>
-	<!--  Pagination -->
-<%--						<nav aria-label="Page navigation example">--%>
-<%--							<ul class="pagination justify-content-center">--%>
-<%--								<c:if test="${pageMaker.prev}">--%>
-<%--									<li class="page-item"><a class="page-link"--%>
-<%--										href="adminList${pageMaker.makeQuery(pageMaker.startPage - 1) }"--%>
-<%--										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>--%>
-<%--											<span class="sr-only">Previous</span>--%>
-<%--									</a></li>--%>
-<%--								</c:if>--%>
-<%--								<c:forEach var="idx" begin="${pageMaker.startPage }"--%>
-<%--									end="${pageMaker.endPage }">--%>
-<%--									<li class="page-item "><a class="page-link"--%>
-<%--										href="adminList${pageMaker.makeQuery(idx)}">${idx}</a></li>--%>
-<%--								</c:forEach>--%>
-<%--								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">--%>
-<%--									<li class="page-item"><a class="page-link"--%>
-<%--										aria-label="Next"--%>
-<%--										href="adminList${pageMaker.makeQuery(pageMaker.endPage +1) }">--%>
-<%--											<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>--%>
-<%--									</a></li>--%>
-<%--								</c:if>--%>
-<%--								--%>
-<%--							</ul>--%>
-<%--							--%>
-<%--						</nav>--%>
-<%--						--%>
+	
 
     <!-- Footer-->
 <footer class="footer">

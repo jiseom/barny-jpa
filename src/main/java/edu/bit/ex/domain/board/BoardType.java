@@ -10,7 +10,7 @@ public enum BoardType {
     /**
      * 공지 게시판/
      * 이벤트/
-     * 후기/
+
      * 주문문의/
      * 상품문의/
      * 배송문의/
@@ -21,7 +21,7 @@ public enum BoardType {
 
     NOTICE("공지 게시판"),
     EVENT("이벤트"),
-    REVIEW("후기"),
+
     ORDER_INQUIRY("주문문의"),
     PRODUCT_INQUIRY("상품문의"),
     SHIP_INQUIRY("배송문의"),

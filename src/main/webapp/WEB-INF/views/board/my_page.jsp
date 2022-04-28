@@ -75,9 +75,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="card card-my_page col-4" type="button" onclick="location.href='/reviews'">
+            <div class="card card-my_page col-4" type="button" onclick="location.href='/all-events'">
                 <div class="card-body my_page">
-                    후기
+                    이벤트
                 </div>
             </div>
             <div class="card card-my_page col-4" type="button" onclick="location.href='/my-page/point'">
