@@ -48,7 +48,7 @@
                 <div class="card admin-menu text-white mb-4">
                     <div class="card-body">1:1 문의 관리</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="/board/adminList">더보기 </a>
+                        <a class="small text-white stretched-link" href="/admin/inquiries">더보기 </a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>

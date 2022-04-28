@@ -56,7 +56,7 @@
             <div class="table-responsive outline pt-3"></div>
             <table class="table" style="font-size: 13px; border-top : solid 1px; border-top-color: #dee2e6;">
                 <form action="update" method="post">
-                    <input type="hidden" name="id" value="${my_content_view.id}">
+<%--                    <input type="hidden" name="id" value="${my_content_view.id}">--%>
                     <tr>
 
                         <td class="content_head"> 제목</td>

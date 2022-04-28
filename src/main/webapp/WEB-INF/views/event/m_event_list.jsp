@@ -75,7 +75,7 @@
                         <img src="/static/img/event1.png" class="card-img-top" /></a>
                     <div class="card-body">
                         <h6 class="card-title event-t">[상시 이벤트] 바니를 찾아라!</h6>
-                        <input id="id" name="id" type="hidden" value="${board.id}">
+<%--                        <input id="id" name="id" type="hidden" value="${board.id}">--%>
                         <p class="card-text event-b ">
                             숨어있는 바니의 짝을 맞추면 100포인트를 드려요!
                         </p>

@@ -59,7 +59,7 @@
                                 <td>${vo.id}</td>
                                 <td style="text-align: left; padding-left: 2rem">
                                     <a class="board_title"
-                                        href="${pageContext.request.contextPath}/notice/content/${vo.id}">${vo.boardTitle}</a>
+                                        href="${pageContext.request.contextPath}/notice/${vo.id}/detail">${vo.boardTitle}</a>
                                 </td>
                                 <td>Barny</td>
                                 <td>${vo.createdDate}</td>

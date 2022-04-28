@@ -41,9 +41,9 @@
     <div class="row">
         <div class="col-3" style="padding: 7rem 0;">
             <div class="list-group side-nav">
-                <a href="/admin/admin_member" class="list-group-item list-group-item-action">회원 관리</a>
-                <a href="#" class="list-group-item list-group-item-action">상품 관리</a>
-                <a href="/board/adminList" class="list-group-item list-group-item-action active" aria-current="true" >
+                <a href="/admin/account-list" class="list-group-item list-group-item-action">회원 관리</a>
+                <a href="/admin/notices" class="list-group-item list-group-item-action">공지사항 관리</a>
+                <a href="/admin/inquiries" class="list-group-item list-group-item-action active" aria-current="true" >
                     게시판 관리
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">주문 관리</a>
@@ -58,38 +58,39 @@
             <div class="table-responsive outline pt-3"></div>
             <table class="table" style="font-size: 13px; border-top : solid 1px; border-top-color: #dee2e6;">
                  <form action="modify" method="post">
-         <input type="hidden" name="board_id" value="${content_view.board_id}">
-         
-        
+         <input type="hidden" name="id" value="${content_view.id}">
+
+
          <tr>
             <td> 글번호 </td>
-            <td> ${content_view.board_id} </td>
+            <td> ${content_view.id} </td>
          </tr>
-         
+
          <tr>
             <td> 회원번호 </td>
-            <td> ${content_view.member_idx} </td>
+            <td> ${content_view.writer.id} </td>
          </tr>
-         
+
          <tr>
             <td> 날짜 </td>
-            <td>${content_view.b_date}</td>
+            <td>${content_view.createdDate}</td>
          </tr>
           <tr>
             <td> 제목 </td>
-            <td> <input type="text" name="b_title" value="${content_view.b_title}"></td>
+            <td> <input type="text" name="boardTitle" value="${content_view.boardTitle}" disabled></td>
          </tr>
-         
+
          <tr>
           <td class="content_head"> 내용</td>
-                        <td colspan="4"><textarea class="textarea-custom" rows="10" id="b_content" name="b_content"
-                                                  style="padding-top: 1rem; padding-bottom: 5rem; padding-left:10px; width: 100%;">${content_view.b_content}</textarea>
+                        <td colspan="4"><textarea class="textarea-custom" rows="10" id="boardContent" name="boardContent"disabled
+                                                  style="padding-top: 1rem; padding-bottom: 5rem; padding-left:10px; width: 100%;">${content_view.boardContent}</textarea>
          </tr>
          <tr >
-            <td colspan="2"> 
-            <input type="submit" value="수정" class="btn-basic text-uppercase"> &nbsp;&nbsp; <a href="adminList" class="btn-basic text-uppercase">목록보기</a> &nbsp;&nbsp;
-            <a id="a-delete" href="${pageContext.request.contextPath}/board/delete?board_id=${content_view.board_id}"class="btn-basic text-uppercase">삭제</a> 
-             &nbsp;&nbsp; <a href="reply_view?board_id=${content_view.board_id}" class="btn-basic text-uppercase">답변</a></td>
+            <td colspan="2" style="text-align: right;" >
+             <a href="/admin/inquiries" class="btn-basic text-uppercase">목록보기</a> &nbsp;&nbsp;
+                <a href="reply" class="btn-basic text-uppercase">답변</a>
+<%--            <a id="a-delete" href="${pageContext.request.contextPath}/board/delete?id=${content_view.id}"class="btn-basic text-uppercase">삭제</a>--%>
+             &nbsp;&nbsp;</td>
          </tr>
       </form>
 

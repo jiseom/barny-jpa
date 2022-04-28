@@ -39,9 +39,9 @@
     <div class="row">
         <div class="col-3" style="padding: 7rem 0;">
             <div class="list-group side-nav">
-                <a href="/admin/admin_member" class="list-group-item list-group-item-action">회원 관리</a>
-                <a href="#" class="list-group-item list-group-item-action">상품 관리</a>
-                <a href="/board/adminList" class="list-group-item list-group-item-action active" aria-current="true">
+                <a href="/admin/account-list" class="list-group-item list-group-item-action">회원 관리</a>
+                <a href="/admin/notices" class="list-group-item list-group-item-action">공지사항 관리</a>
+                <a href="/admin/inquiries" class="list-group-item list-group-item-action active" aria-current="true">
                     게시판 관리
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">주문 관리</a>
@@ -67,51 +67,54 @@
             </thead>
                     
 	
-		 <c:forEach items="${adminList}" var="dto">
+		 <c:forEach items="${accountInquiries}" var="dto">
       <tr>
-         <td>${dto.board_id}</td>
-         <td>${dto.member_idx}</td>
-         
+         <td>${dto.id}</td>
+<%--         <td>${dto.member_idx}</td>--%>
+         <td>${dto.writer.id}</td>
+
          <td>
-            <c:forEach begin="1" end="${dto.b_indent}">ㄴ</c:forEach>
-            <a href="content_view?board_id=${dto.board_id}">${dto.b_title}</a></td>
-         <td>${dto.b_date}</td>
+            <c:forEach begin="1" end="${dto.boardIndent}">ㄴ 답변 드립니다.</c:forEach>
+<%--            <a href="content_view?id=${dto.id}">${dto.boardTitle}</a></td>--%>
+            <a href="/admin/inquiries/${dto.id}/detail">${dto.boardTitle}</a></td>
+
+         <td>${dto.createdDate}</td>
       </tr>
       </c:forEach>
        <tr>
-         <td colspan="5"> <a href="write_view">글작성</a> </td>
+<%--         <td colspan="5"> <a href="write_view">글작성</a> </td>--%>
       </tr>
       
      
       	
 	</table>
 	<!--  Pagination -->
-						<nav aria-label="Page navigation example">
-							<ul class="pagination justify-content-center">
-								<c:if test="${pageMaker.prev}">
-									<li class="page-item"><a class="page-link"
-										href="adminList${pageMaker.makeQuery(pageMaker.startPage - 1) }"
-										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-											<span class="sr-only">Previous</span>
-									</a></li>
-								</c:if>
-								<c:forEach var="idx" begin="${pageMaker.startPage }"
-									end="${pageMaker.endPage }">
-									<li class="page-item "><a class="page-link"
-										href="adminList${pageMaker.makeQuery(idx)}">${idx}</a></li>
-								</c:forEach>
-								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-									<li class="page-item"><a class="page-link"
-										aria-label="Next"
-										href="adminList${pageMaker.makeQuery(pageMaker.endPage +1) }">
-											<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
-									</a></li>
-								</c:if>
-								
-							</ul>
-							
-						</nav>
-						
+<%--						<nav aria-label="Page navigation example">--%>
+<%--							<ul class="pagination justify-content-center">--%>
+<%--								<c:if test="${pageMaker.prev}">--%>
+<%--									<li class="page-item"><a class="page-link"--%>
+<%--										href="adminList${pageMaker.makeQuery(pageMaker.startPage - 1) }"--%>
+<%--										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>--%>
+<%--											<span class="sr-only">Previous</span>--%>
+<%--									</a></li>--%>
+<%--								</c:if>--%>
+<%--								<c:forEach var="idx" begin="${pageMaker.startPage }"--%>
+<%--									end="${pageMaker.endPage }">--%>
+<%--									<li class="page-item "><a class="page-link"--%>
+<%--										href="adminList${pageMaker.makeQuery(idx)}">${idx}</a></li>--%>
+<%--								</c:forEach>--%>
+<%--								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">--%>
+<%--									<li class="page-item"><a class="page-link"--%>
+<%--										aria-label="Next"--%>
+<%--										href="adminList${pageMaker.makeQuery(pageMaker.endPage +1) }">--%>
+<%--											<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>--%>
+<%--									</a></li>--%>
+<%--								</c:if>--%>
+<%--								--%>
+<%--							</ul>--%>
+<%--							--%>
+<%--						</nav>--%>
+<%--						--%>
 
     <!-- Footer-->
 <footer class="footer">

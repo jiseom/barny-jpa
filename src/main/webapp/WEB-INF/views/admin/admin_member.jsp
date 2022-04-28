@@ -48,9 +48,9 @@
     <div class="row">
         <div class="col-3" style="padding: 7rem 0;">
             <div class="list-group side-nav">
-                <a href="/admin/account-list" class="list-group-item list-group-item-action  active" aria-current="true">회원 관리</a>
+                <a href="/admin/account-list" class="list-group-item list-group-item-action active">회원 관리</a>
                 <a href="/admin/notices" class="list-group-item list-group-item-action">공지사항 관리</a>
-                <a href="/board/adminList" class="list-group-item list-group-item-action">
+                <a href="/admin/inquiries" class="list-group-item list-group-item-action">
                     게시판 관리
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">주문 관리</a>
