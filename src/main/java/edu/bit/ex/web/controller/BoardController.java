@@ -69,8 +69,8 @@ public class BoardController {
     // 1:1 문의 글 상세보기 뷰
     @GetMapping("/inquiries/{boardId}/detail")
     public String inquiryDetailView(@PathVariable Long boardId, @CurrentAccount Account account, Model model) {
-        Board board = boardService.findAccountAndBoard(account);
-        if (board.getId().equals(boardId)) {
+       Board board = boardService.findByAccount(account,boardId);
+        if (board != null) {
             model.addAttribute("my_content_view", board);
             return "/board/my_content_view";
         }
@@ -88,15 +88,15 @@ public class BoardController {
             model.addAttribute("updateInquiryForm", updateInquiryForm);
             return "/board/my_content_view";
         }
-        boardService.updateInquiry(account, updateInquiryForm);
+        boardService.updateInquiry(account,boardId, updateInquiryForm);
         return "redirect:/inquiries";
     }
 
     //1:1 문의글 삭제
     @GetMapping("/inquiries/{id}/delete")
-    public String deleteInquiry(@PathVariable("id") Board board,
+    public String deleteInquiry(@PathVariable("id") Long boardId,
                                 @CurrentAccount Account account) {
-        boardService.deleteInquiry(account, board);
+        boardService.deleteInquiry(account, boardId);
         return "redirect:/inquiries";
     }
 

@@ -33,6 +33,7 @@ public class InquiryForm {
                 .boardTitle(this.getBoardTitle())
                 .boardContent(this.getBoardContent())
                 .boardType(this.boardType)
+                .createdDate(LocalDate.now())
                 .build();
     }
 
