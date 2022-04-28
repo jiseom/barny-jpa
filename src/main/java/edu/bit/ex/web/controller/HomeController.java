@@ -1,35 +1,32 @@
-package edu.bit.ex.controller;
+package edu.bit.ex.web.controller;
 
+import edu.bit.ex.domain.board.Board;
+import edu.bit.ex.web.service.BoardService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import edu.bit.ex.page.Criteria;
-import edu.bit.ex.page.PageVO;
 import edu.bit.ex.service.EventService;
-import edu.bit.ex.service.NoticeService;
-import edu.bit.ex.vo.NoticeVO;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
+@RequiredArgsConstructor
 @Controller
 public class HomeController {
 
-	// event service
-	@Autowired
-	private EventService eventService;
-
-	// notice sercie
-	@Autowired
-	private NoticeService noticeService;
+	private final EventService eventService;
+	private final BoardService boardService;
 
 	// 메인 페이지
 	@GetMapping("/main")
 	public String main_page() {
 		return "main_page";
 	}
-	
+
 	// 취향 테스트
 	@GetMapping("/drink_test")
 	public String drink_test() {
@@ -49,25 +46,24 @@ public class HomeController {
 	}
 
 
-	// notice list
+	// 회원이 공지사항 확인할 수 있는 페이지
 	@GetMapping("/notice")
-	public String notice(Model model, Criteria cri) {
+	public String notice(Model model) {
 
-		model.addAttribute("list", noticeService.getList(cri));
+		List<Board> list = boardService.getNotices();
+		model.addAttribute("list", list);
 
-		int total = noticeService.getTotal(cri);
-		model.addAttribute("pageMaker", new PageVO(cri, total));
-
-		return "notice/m_main";
+		return "notice/main";
 	}
 
-	// notice list view
-	@GetMapping("/notice/content/{board_id}") // 뒤에 보드 아이디 달아줘야 찾아감!
-	public String notice_content_view(NoticeVO noticeVO, Model model) {
+	// 공지사항 상세 보기
+	@GetMapping("/notice/{boardId}/detail") // 뒤에 보드 아이디 달아줘야 찾아감!
+	public String noticeDetailView( @PathVariable Long boardId,
+									Model model) {
+		Board board = boardService.findBoard(boardId);
+		model.addAttribute("content_view", board);
 
-		model.addAttribute("content_view", noticeService.get(noticeVO.getBoard_id()));
-
-		return "notice/m_content_view";
+		return "notice/content-view";
 	}
 
 	// FAQ
