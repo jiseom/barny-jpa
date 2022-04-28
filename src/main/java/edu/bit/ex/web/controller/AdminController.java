@@ -7,6 +7,7 @@ import edu.bit.ex.domain.account.Role;
 import edu.bit.ex.domain.board.Board;
 import edu.bit.ex.page.Criteria;
 import edu.bit.ex.page.PageVO;
+import edu.bit.ex.web.dto.CreateReplyForm;
 import edu.bit.ex.web.service.AccountService;
 import edu.bit.ex.web.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -98,12 +99,61 @@ public class AdminController {
         throw new IllegalArgumentException();
     }
 
-    
+    //답변 폼
+    @GetMapping("/inquiries/{boardId}/reply")
+    public String createReplyForm(@CurrentAccount Account account,
+                                  CreateReplyForm createReplyForm,
+                                  Model model) {
+        if (isAdmin(account)) {
+            model.addAttribute("createReplyForm", createReplyForm);
+            return "/board/reply_view";
+        }
+        throw new IllegalArgumentException();
 
+    }
+
+    //답변 등록
+    @PostMapping("/inquiries/{boardId}/reply")
+    public String submitReplyForm(@CurrentAccount Account account,
+                           @PathVariable Long boardId,
+                           CreateReplyForm createReplyForm,
+                           Model model) {
+        if (isAdmin(account)) {
+            boardService.addReply(boardId,createReplyForm);
+            return "redirect:/admin/inquiries";
+        }
+        throw new IllegalArgumentException();
+    }
     //관리자인지 확인하는 메서드
     private boolean isAdmin(Account account) {
+
         return account.getRole() == Role.ROLE_ADMIN;
     }
 
 
+    //    //답글
+//    @GetMapping("/answers")
+//    public String getAnswers() {
+//
+//
+//
+//    }
+//
+//	<select id="getReply" resultType="edu.bit.ex.vo.BoardVO">
+//	<![CDATA[
+//    select*from barny_board where board_type_id=#{board_type_id} and b_group=#{b_group}
+//	]]>
+//	</select>
+//
+//    @GetMapping("/board/reply_view")
+//    public String reply_view(BoardVO boardVO, Model model) {
+//        log.info("reply_view()");
+//        model.addAttribute("reply_view", boardService.getReply(boardVO.getBoard_id()));
+//
+//        return "/board/reply_view";
+//    }
+
+
 }
+
+
