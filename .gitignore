@@ -295,7 +295,7 @@ fabric.properties
 #application.yaml
 application.yaml
 application-test.yaml
-application-oauth.yaml
-
+application-oauth.yml
+application.yml
 #test application.yaml
 src/test/resources/application.yaml
