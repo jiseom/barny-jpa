@@ -73,7 +73,8 @@ public class AccountService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email); // 스크립트에서 보낸 메일을 받을 사용자 이메일 주소
 
-        Account findAccountByEmail = accountRepository.findByEmail(email);
+        Account findAccountByEmail = accountRepository.findByEmail(email)
+                .orElseThrow(IllegalArgumentException::new);
 
         String accountId = findAccountByEmail.getAccountId();
         String name = findAccountByEmail.getName();
@@ -104,7 +105,8 @@ public class AccountService {
         int numIndex = random.nextInt(8999) + 100000; // 4자리 정수를 생성
         key += numIndex;
 
-        Account findAccountByEmail = accountRepository.findByEmail(email);
+        Account findAccountByEmail = accountRepository.findByEmail(email)
+                .orElseThrow(IllegalArgumentException::new);
 
         message.setSubject(findAccountByEmail.getName() + "님의 BARNY 임시 비밀번호 안내 ");
         message.setText(

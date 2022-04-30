@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Builder
 @AllArgsConstructor
@@ -23,16 +24,16 @@ public class Account {
     @GeneratedValue
     public Long id;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String accountId;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     public String name;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     public String nickname;
 
-    @Column(unique = true, nullable = false)
+//    @Column(unique = true, nullable = false)
     public String email;
 
     @Size(min = 8, max = 100)
@@ -40,16 +41,18 @@ public class Account {
 
     public String payment;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     public String tel;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     public String address;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     public LocalDate dateOfBirth;
 
     private int point;
+
+    private String picture;
 
     private int subscribe;
 
@@ -79,4 +82,22 @@ public class Account {
         this.enabled = 1;
     }
 
+    //OAuth
+
+//    @Builder
+    public Account(String name, String email,String picture, Role role) {
+        this.name=name;
+        this.email=email;
+        this.picture = picture;
+        this.role = role;
+    }
+    public Account update(String name,String picture) {
+        this.name = name;
+        this.picture = picture;
+        return this;
+    }
+
+    public String getRoleKey(){
+        return this.role.getKey();
+    }
 }

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.util.Optional;
+
 @Component
 @RequiredArgsConstructor
 public class SignUpFormValidator implements Validator {
@@ -32,8 +34,10 @@ public class SignUpFormValidator implements Validator {
         if (findAccountById != null) {
             errors.rejectValue("accountId", "duplicate.accountId", "사용중인 아이디입니다.");
         }
-        Account findAccountByEmail = accountRepository.findByEmail(signUpForm.getEmail());
-        if (findAccountByEmail != null) {
+        boolean empty = accountRepository.findByEmail(signUpForm.getEmail())
+                .isEmpty();
+
+        if (!empty) {
             errors.rejectValue("email", "duplicate.email", "사용중인 이메일입니다.");
         }
         Account findAccountByNickname = accountRepository.findByNickname(signUpForm.getNickname());

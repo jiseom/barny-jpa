@@ -16,7 +16,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.util.List;
 
 @Slf4j
@@ -26,10 +25,11 @@ public class BoardController {
 
     private final BoardService boardService;
 
+
     // 마이페이지 뷰
     @GetMapping("/my-page")
     public String myPageView(@CurrentAccount Account account) {
-        log.info("User name ======= " + account.getName());
+//        log.info("User name ======= " + account.getName());
         return "/board/my_page";
     }
 
