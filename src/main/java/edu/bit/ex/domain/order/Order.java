@@ -3,16 +3,15 @@ package edu.bit.ex.domain.order;
 import edu.bit.ex.domain.account.Account;
 import edu.bit.ex.domain.product.Product;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import edu.bit.ex.web.dto.CreateOrderForm;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
+@Data
 @Table(name="Orders")
 @Entity
 public class Order {
@@ -28,8 +27,13 @@ public class Order {
 
     private int totalPrice;
 
-    private LocalDate orderDate;
+    private String orderDate;
 
+    public Order toEntity(CreateOrderForm createOrderForm) {
+        this.totalPrice = createOrderForm.getSumMoney();
+        this.orderDate = String.valueOf(LocalDate.now());
+        return Order.this;
+        }
 
 
 
