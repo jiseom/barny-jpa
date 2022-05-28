@@ -92,15 +92,16 @@
                     </button>
                 </div>
                 <div class="container-login100-form-btn m-t-17">
-                  <button class="other_login100-form-btn"button type="button" onclick="location.href='/oauth2/authorization/kakao'">
-                        KAKAO로 로그인
+                  <button class="other_login100-form-btn"button type="button" onclick="location.href='/oauth2/authorization/google'">
+<%--                      todo : 배포할떄는 uri 를 /oauth2/code/google 에서 바꿔줄 것 --%>
+                        Google로 로그인
                     </button>
                 </div>
-                <div class="container-login100-form-btn m-t-17">
-                    <button class="other_login100-form-btn"  type="button" onclick="location.href='/oauth2/authorization/naver'">
-                        NAVER로 로그인
-                    </button>
-                </div>
+<%--                <div class="container-login100-form-btn m-t-17">--%>
+<%--                    <button class="other_login100-form-btn"  type="button" onclick="location.href='/oauth2/authorization/naver'">--%>
+<%--                        NAVER로 로그인--%>
+<%--                    </button>--%>
+<%--                </div>--%>
             </form>
             <hr>
             <a href ="/account/new">회원가입을 아직 하지 않으셨나요?</a>
