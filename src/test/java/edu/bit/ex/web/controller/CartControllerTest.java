@@ -117,10 +117,11 @@ class CartControllerTest {
     @Test
     public void addCart() throws Exception {
         Product product = addProduct();
-        Product product1 = addProduct1();
-        Account account = addAccount("wltjs123", "지선", "wltjs", "jiseon@email.com", "wltjs123!", "서울", "010-1000-1000", toLocalDate("2020-06-22"), Role.ROLE_USER);
+        Account account =
+                addAccount("wltjs123", "지선", "wltjs", "jiseon@email.com", "wltjs123!", "서울", "010-1000-1000", toLocalDate("2020-06-22"), Role.ROLE_USER);
         UserAccount userAccount = new UserAccount(account);
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userAccount, userAccount.getPassword(), userAccount.getAuthorities());
+        UsernamePasswordAuthenticationToken token =
+                new UsernamePasswordAuthenticationToken(userAccount, userAccount.getPassword(), userAccount.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(token);
 
         CreateCartForm createCartForm = new CreateCartForm();
@@ -139,9 +140,11 @@ class CartControllerTest {
     @Test
     public void getCartList() throws Exception {
 
-        Account account = addAccount("wltjs123", "지선", "wltjs", "jiseon@email.com", "wltjs123!", "서울", "010-1000-1000", toLocalDate("2020-06-22"), Role.ROLE_USER);
+        Account account =
+                addAccount("wltjs123", "지선", "wltjs", "jiseon@email.com", "wltjs123!", "서울", "010-1000-1000", toLocalDate("2020-06-22"), Role.ROLE_USER);
         UserAccount userAccount = new UserAccount(account);
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userAccount, userAccount.getPassword(), userAccount.getAuthorities());
+        UsernamePasswordAuthenticationToken token =
+                new UsernamePasswordAuthenticationToken(userAccount, userAccount.getPassword(), userAccount.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(token);
 
         List<Product> cartList = new ArrayList<>();

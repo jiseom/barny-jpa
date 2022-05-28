@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @Transactional
-@SpringBootTest
+@SpringBootTest(properties = "classpath:application-test.yaml")
 class BoardControllerTest {
 
     @Autowired
@@ -81,8 +81,8 @@ class BoardControllerTest {
 
     @AfterEach
     void AfterEach() {
-        accountRepository.deleteAll();
         boardRepository.deleteAll();
+        accountRepository.deleteAll();
     }
 
     @DisplayName("1:1 문의 폼")
@@ -112,12 +112,13 @@ class BoardControllerTest {
     @DisplayName("1:1 문의 수정")
     @Test
     void updateInquiry() throws Exception {
+
         InquiryForm inquiryForm = new InquiryForm();
         inquiryForm.setBoardTitle("주문");
         inquiryForm.setBoardContent("주문");
         inquiryForm.setBoardType(BoardType.ORDER_INQUIRY);
         Board board = inquiryForm.toEntity();
-        Account account = accountRepository.findByAccountId("wltjs");
+        Account account = accountRepository.findByAccountId("wltjs123");
         board.setWriter(account);
         boardRepository.save(board);
 
@@ -138,7 +139,7 @@ class BoardControllerTest {
             inquiryForm.setBoardContent("주문");
             inquiryForm.setBoardType(BoardType.ORDER_INQUIRY);
             Board board = inquiryForm.toEntity();
-            Account account = accountRepository.findByAccountId("wltjs");
+            Account account = accountRepository.findByAccountId("wltjs123");
             board.setWriter(account);
             boardRepository.save(board);
 

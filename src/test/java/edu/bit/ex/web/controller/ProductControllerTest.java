@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @Transactional
 @AutoConfigureMockMvc
-@SpringBootTest
+@SpringBootTest(properties = "classpath:application-test.yaml")
 class ProductControllerTest {
 
     @Autowired
@@ -52,7 +52,6 @@ class ProductControllerTest {
     @Test
     void getProductDetail() throws Exception {
         Product product = new Product();
-        product.setId(1L);
         product.setProductName("안주100");
         product.setPrice(10000);
         product.setStock(10);
