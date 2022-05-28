@@ -4,13 +4,16 @@ import edu.bit.ex.domain.account.Account;
 import edu.bit.ex.domain.account.CurrentAccount;
 import edu.bit.ex.domain.cart.Cart;
 import edu.bit.ex.domain.order.Order;
+import edu.bit.ex.web.dto.CreateOrderForm;
 import edu.bit.ex.web.service.CartService;
 import edu.bit.ex.web.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.List;
@@ -50,6 +53,20 @@ public class OrderController {
 
     }
 
+    //주문 넣기
+    @ResponseBody
+    @PostMapping("/order-process")
+    public String addOrder(@CurrentAccount Account account, CreateOrderForm createOrderForm,Order order,Model model) {
+        model.addAttribute("createOrderForm", createOrderForm);
+        orderService.addOrder(account, order, createOrderForm);
+        return "success";
+    }
+
+    //주문 성공페이지
+    @GetMapping("/order-complete")
+    public String orderPage() {
+        return "order/orderPage";
+    }
 
 
 }
