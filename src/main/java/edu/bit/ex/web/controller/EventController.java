@@ -2,7 +2,6 @@ package edu.bit.ex.web.controller;
 
 import edu.bit.ex.domain.account.Account;
 import edu.bit.ex.domain.account.CurrentAccount;
-import edu.bit.ex.page.Criteria;
 import edu.bit.ex.web.dto.EventForm;
 import edu.bit.ex.web.service.EventService;
 import lombok.RequiredArgsConstructor;
